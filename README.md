@@ -73,6 +73,9 @@ cd aria
 - Font used in the banner: [Alegreya Sans SC. Designed by Juan Pablo del Peral, Huerta Tipográfica. Available on Google Fonts](https://fonts.google.com/specimen/Alegreya+Sans+SC)
 - Main font: [Alegreya Sans. Designed by Juan Pablo del Peral, Huerta Tipográfica. Available on Google Fonts](https://fonts.google.com/specimen/Alegreya+Sans)
 
+#### -> Audios
+- All the audios are the original ones used in Blanket. To see more information about the authors and licensing, please check [SOUNDS_LICENSING](SOUNDS_LICENSING.md).
+
 ---
 
 ## 💐 Contributing
