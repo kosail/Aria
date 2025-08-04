@@ -1,3 +1,29 @@
 <resources>
+    <string name="aria">ARIA</string>
+    <string name="version">v0.1.0</string>
+
+    <string name="audio_rain">Rain</string>
+    <string name="audio_storm">Storm</string>
+    <string name="audio_wind">Wind</string>
+    <string name="audio_waves">Waves</string>
+    <string name="audio_stream">Stream</string>
+    <string name="audio_birds">Birds</string>
+    <string name="audio_summer_night">Summer Night</string>
+    <string name="audio_train">Train</string>
+    <string name="audio_boat">Boat</string>
+    <string name="audio_city">City</string>
+    <string name="audio_coffee">Coffee Shop</string>
+    <string name="audio_fireplace">Fireplace</string>
+    <string name="audio_cat_meow">Cat Meow</string>
+    <string name="audio_pink_noise">Pink Noise</string>
+    <string name="audio_white_noise">White Noise</string>
+    <string name="audio_add">Add...</string>
+
+    <string name="volume_menu">Volume Menu</string>
+    <string name="about_aria">About Aria</string>
+    <string name="kosail">kosail</string>
+    <string name="kosail_in_korealm">kosail in the korealm</string>
+    <string name="from_honduras">With love, from Honduras</string>
+
 
 </resources>

@@ -65,16 +65,42 @@ cd aria
 
 ### Resources
 
+<details>
+<summary>Show/Hide</summary>
+
 #### -> Icons
 - [Original icons from Blanket, on GitHub](https://github.com/rafaelmardojai/blanket)
+- [Lucide icons for minimize, maximize and close buttons](https://lucide.dev)
 
 
 #### -> Fonts
 - Font used in the banner: [Alegreya Sans SC. Designed by Juan Pablo del Peral, Huerta Tipográfica. Available on Google Fonts](https://fonts.google.com/specimen/Alegreya+Sans+SC)
 - Main font: [Alegreya Sans. Designed by Juan Pablo del Peral, Huerta Tipográfica. Available on Google Fonts](https://fonts.google.com/specimen/Alegreya+Sans)
 
+
 #### -> Audios
-- All the audios are the original ones used in Blanket. To see more information about the authors and licensing, please check [SOUNDS_LICENSING](SOUNDS_LICENSING.md).
+- [Cat meow audio by DRAGON-STUDIO, on Pixabay](https://pixabay.com/es/sound-effects/cat-meow-321642/)
+- All the audios (except for the above) are the original ones used in Blanket. To see more information about the authors and licensing, please check [SOUNDS_LICENSING](SOUNDS_LICENSING.md).
+
+#### -> Images
+- [Rain photo by Anant Jain, on Unsplash](https://unsplash.com/photos/raindrops-on-clear-window-Bu1zj2WbjHE?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)
+- [Lightnings photo by Hakan TAHMAZ, on Unsplash](https://unsplash.com/photos/a-couple-of-lightning-strikes-over-a-body-of-water-yco4uLragVg)
+- [Wind photo by Saad Chaudhry, on Unsplash](https://unsplash.com/photos/shallow-focus-of-white-dandelion-YNM4KStg78I)
+- [Waves photo by Ivan Stepanov, on Unsplash](https://unsplash.com/photos/a-surfboard-sitting-on-top-of-a-sandy-beach-KCazjPomUbg)
+- [Stream photo by Daniel Salcius, on Unsplash](https://unsplash.com/photos/a-rock-in-the-water-ckTkPtKwz_s)
+- [Birds photo by Rusty Watson, on Unsplash](https://unsplash.com/photos/two-small-birds-perched-on-a-twig-KLylpBvo0ww)
+- [Summer night photo by Ivan Maljarenko, on Unsplash](https://unsplash.com/photos/a-house-in-the-middle-of-a-field-under-a-night-sky-5ZHWVZpudpE)
+- [Train photo by Adrien Bruneau, on Unsplash](https://unsplash.com/photos/woman-standing-on-waiting-shed-facing-speeding-green-and-white-train-KqeC2k_HkJc)
+- [Boat photo by Michal Janek, on Unsplash](https://unsplash.com/photos/white-boat-on-large-body-of-water-during-daytime-WwMeY7eLd0A)
+- [City photo by Caroline Ross, on Unsplash](https://unsplash.com/photos/a-city-street-with-cars-parked-on-the-side-of-it-gSdfjG5hhQs)
+- [Coffee photo by Muskan Dev, on Unsplash](https://unsplash.com/photos/a-table-with-a-coffee-pot-and-a-book-on-it-di8qgeE1h_M)
+- [Fireplace photo by Andrey Novik, on Unsplash](https://unsplash.com/photos/burning-wood-on-brown-soil-TpeIW_XnwI4)
+- [Person standing on rock by Hunter Bryant, on Unsplash](https://unsplash.com/photos/person-standing-on-rock-oZMgy8s1Mh8)
+- [Waves rushed to shore by Christian Holzinger, on Unsplash](https://unsplash.com/photos/waves-rushed-to-shore-at-sunset-3rcIXVAHpl0)
+- [Cat photo, by Sabina Sturzu, on Unsplash](https://unsplash.com/photos/orange-tabby-cat-on-black-book-sHtJeNIzPe8)
+- [A blurry photo of a city by Oskars Sylwan, on Unsplash](https://unsplash.com/photos/a-blurry-photo-of-a-city-at-night-Xjg8t1KO26o)
+
+</details>
 
 ---
 

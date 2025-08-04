@@ -18,36 +18,36 @@ fun WhisperingNatureTheme(
     content: @Composable () -> Unit
 ) {
     // Whispering Nature Light Theme
-    val WhisperLightPrimary = Color(0xFFBACDDC)           // Misty Blue-Grey
-    val WhisperLightPrimaryContainer = Color(0xFFDCE4EC)  // Lighter mist blue for cards
+    val WhisperLightPrimary = Color(0xFF4F6B57)           // Pine Green
+    val WhisperLightPrimaryContainer = Color(0xFFDBE9DD)  // Soft Leaf
 
-    val WhisperLightSecondary = Color(0xFFD9A5A5)         // Warm Clay Rose
-    val WhisperLightSecondaryContainer = Color(0xFFF1DADA)
+    val WhisperLightSecondary = Color(0xFF776B5F)         // Bark Brown
+    val WhisperLightSecondaryContainer = Color(0xFFE1DED9) // Lichen
 
-    val WhisperLightTertiary = Color(0xFFA8BCA1)          // Moss Green
-    val WhisperLightTertiaryContainer = Color(0xFFDDEBD6)
+    val WhisperLightTertiary = Color(0xFF94A89A)          // Muted Fern
+    val WhisperLightTertiaryContainer = Color(0xFFDCEAE1) // Pale Moss
 
-    val WhisperLightBackground = Color(0xFFF4F6F8)         // Soft Cloud White
-    val WhisperLightSurface = Color.White                 // Clean white surface
-    val WhisperLightSurfaceVariant = Color(0xFFEAEFF3)    // Border / control background
+    val WhisperLightBackground = Color(0xFFF5F4F1)         // Misty Cloud
+    val WhisperLightSurface = Color(0xFFE8E6E3)            // Fogstone
+    val WhisperLightSurfaceVariant = Color(0xFFDAD7D2)     // Weathered Stone
 
-    val WhisperLightText = Color(0xFF1A2A3A)              // Deep Ink Blue
-    val WhisperLightError = Color(0xFFD13438)             // Subtle error red
-    val WhisperLightErrorContainer = Color(0xFFFFDAD6)    // Light red background
+    val WhisperLightText = Color(0xFF3D3A35)               // Shadowed Bark
+    val WhisperLightError = Color(0xFFAD5C5C)              // Dry Clay
+    val WhisperLightErrorContainer = Color(0xFFF2E7E5)     // Sand Mist
 
     fun whisperingNatureLightColors() = lightColorScheme(
         primary = WhisperLightPrimary,
-        onPrimary = Color.White,
+        onPrimary = WhisperLightPrimaryContainer,
         primaryContainer = WhisperLightPrimaryContainer,
         onPrimaryContainer = WhisperLightText,
 
         secondary = WhisperLightSecondary,
-        onSecondary = Color.White,
+        onSecondary = WhisperLightSecondaryContainer,
         secondaryContainer = WhisperLightSecondaryContainer,
         onSecondaryContainer = WhisperLightText,
 
         tertiary = WhisperLightTertiary,
-        onTertiary = Color.White,
+        onTertiary = WhisperLightTertiaryContainer,
         tertiaryContainer = WhisperLightTertiaryContainer,
         onTertiaryContainer = WhisperLightText,
 
@@ -57,46 +57,47 @@ fun WhisperingNatureTheme(
         surface = WhisperLightSurface,
         onSurface = WhisperLightText,
         surfaceVariant = WhisperLightSurfaceVariant,
-        onSurfaceVariant = Color(0xFF444444),  // Gentle outline contrast
+        onSurfaceVariant = Color(0xFF5C5955), // Gentle outline contrast
 
         error = WhisperLightError,
-        onError = Color.White,
+        onError = WhisperLightErrorContainer,
         errorContainer = WhisperLightErrorContainer,
         onErrorContainer = WhisperLightText
     )
 
 
+
     // Whispering Nature Dark Theme
-    val WhisperDarkPrimary = Color(0xFFBACDDC)              // Same mist blue, softened for dark
-    val WhisperDarkPrimaryContainer = Color(0xFF2E3A48)     // Rich cool container (mica-dark tone)
+    val WhisperDarkPrimary = Color(0xFF94B59C)              // Soft Fern
+    val WhisperDarkPrimaryContainer = Color(0xFF17241F)     // Forest Shadow
 
-    val WhisperDarkSecondary = Color(0xFFD9A5A5)            // Soft rose stays effective in dark
-    val WhisperDarkSecondaryContainer = Color(0xFF3D2F30)
+    val WhisperDarkSecondary = Color(0xFFA38C77)            // Autumn Bark
+    val WhisperDarkSecondaryContainer = Color(0xFF2D1F14)   // Faded Lichen
 
-    val WhisperDarkTertiary = Color(0xFFA8BCA1)             // Calming green
-    val WhisperDarkTertiaryContainer = Color(0xFF2D3A2D)
+    val WhisperDarkTertiary = Color(0xFF819284)             // Smoky Moss
+    val WhisperDarkTertiaryContainer = Color(0xFF1F2C22)    // Forest Floor
 
-    val WhisperDarkBackground = Color(0xFF1F2B38)           // Charcoal blue, not full black
-    val WhisperDarkSurface = Color(0xFF2A3542)              // Slightly lighter surface
-    val WhisperDarkSurfaceVariant = Color(0xFF3A495A)       // Button background or card borders
+    val WhisperDarkBackground = Color(0xFF0E1A16)           // Midnight Pine
+    val WhisperDarkSurface = Color(0xFF1B2A24)              // Obsidian Moss
+    val WhisperDarkSurfaceVariant = Color(0xFF2D3A34)       // Moss Shadow
 
-    val WhisperDarkText = Color(0xFFF5F5F5)                 // Soft white
-    val WhisperDarkError = Color(0xFFFF5F5F)                // Bright error red
-    val WhisperDarkErrorContainer = Color(0xFF5A1B1B)       // Dark red container
+    val WhisperDarkText = Color(0xFFE5E3DE)                 // Morning Dew
+    val WhisperDarkError = Color(0xFFD08989)                // Rusted Leaf
+    val WhisperDarkErrorContainer = Color(0xFF1F1110)       // Dark Clay Dust
 
     fun whisperingNatureDarkColors() = darkColorScheme(
         primary = WhisperDarkPrimary,
-        onPrimary = Color.Black,
+        onPrimary = WhisperDarkPrimaryContainer,
         primaryContainer = WhisperDarkPrimaryContainer,
         onPrimaryContainer = WhisperDarkText,
 
         secondary = WhisperDarkSecondary,
-        onSecondary = Color.Black,
+        onSecondary = WhisperDarkSecondaryContainer,
         secondaryContainer = WhisperDarkSecondaryContainer,
         onSecondaryContainer = WhisperDarkText,
 
         tertiary = WhisperDarkTertiary,
-        onTertiary = Color.Black,
+        onTertiary = WhisperDarkTertiaryContainer,
         tertiaryContainer = WhisperDarkTertiaryContainer,
         onTertiaryContainer = WhisperDarkText,
 
@@ -109,10 +110,11 @@ fun WhisperingNatureTheme(
         onSurfaceVariant = Color(0xFFC9C9C9),  // Subtle neutral border
 
         error = WhisperDarkError,
-        onError = Color.Black,
+        onError = WhisperDarkErrorContainer,
         errorContainer = WhisperDarkErrorContainer,
         onErrorContainer = WhisperDarkText
     )
+
 
     val alegreyaSansFont = FontFamily(
         Font(Res.font.AlegreyaSans_Black, weight = FontWeight.Black),
