@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="24"
+   height="24"
+   viewBox="0 0 24 24"
+   fill="none"
+   stroke="#666666"
+   stroke-width="1"
+   stroke-linecap="round"
+   stroke-linejoin="round"
+   class="lucide lucide-ellipsis-icon lucide-ellipsis"
+   version="1.1"
+   id="svg3"
+   sodipodi:docname="menu.svg"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs3" />
+  <sodipodi:namedview
+     id="namedview3"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="27.388923"
+     inkscape:cx="9.6754443"
+     inkscape:cy="10.569967"
+     inkscape:window-width="1521"
+     inkscape:window-height="1018"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg3" />
+  <circle
+     cx="12"
+     cy="12"
+     id="circle1"
+     r="1" />
+  <circle
+     cx="19"
+     cy="12"
+     r="1"
+     id="circle2" />
+  <circle
+     cx="5"
+     cy="12"
+     r="1"
+     id="circle3" />
+  <rect
+     style="fill:#666666;stroke-width:0;fill-opacity:1"
+     id="rect3"
+     width="1.6989197"
+     height="1.7518455"
+     x="11.183231"
+     y="11.199109" />
+  <rect
+     style="fill:#666666;fill-opacity:1;stroke-width:0"
+     id="rect3-6"
+     width="1.6989197"
+     height="1.7518455"
+     x="18.142284"
+     y="11.06811" />
+  <rect
+     style="fill:#666666;fill-opacity:1;stroke-width:0"
+     id="rect3-5"
+     width="1.6989197"
+     height="1.7518455"
+     x="4.1099086"
+     y="11.103844" />
+</svg>
