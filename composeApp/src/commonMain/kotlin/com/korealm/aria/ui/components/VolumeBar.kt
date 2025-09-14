@@ -1,4 +1,4 @@
-package com.korealm.aria.ui
+package com.korealm.aria.ui.components
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.BoxWithConstraints

@@ -1,4 +1,4 @@
-package com.korealm.aria.ui.player
+package com.korealm.aria.ui.components.player
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box

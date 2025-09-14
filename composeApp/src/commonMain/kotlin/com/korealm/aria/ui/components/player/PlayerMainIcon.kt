@@ -1,4 +1,4 @@
-package com.korealm.aria.ui.player
+package com.korealm.aria.ui.components.player
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -17,8 +17,8 @@ import androidx.compose.ui.unit.dp
 import aria.composeapp.generated.resources.Res
 import aria.composeapp.generated.resources.pause
 import aria.composeapp.generated.resources.play
-import com.korealm.aria.state.DeviceSizeCategory
-import com.korealm.aria.state.LocalDeviceSizeCategory
+import com.korealm.aria.utils.Target.*
+import com.korealm.aria.utils.getTargetPlatform
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -30,9 +30,9 @@ fun PlayerMainIcon(
     modifier: Modifier = Modifier,
     onClick: () -> Unit
 ) {
-    val iconSize = when(LocalDeviceSizeCategory.current) {
-        DeviceSizeCategory.CompactDesktop -> 56.dp
-        else -> 64.dp
+    val iconSize = when (getTargetPlatform()) {
+        DESKTOP -> 64.dp
+        WEB -> 60.dp
     }
 
     // Not using an IconButton because I did not like the default behavior on hover,

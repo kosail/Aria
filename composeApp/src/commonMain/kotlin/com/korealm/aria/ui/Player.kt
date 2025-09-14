@@ -13,12 +13,16 @@ import androidx.compose.ui.unit.dp
 import aria.composeapp.generated.resources.*
 import com.korealm.aria.state.DeviceSizeCategory
 import com.korealm.aria.state.LocalDeviceSizeCategory
-import com.korealm.aria.ui.player.PlayerMainIcon
-import com.korealm.aria.ui.player.PlayerSecondaryIcon
+import com.korealm.aria.state.PlayerState
+import com.korealm.aria.ui.components.player.PlayerMainIcon
+import com.korealm.aria.ui.components.player.PlayerSecondaryIcon
+import com.korealm.aria.utils.PlayerFacade
 
 
 @Composable
 fun Player(
+    playerState: PlayerState,
+    playerFacade: PlayerFacade,
     modifier: Modifier = Modifier
 ) {
     val iconsPadding = when(LocalDeviceSizeCategory.current) {
@@ -41,9 +45,9 @@ fun Player(
             ) {}
 
             PlayerMainIcon(
-                isPlaying = false,
+                isPlaying = playerState.isPlayerActive,
                 modifier = Modifier.padding(horizontal = iconsPadding)
-            ) {}
+            ) { playerFacade.toggleGlobalPlayer() }
 
             PlayerSecondaryIcon(
                 iconRes = Res.drawable.menu,

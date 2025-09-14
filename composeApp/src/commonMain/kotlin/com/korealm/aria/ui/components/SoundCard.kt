@@ -1,4 +1,4 @@
-package com.korealm.aria.ui
+package com.korealm.aria.ui.components
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.clickable
@@ -14,23 +14,23 @@ import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import org.jetbrains.compose.resources.DrawableResource
-import org.jetbrains.compose.resources.StringResource
+import com.korealm.aria.model.Sound
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun SoundCard(
-    iconRes: DrawableResource,
-    titleRes: StringResource,
+    sound: Sound,
     cardSize: Dp,
     modifier: Modifier = Modifier,
     onClick: () -> Unit
 ) {
     var isHover by remember { mutableStateOf(false) }
-    var isPressed by remember { mutableStateOf(false) }
 
     val surfaceColor = if (isHover) MaterialTheme.colorScheme.onSurface.copy(alpha = 0.05f) else Color.Transparent
     val animatedColor by animateColorAsState( targetValue = surfaceColor )
+
+    val iconRes = sound.resource.iconRes
+    val titleRes = sound.resource.titleRes
 
     Box(
         modifier = modifier
@@ -52,10 +52,7 @@ fun SoundCard(
                         }
                     }
                 }
-                .clickable {
-                    isPressed = !isPressed
-                    onClick()
-                }
+                .clickable { onClick() }
         ) {
             Column(
                 verticalArrangement = Arrangement.Center,
@@ -65,7 +62,7 @@ fun SoundCard(
                 BigIcon(
                     iconRes = iconRes,
                     contentDescription = stringResource(titleRes),
-                    isActive = isPressed
+                    isActive = sound.isSelected
                 )
 
                 Spacer(Modifier.height(36.dp))

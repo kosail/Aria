@@ -7,8 +7,6 @@ Nature’s silent symphony.
 
 Built from scratch using [Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform), **Aria** is designed to flow across platforms — from Linux to Windows, from macOS to Web — while honoring the quiet beauty of the original [Blanket app](https://github.com/rafaelmardojai/blanket), built by Rafael Mardojai for the GNOME desktop.
 
-![Nightly screenshot](repo_images/screenshot.webp)
-
 ---
 
 ## 🌺 Goal of this project:
@@ -32,6 +30,10 @@ Designing for minimalism doesn’t mean removing life. It means focusing on **wh
 - 🕰 Built-in timer to gently fade out after a chosen duration (perfect for sleep)
 - 🪟 Inspired by GTK aesthetics — minimal, calm, elegant
 - 💻 Runs on Desktop (Linux, Windows, macOS, all via JVM) and Web (WASM/JS)
+
+### Screenshots of the nightly version.
+![Nightly screenshot, dark mode](repo_images/screenshot.webp)
+![Nightly screenshot, light mode](repo_images/screenshot2.webp)
 
 ---
 

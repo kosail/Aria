@@ -34,7 +34,7 @@ import aria.composeapp.generated.resources.wind_symbolic
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 
-enum class Sounds(
+enum class AudioResource(
     val iconRes: DrawableResource,
     val titleRes: StringResource,
     val audioRes: String

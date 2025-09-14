@@ -17,12 +17,16 @@ import aria.composeapp.generated.resources.Res
 import aria.composeapp.generated.resources.aria
 import com.korealm.aria.state.DeviceSizeCategory
 import com.korealm.aria.state.LocalDeviceSizeCategory
-import com.korealm.aria.model.Sounds
+import com.korealm.aria.state.PlayerState
+import com.korealm.aria.ui.components.SoundCard
+import com.korealm.aria.utils.PlayerFacade
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun Home(
+    playerState: PlayerState,
+    playerFacade: PlayerFacade,
     modifier: Modifier = Modifier
 ) {
     val mainSurfacePadding = when (LocalDeviceSizeCategory.current) {
@@ -79,13 +83,16 @@ fun Home(
                     .fillMaxSize()
                     .padding(30.dp)
             ) {
-                Sounds.entries.forEach { sound ->
+                playerState.playlist.forEach { sound ->
                     item {
-                        SoundCard(
-                            iconRes = sound.iconRes,
-                            titleRes = sound.titleRes,
-                            cardSize = soundCardWidth
-                        ) { /* TODO */ }
+                        SoundCard(sound = sound, cardSize = soundCardWidth) {
+                            val updated = sound.copy(isSelected = !sound.isSelected)
+                            val index = playerState.playlist.indexOf(sound)
+
+                            if (index != -1) playerState.playlist[index] = updated
+
+                            if (updated.isSelected) playerFacade.play(updated) else playerFacade.stop(updated)
+                        }
                     }
                 }
             }

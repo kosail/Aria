@@ -20,14 +20,15 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import com.korealm.aria.state.DeviceSizeCategory
-import com.korealm.aria.state.DeviceSizeProvider
-import com.korealm.aria.state.LocalDeviceSizeCategory
-import com.korealm.aria.state.rememberAppThemeState
+import com.korealm.aria.state.*
 import com.korealm.aria.theme.WhisperingNatureTheme
 import com.korealm.aria.ui.Home
 import com.korealm.aria.ui.Player
+import com.korealm.aria.utils.Target.DESKTOP
+import com.korealm.aria.utils.Target.WEB
+import com.korealm.aria.utils.getTargetPlatform
+import com.korealm.aria.utils.provideAudioController
+import com.korealm.aria.utils.rememberPlayerFacade
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -37,11 +38,13 @@ fun App() {
     // which will allow me to change fixed sized UI components, paddings, text...
     DeviceSizeProvider {
         val themeState = rememberAppThemeState()
+        val playerState = rememberPlayerState()
+        val playerFacade = rememberPlayerFacade(playerState, provideAudioController())
 
         WhisperingNatureTheme(darkTheme = themeState.isDarkTheme) {
-            val homeWeight = when(LocalDeviceSizeCategory.current) {
-                DeviceSizeCategory.Mobile -> .9f
-                else -> .92f
+            val homeWeight = when (getTargetPlatform()) {
+                DESKTOP -> 0.89f
+                WEB -> if (LocalDeviceSizeCategory.current == DeviceSizeCategory.Mobile) .90f else 0.92f
             }
 
             Column (
@@ -50,12 +53,16 @@ fun App() {
                     .background(MaterialTheme.colorScheme.background)
             ) {
                 Home(
+                    playerState = playerState,
+                    playerFacade = playerFacade,
                     modifier = Modifier
                         .fillMaxSize()
                         .weight(homeWeight),
                 )
 
                 Player(
+                    playerState = playerState,
+                    playerFacade = playerFacade,
                     modifier = Modifier
                         .fillMaxWidth()
                         .weight(1 - homeWeight),
