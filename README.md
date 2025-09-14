@@ -7,6 +7,8 @@ Nature’s silent symphony.
 
 Built from scratch using [Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform), **Aria** is designed to flow across platforms — from Linux to Windows, from macOS to Web — while honoring the quiet beauty of the original [Blanket app](https://github.com/rafaelmardojai/blanket), built by Rafael Mardojai for the GNOME desktop.
 
+![Nightly screenshot](repo_images/screenshot.webp)
+
 ---
 
 ## 🌺 Goal of this project:
@@ -20,7 +22,6 @@ A quiet attempt to capture the essence of **Blanket**, but retold with different
 
 Designing for minimalism doesn’t mean removing life. It means focusing on **what truly matters**, and letting nature speak, softly and clearly.
 
-![Nightly screenshot](repo_images/screenshot.webp)
 ---
 
 ## 🌼 Features
