@@ -20,6 +20,7 @@ A quiet attempt to capture the essence of **Blanket**, but retold with different
 
 Designing for minimalism doesn’t mean removing life. It means focusing on **what truly matters**, and letting nature speak, softly and clearly.
 
+![Nightly screenshot](repo_images/screenshot.webp)
 ---
 
 ## 🌼 Features
@@ -28,14 +29,8 @@ Designing for minimalism doesn’t mean removing life. It means focusing on **wh
 - 🎛️ Click on any sound to play it; mix multiple tracks freely — they blend seamlessly
 - 🎚 Per-sound volume sliders + master volume control
 - 🕰 Built-in timer to gently fade out after a chosen duration (perfect for sleep)
-- 🌗 Seamless dark/light theme support with soothing, intentional colors (Whispering Nature palette)
-- 🪟 Inspired by Mica and GTK aesthetics — minimal, calm, elegant
-- 💻 Runs on Desktop (Linux, Windows, macOS) and Web (WASM/JS), deployable via GitHub Pages
-- ⚡️ Fast to load, pleasant to use, beautiful to look at, and quiet when not needed
-
-> This is not a dashboard. It’s not a productivity tool.  
-> It’s a moment of calm for anyone who needs it.
-
+- 🪟 Inspired by GTK aesthetics — minimal, calm, elegant
+- 💻 Runs on Desktop (Linux, Windows, macOS, all via JVM) and Web (WASM/JS)
 
 ---
 
@@ -58,7 +53,6 @@ cd aria
 
 ## 🔧 Stack & Resources
 ### Stack
-- **Kotlin** — Main language
 - **Compose Multiplatform (Desktop + WASM/JS)** — UI framework
 - **libgdx Audio Module** — Audio library for Desktop Target (JVM) (Expected to be used) 
 - **GitHub Pages** — For deployment

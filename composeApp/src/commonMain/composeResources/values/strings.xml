@@ -19,7 +19,14 @@
     <string name="audio_white_noise">White Noise</string>
     <string name="audio_add">Add...</string>
 
+    <string name="play">Play</string>
+    <string name="pause">Pause</string>
     <string name="volume_menu">Volume Menu</string>
+    <string name="play_pause_menu">Play/Pause Menu</string>
+    <string name="hide_inactive_sounds">Hide inactive sounds</string>
+    <string name="sounds_menu">Sounds menu</string>
+
+
     <string name="about_aria">About Aria</string>
     <string name="kosail">kosail</string>
     <string name="kosail_in_korealm">kosail in the korealm</string>

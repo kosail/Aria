@@ -17,7 +17,7 @@ import aria.composeapp.generated.resources.Res
 import aria.composeapp.generated.resources.aria
 import com.korealm.aria.state.DeviceSizeCategory
 import com.korealm.aria.state.LocalDeviceSizeCategory
-import com.korealm.aria.state.Sounds
+import com.korealm.aria.model.Sounds
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.stringResource
 
@@ -55,7 +55,7 @@ fun Home(
                     fontWeight = FontWeight.Bold,
                     letterSpacing = 2.sp,
                     color = MaterialTheme.colorScheme.onBackground,
-                    modifier = Modifier.padding(start = 16.dp, top = 4.dp)
+                    modifier = Modifier.padding(start = 16.dp)
                 )
             }
 
