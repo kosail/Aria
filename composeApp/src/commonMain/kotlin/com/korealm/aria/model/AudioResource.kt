@@ -42,76 +42,76 @@ enum class AudioResource(
     RAIN (
         iconRes = Res.drawable.rain_symbolic,
         titleRes = Res.string.audio_rain,
-        audioRes = "composeResources/dotfolio.composeapp.generated.resources/files/rain.ogg"
+        audioRes = "composeResources/aria.composeapp.generated.resources/files/rain.ogg"
     ),
     STORM (
         iconRes = Res.drawable.storm_symbolic,
         titleRes = Res.string.audio_storm,
-        audioRes = "composeResources/dotfolio.composeapp.generated.resources/files/storm.ogg"
+        audioRes = "composeResources/aria.composeapp.generated.resources/files/storm.ogg"
     ),
     WIND (
         iconRes = Res.drawable.wind_symbolic,
         titleRes = Res.string.audio_wind,
-        audioRes = "composeResources/dotfolio.composeapp.generated.resources/files/wind.ogg"
+        audioRes = "composeResources/aria.composeapp.generated.resources/files/wind.ogg"
     ),
     WAVES (
         iconRes = Res.drawable.waves_symbolic,
         titleRes = Res.string.audio_waves,
-        audioRes = "composeResources/dotfolio.composeapp.generated.resources/files/waves.ogg"
+        audioRes = "composeResources/aria.composeapp.generated.resources/files/waves.ogg"
     ),
     STREAM (
         iconRes = Res.drawable.stream_symbolic,
         titleRes = Res.string.audio_stream,
-        audioRes = "composeResources/dotfolio.composeapp.generated.resources/files/stream.ogg"
+        audioRes = "composeResources/aria.composeapp.generated.resources/files/stream.ogg"
     ),
     BIRDS (
         iconRes = Res.drawable.birds_symbolic,
         titleRes = Res.string.audio_birds,
-        audioRes = "composeResources/dotfolio.composeapp.generated.resources/files/stream.ogg"
+        audioRes = "composeResources/aria.composeapp.generated.resources/files/stream.ogg"
     ),
     SUMMER_NIGHT (
         iconRes = Res.drawable.summer_night_symbolic,
         titleRes = Res.string.audio_summer_night,
-        audioRes = "composeResources/dotfolio.composeapp.generated.resources/files/summer_night.ogg"
+        audioRes = "composeResources/aria.composeapp.generated.resources/files/summer_night.ogg"
     ),
     TRAIN (
         iconRes = Res.drawable.train_symbolic,
         titleRes = Res.string.audio_train,
-        audioRes = "composeResources/dotfolio.composeapp.generated.resources/files/train.ogg"
+        audioRes = "composeResources/aria.composeapp.generated.resources/files/train.ogg"
     ),
     BOAT (
         iconRes = Res.drawable.boat_symbolic,
         titleRes = Res.string.audio_boat,
-        audioRes = "composeResources/dotfolio.composeapp.generated.resources/files/boat.ogg"
+        audioRes = "composeResources/aria.composeapp.generated.resources/files/boat.ogg"
     ),
     CITY (
         iconRes = Res.drawable.city_symbolic,
         titleRes = Res.string.audio_city,
-        audioRes = "composeResources/dotfolio.composeapp.generated.resources/files/city.ogg"
+        audioRes = "composeResources/aria.composeapp.generated.resources/files/city.ogg"
     ),
     COFFEE_SHOP (
         iconRes = Res.drawable.coffee_shop_symbolic,
         titleRes = Res.string.audio_coffee,
-        audioRes = "composeResources/dotfolio.composeapp.generated.resources/files/coffee_shop.ogg"
+        audioRes = "composeResources/aria.composeapp.generated.resources/files/coffee_shop.ogg"
     ),
     FIREPLACE (
         iconRes = Res.drawable.fireplace_symbolic,
         titleRes = Res.string.audio_fireplace,
-        audioRes = "composeResources/dotfolio.composeapp.generated.resources/files/fireplace.ogg"
+        audioRes = "composeResources/aria.composeapp.generated.resources/files/fireplace.ogg"
     ),
     PINK_NOISE (
         iconRes = Res.drawable.pink_noise_symbolic,
         titleRes = Res.string.audio_pink_noise,
-        audioRes = "composeResources/dotfolio.composeapp.generated.resources/files/pink_noise.ogg"
+        audioRes = "composeResources/aria.composeapp.generated.resources/files/pink_noise.ogg"
     ),
     WHITE_NOISE (
         iconRes = Res.drawable.white_noise_symbolic,
         titleRes = Res.string.audio_white_noise,
-        audioRes = "composeResources/dotfolio.composeapp.generated.resources/files/white_noise.ogg"
+        audioRes = "composeResources/aria.composeapp.generated.resources/files/white_noise.ogg"
     ),
     CAT_MEOW(
         iconRes = Res.drawable.cat_symbolic,
         titleRes = Res.string.audio_cat_meow,
-        audioRes = "composeResources/dotfolio.composeapp.generated.resources/files/cat_meow.ogg"
+        audioRes = "composeResources/aria.composeapp.generated.resources/files/cat_meow.ogg"
     )
 }

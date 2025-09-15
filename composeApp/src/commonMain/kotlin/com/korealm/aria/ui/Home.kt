@@ -85,7 +85,13 @@ fun Home(
             ) {
                 playerState.playlist.forEach { sound ->
                     item {
-                        SoundCard(sound = sound, cardSize = soundCardWidth) {
+                        SoundCard(
+                            sound = sound,
+                            cardSize = soundCardWidth,
+                            onVolumeChange = { newVolume ->
+                                playerFacade.setVolume(sound, newVolume)
+                            }
+                        ) {
                             val updated = sound.copy(isSelected = !sound.isSelected)
                             val index = playerState.playlist.indexOf(sound)
 
@@ -96,8 +102,6 @@ fun Home(
                     }
                 }
             }
-
-
         }
     }
 }

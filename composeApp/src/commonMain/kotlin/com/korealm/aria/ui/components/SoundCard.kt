@@ -22,6 +22,7 @@ fun SoundCard(
     sound: Sound,
     cardSize: Dp,
     modifier: Modifier = Modifier,
+    onVolumeChange: (Float) -> Unit,
     onClick: () -> Unit
 ) {
     var isHover by remember { mutableStateOf(false) }
@@ -76,8 +77,11 @@ fun SoundCard(
                 .padding(bottom = 24.dp)
         ) {
             VolumeBar(
+                value = sound.volume,
                 modifier = Modifier.padding(horizontal = 24.dp)
-            )
+            ) { newVolume ->
+                onVolumeChange(newVolume)
+            }
         }
     }
 }

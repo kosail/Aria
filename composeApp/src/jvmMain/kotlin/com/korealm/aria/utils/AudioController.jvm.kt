@@ -13,7 +13,7 @@ class DesktopAudioController : AudioController {
 
     override fun stop(audio: AudioResource) { println("DesktopAudioController stopping sound ${audio.titleRes}") }
 
-    override fun setVolume(volume: Float) { println("DesktopAudioController setVolume to $volume") }
+    override fun setVolume(audio: AudioResource, volume: Float) { println("DesktopAudioController setVolume to $volume") }
 
     override fun setGlobalVolume(volume: Float) { println("DesktopAudioController setGlobalVolume $volume") }
 

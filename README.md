@@ -57,7 +57,7 @@ cd aria
 ## 🔧 Stack & Resources
 ### Stack
 - **Compose Multiplatform (Desktop + WASM/JS)** — UI framework
-- **libgdx Audio Module** — Audio library for Desktop Target (JVM) (Expected to be used) 
+- **[TinySound](https://github.com/finnkuusisto/TinySound)** — Audio library for Desktop Target (JVM) (Expected to be used) 
 - **GitHub Pages** — For deployment
 
 ### Resources

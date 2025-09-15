@@ -12,15 +12,20 @@ class PlayerFacade(
 ) {
 
     fun play(sound: Sound) {
-        controller.play(sound.resource)
         updateSound(sound) { it.copy(isPlaying = true) }
+        controller.play(sound.resource)
         state.isPlayerActive = true
     }
 
     fun stop(sound: Sound) {
-        controller.stop(sound.resource)
         updateSound(sound) { it.copy(isPlaying = false) }
+        controller.stop(sound.resource)
         state.isPlayerActive = state.playlist.any { it.isPlaying }
+    }
+
+    fun setVolume(sound: Sound, volume: Float) {
+        updateSound(sound) { it.copy(volume = volume) }
+        controller.setVolume(sound.resource, volume)
     }
 
     /**
@@ -36,8 +41,8 @@ class PlayerFacade(
     }
 
     fun setGlobalVolume(volume: Float) {
-        controller.setGlobalVolume(volume)
         state.playerVolume = volume
+        controller.setGlobalVolume(volume)
     }
 
     private fun updateSound(sound: Sound, update: (Sound) -> Sound) {

@@ -14,7 +14,7 @@ interface AudioController {
     /** Used by individual sounds */
     fun stop(audio: AudioResource)
     /** Used by individual sounds */
-    fun setVolume(volume: Float)
+    fun setVolume(audio: AudioResource, volume: Float)
     /** Used by global volume state */
     fun setGlobalVolume(volume: Float)
 }
