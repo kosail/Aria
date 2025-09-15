@@ -31,8 +31,8 @@ fun Home(
 ) {
     val mainSurfacePadding = when (LocalDeviceSizeCategory.current) {
         DeviceSizeCategory.Mobile -> 20.dp
-        DeviceSizeCategory.CompactDesktop -> 60.dp
-        DeviceSizeCategory.FullDesktop -> 60.dp
+        DeviceSizeCategory.CompactDesktop -> 40.dp
+        DeviceSizeCategory.FullDesktop -> 50.dp
     }
 
     Box(
