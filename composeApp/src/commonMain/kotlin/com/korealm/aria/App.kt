@@ -21,7 +21,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.korealm.aria.state.*
-import com.korealm.aria.theme.WhisperingNatureTheme
+import com.korealm.aria.theme.AppTheme
 import com.korealm.aria.ui.Home
 import com.korealm.aria.ui.Player
 import com.korealm.aria.utils.Target.DESKTOP
@@ -41,7 +41,7 @@ fun App() {
         val playerState = rememberPlayerState()
         val playerFacade = rememberPlayerFacade(playerState, provideAudioController())
 
-        WhisperingNatureTheme(darkTheme = themeState.isDarkTheme) {
+        AppTheme(darkTheme = themeState.isDarkTheme) {
             val homeWeight = when (getTargetPlatform()) {
                 DESKTOP -> 0.89f
                 WEB -> if (LocalDeviceSizeCategory.current == DeviceSizeCategory.Mobile) .90f else 0.92f
