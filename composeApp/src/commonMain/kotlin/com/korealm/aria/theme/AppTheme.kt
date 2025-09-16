@@ -1,20 +1,12 @@
 package com.korealm.aria.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import aria.composeapp.generated.resources.AlegreyaSans_Black
-import aria.composeapp.generated.resources.AlegreyaSans_Bold
-import aria.composeapp.generated.resources.AlegreyaSans_ExtraBold
-import aria.composeapp.generated.resources.AlegreyaSans_Light
-import aria.composeapp.generated.resources.AlegreyaSans_Medium
-import aria.composeapp.generated.resources.AlegreyaSans_Regular
-import aria.composeapp.generated.resources.AlegreyaSans_Thin
-import aria.composeapp.generated.resources.Res
+import aria.composeapp.generated.resources.*
 import org.jetbrains.compose.resources.Font
 
 @Composable
@@ -38,7 +30,7 @@ fun AppTheme(
         Font(Res.font.AlegreyaSans_Thin, weight = FontWeight.Thin)
     )
 
-    val defaultTypography = androidx.compose.material3.Typography().run {
+    val defaultTypography = Typography().run {
         Typography(
             displayLarge = displayLarge.copy(fontFamily = alegreyaSansFont),
             displayMedium = displayMedium.copy(fontFamily = alegreyaSansFont),

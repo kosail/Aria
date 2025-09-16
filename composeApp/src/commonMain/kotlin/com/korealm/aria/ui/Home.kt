@@ -21,7 +21,6 @@ import com.korealm.aria.state.LocalDeviceSizeCategory
 import com.korealm.aria.state.PlayerState
 import com.korealm.aria.ui.components.SoundCard
 import com.korealm.aria.utils.PlayerFacade
-import com.korealm.aria.utils.updateSound
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.stringResource
 
@@ -97,8 +96,9 @@ fun Home(
                             }
                         ) {
                             val updated = sound.copy(isSelected = !sound.isSelected)
+                            val index = playerState.playlist.indexOf(sound)
 
-                            updateSound(sound, playerState) { updated }
+                            if (index != -1) playerState.playlist[index] = updated
 
                             if (updated.isSelected) playerFacade.play(updated) else playerFacade.stop(updated)
                         }

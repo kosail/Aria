@@ -77,7 +77,7 @@ cd aria
 
 #### -> Audios
 - [Cat meow audio by DRAGON-STUDIO, on Pixabay](https://pixabay.com/es/sound-effects/cat-meow-321642/)
-- All the audios (except for the above) are the original ones used in Blanket. To see more information about the authors and licensing, please check [SOUNDS_LICENSING](SOUNDS_LICENSING.md).
+- All the audios (except for the above) are the original ones used in Blanket. To see more information about the authors and licensing, please check [SOUNDS_LICENSING](LICENSES/SOUNDS_LICENSING.md).
 
 </details>
 

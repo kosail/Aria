@@ -12,19 +12,19 @@ class PlayerFacade(
 ) {
 
     fun play(sound: Sound) {
-        updateSound(sound, state) { it.copy(isPlaying = true) }
+        updateSound(sound) { it.copy(isPlaying = true) }
         controller.play(sound.resource)
         state.isPlayerActive = true
     }
 
     fun stop(sound: Sound) {
-        updateSound(sound, state) { it.copy(isPlaying = false) }
+        updateSound(sound) { it.copy(isPlaying = false) }
         controller.stop(sound.resource)
         state.isPlayerActive = state.playlist.any { it.isPlaying }
     }
 
     fun setVolume(sound: Sound, volume: Float) {
-        updateSound(sound, state) { it.copy(volume = volume) }
+        updateSound(sound) { it.copy(volume = volume) }
         controller.setVolume(sound.resource, volume)
     }
 
@@ -43,6 +43,12 @@ class PlayerFacade(
     fun setGlobalVolume(volume: Float) {
         state.playerVolume = volume
         controller.setGlobalVolume(volume)
+    }
+
+    private fun updateSound(sound: Sound, update: (Sound) -> Sound) {
+        val index = state.playlist.indexOf(sound)
+
+        if (index != -1) state.playlist[index] = update(state.playlist[index])
     }
 }
 

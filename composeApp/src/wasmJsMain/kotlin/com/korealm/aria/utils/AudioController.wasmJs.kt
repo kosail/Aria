@@ -1,7 +1,6 @@
 package com.korealm.aria.utils
 
 import com.korealm.aria.model.AudioResource
-import com.korealm.aria.model.Sound
 import kotlinx.browser.document
 import org.w3c.dom.HTMLAudioElement
 
@@ -26,27 +25,23 @@ class WebAudioController : AudioController {
 
     override fun play(audio: AudioResource) {
         val element = getOrCreateAudio(audio)
-        element.play()
-    }
-
-    override fun pause(audio: AudioResource) {
-        audios[audio]?.pause()
+            element.play()
     }
 
     override fun stop(audio: AudioResource) {
-        audios[audio]?.let { element ->
+        audio[audio]?.let { element ->
             element.pause()
             element.currentTime = 0.0
         }
     }
 
     override fun setVolume(audio: AudioResource, volume: Float) {
-        audios[audio]?.let { element ->
+        audio[audio]?.let { element ->
             element.volume = volume.toDouble()
         }
     }
 
     override fun setGlobalVolume(volume: Float) {
-        audios.values.forEach { it.volume = volume.toDouble() }
+        audio.values.forEach { it.volume *= volume.toDouble() }
     }
 }
