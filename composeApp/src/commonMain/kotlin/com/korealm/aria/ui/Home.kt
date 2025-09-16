@@ -15,11 +15,13 @@ import androidx.compose.ui.unit.sp
 import aria.composeapp.generated.resources.AlegreyaSansSC_Bold
 import aria.composeapp.generated.resources.Res
 import aria.composeapp.generated.resources.aria
+import com.korealm.aria.state.AppThemeState
 import com.korealm.aria.state.DeviceSizeCategory
 import com.korealm.aria.state.LocalDeviceSizeCategory
 import com.korealm.aria.state.PlayerState
 import com.korealm.aria.ui.components.SoundCard
 import com.korealm.aria.utils.PlayerFacade
+import com.korealm.aria.utils.updateSound
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.stringResource
 
@@ -27,6 +29,7 @@ import org.jetbrains.compose.resources.stringResource
 fun Home(
     playerState: PlayerState,
     playerFacade: PlayerFacade,
+    themeState: AppThemeState,
     modifier: Modifier = Modifier
 ) {
     val mainSurfacePadding = when (LocalDeviceSizeCategory.current) {
@@ -81,11 +84,12 @@ fun Home(
                 verticalArrangement = Arrangement.spacedBy(soundCardPadding / 2),
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(30.dp)
+                    .padding(20.dp)
             ) {
                 playerState.playlist.forEach { sound ->
                     item {
                         SoundCard(
+                            themeState = themeState,
                             sound = sound,
                             cardSize = soundCardWidth,
                             onVolumeChange = { newVolume ->
@@ -93,9 +97,8 @@ fun Home(
                             }
                         ) {
                             val updated = sound.copy(isSelected = !sound.isSelected)
-                            val index = playerState.playlist.indexOf(sound)
 
-                            if (index != -1) playerState.playlist[index] = updated
+                            updateSound(sound, playerState) { updated }
 
                             if (updated.isSelected) playerFacade.play(updated) else playerFacade.stop(updated)
                         }

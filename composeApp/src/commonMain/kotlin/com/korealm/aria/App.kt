@@ -55,6 +55,7 @@ fun App() {
                 Home(
                     playerState = playerState,
                     playerFacade = playerFacade,
+                    themeState = themeState,
                     modifier = Modifier
                         .fillMaxSize()
                         .weight(homeWeight),
@@ -63,6 +64,7 @@ fun App() {
                 Player(
                     playerState = playerState,
                     playerFacade = playerFacade,
+                    themeState = themeState,
                     modifier = Modifier
                         .fillMaxWidth()
                         .weight(1 - homeWeight),

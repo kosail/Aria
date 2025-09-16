@@ -67,7 +67,7 @@ cd aria
 
 #### -> Icons
 - [Original icons from Blanket, on GitHub](https://github.com/rafaelmardojai/blanket)
-- [Lucide cat icon](https://lucide.dev)
+- [cat and volume icons from Lucide](https://lucide.dev)
 
 
 #### -> Fonts

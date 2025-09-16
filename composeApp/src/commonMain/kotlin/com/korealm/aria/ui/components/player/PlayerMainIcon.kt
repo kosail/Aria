@@ -54,7 +54,7 @@ fun PlayerMainIcon(
                     if (isPlaying) Res.drawable.pause else Res.drawable.play
                 ),
                 tint = iconTint,
-                contentDescription = stringResource(Res.string.play),
+                contentDescription = stringResource(if (isPlaying) Res.string.pause else Res.string.play),
                 modifier = Modifier.size(iconSize/2)
             )
         }

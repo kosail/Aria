@@ -26,6 +26,7 @@ fun BigIcon(
     iconRes: DrawableResource,
     contentDescription: String? = null,
     isActive: Boolean = false,
+    iconColor: Color = MaterialTheme.colorScheme.onSurface,
     modifier: Modifier = Modifier
 ) {
     val color = if (isActive) MaterialTheme.colorScheme.tertiary else Color.Transparent
@@ -55,7 +56,7 @@ fun BigIcon(
         Icon(
             painter = painterResource(iconRes),
             contentDescription = contentDescription,
-            tint = MaterialTheme.colorScheme.onSurface,
+            tint = iconColor,
             modifier = modifier.size(iconSize),
         )
     }

@@ -126,7 +126,7 @@ fun WhisperingNatureTheme(
         Font(Res.font.AlegreyaSans_Thin, weight = FontWeight.Thin)
     )
 
-    val DefaultTypography = Typography().run {
+    val defaultTypography = Typography().run {
         Typography(
             displayLarge = displayLarge.copy(fontFamily = alegreyaSansFont),
             displayMedium = displayMedium.copy(fontFamily = alegreyaSansFont),
@@ -148,7 +148,7 @@ fun WhisperingNatureTheme(
 
     MaterialTheme(
         colorScheme = if (darkTheme) whisperingNatureDarkColors() else whisperingNatureLightColors(),
-        typography = DefaultTypography,
+        typography = defaultTypography,
         content = content
     )
 }

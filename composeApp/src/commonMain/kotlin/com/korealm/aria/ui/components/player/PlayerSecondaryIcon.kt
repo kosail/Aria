@@ -29,8 +29,8 @@ fun PlayerSecondaryIcon(
     onClick: () -> Unit
 ) {
     val iconSize = when(LocalDeviceSizeCategory.current) {
-        DeviceSizeCategory.CompactDesktop -> 36.dp
-        else -> 44.dp
+        DeviceSizeCategory.CompactDesktop -> 40.dp
+        else -> 48.dp
     }
 
     Box(
@@ -48,7 +48,7 @@ fun PlayerSecondaryIcon(
                 painter = painterResource(iconRes),
                 tint = iconTint,
                 contentDescription = stringResource(contentDescription),
-                modifier = Modifier.size(iconSize * 0.62f)
+                modifier = Modifier.size(iconSize * 0.60f)
             )
         }
     }

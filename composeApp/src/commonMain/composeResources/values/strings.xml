@@ -21,10 +21,13 @@
 
     <string name="play">Play</string>
     <string name="pause">Pause</string>
-    <string name="volume_menu">Volume Menu</string>
-    <string name="play_pause_menu">Play/Pause Menu</string>
     <string name="hide_inactive_sounds">Hide inactive sounds</string>
-    <string name="sounds_menu">Sounds menu</string>
+
+    <string name="volume_menu">Volume Menu</string>
+    <string name="general_volume">General volume</string>
+    <string name="reset_sounds">Reset sounds</string>
+
+    <string name="sounds_menu">Sounds Menu</string>
 
 
     <string name="about_aria">About Aria</string>
