@@ -67,7 +67,7 @@ enum class AudioResource(
     BIRDS (
         iconRes = Res.drawable.birds_symbolic,
         titleRes = Res.string.audio_birds,
-        audioRes = "composeResources/aria.composeapp.generated.resources/files/stream.ogg"
+        audioRes = "composeResources/aria.composeapp.generated.resources/files/birds.ogg"
     ),
     SUMMER_NIGHT (
         iconRes = Res.drawable.summer_night_symbolic,
