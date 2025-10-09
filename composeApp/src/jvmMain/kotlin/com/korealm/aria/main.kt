@@ -7,7 +7,6 @@ import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
 import aria.composeapp.generated.resources.Res
 import aria.composeapp.generated.resources.favicon
-import kuusisto.tinysound.TinySound
 import org.jetbrains.compose.resources.painterResource
 
 fun main() = application {
@@ -15,7 +14,6 @@ fun main() = application {
 
     Window(
         onCloseRequest = {
-            TinySound.shutdown() // Shutdown tinysound, or else it will cause tinysound threads to hang
             exitApplication()
         },
         title = "Aria",

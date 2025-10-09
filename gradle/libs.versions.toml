@@ -5,6 +5,7 @@ composeMultiplatform = "1.8.2"
 #junit = "4.13.2"
 kotlin = "2.2.0"
 kotlinx-coroutines = "1.10.2"
+korge-gradle-plugin = "6.0.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }

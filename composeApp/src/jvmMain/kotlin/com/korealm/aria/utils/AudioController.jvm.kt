@@ -1,32 +1,21 @@
 package com.korealm.aria.utils
 
 import com.korealm.aria.model.AudioResource
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kuusisto.tinysound.Music
-import kuusisto.tinysound.TinySound
+import korlibs.audio.sound.Sound
+import korlibs.audio.sound.readMusic
+import korlibs.io.file.std.resourcesVfs
+import korlibs.time.infiniteTimes
 
 actual fun provideAudioController(): AudioController = DesktopAudioController()
 
 class DesktopAudioController : AudioController {
-    private val sounds = mutableMapOf<AudioResource, Music>()
-    private val scope = CoroutineScope(Dispatchers.Main)
+    private val sounds = mutableMapOf<AudioResource, Sound>()
 
-    init {
-        TinySound.init()
 
-        // TODO: This will only preload the built-in files, not user added ones. I need to work on finding a better way to handle this
-        scope.launch(Dispatchers.IO) {
-            AudioResource.entries.forEach { entry ->
-                sounds[entry] = TinySound.loadMusic(entry.audioRes, true)
-            }
-        }
-    }
 
-    private fun getOrCreateAudio(audio: AudioResource): Music {
+    private suspend fun getOrCreateAudio(audio: AudioResource): Sound {
         return sounds.getOrPut(audio) {
-            TinySound.loadMusic(audio.audioRes)
+            resourcesVfs[audio.audioRes].readMusic()
         }
     }
 
@@ -35,9 +24,8 @@ class DesktopAudioController : AudioController {
     }
 
     override fun play(audio: AudioResource) {
-        scope.launch {
-            getOrCreateAudio(audio).play(true, 0.5)
-        }
+        getOrCreateAudio(audio).play(infiniteTimes)
+
     }
 
     override fun stop(audio: AudioResource) {
@@ -49,7 +37,7 @@ class DesktopAudioController : AudioController {
     }
 
     override fun setGlobalVolume(volume: Float) {
-        TinySound.setGlobalVolume(volume.toDouble())
+
     }
 
 }
