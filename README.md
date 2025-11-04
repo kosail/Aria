@@ -35,11 +35,7 @@ Web version
 
 Desktop version
 
-<p align="center">
-    <img src="https://github.com/kosail/Aria/tree/main/repo_images/screenshot2.webp" width="720px"/>
-</p>
-
-![Nightly screenshot, light mode]()
+![Nightly screenshot, light mode](repo_images/screenshot2.webp)
 
 ---
 
