@@ -35,7 +35,7 @@ Web version
 
 Desktop version
 
-![Nightly screenshot, light mode](repo_images/screenshot2.webp)
+![Nightly screenshot, dark mode](repo_images/screenshot2.webp)
 
 ---
 
