@@ -28,8 +28,18 @@ A quiet attempt to capture the essence of **Blanket**, but retold with different
 - 💻 Runs on Desktop (Linux, Windows, macOS, all via JVM) and Web (WASM/JS)
 
 ### Screenshots of the nightly version.
+Web version
 ![Nightly screenshot, dark mode](repo_images/screenshot.webp)
-![Nightly screenshot, light mode](repo_images/screenshot2.webp)
+
+<br/>
+
+Desktop version
+
+<p align="center">
+    <img src="https://github.com/kosail/Aria/tree/main/repo_images/screenshot2.webp" width="720px"/>
+</p>
+
+![Nightly screenshot, light mode]()
 
 ---
 

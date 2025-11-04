@@ -37,7 +37,7 @@ fun VolumeMenu(
     DropdownMenu(
         expanded = expanded,
         onDismissRequest = onDismissRequest,
-        shape = RoundedCornerShape(8.dp),
+        shape = RoundedCornerShape(12.dp),
         offset = offset,
         tonalElevation = 4.dp,
         shadowElevation = 12.dp,
@@ -66,6 +66,8 @@ fun VolumeMenu(
                     backgroundColor = if (themeState.isDarkTheme) Color.LightGray.copy(alpha = 0.2f) else Color.LightGray.copy(alpha = 0.9f)
                 )
             }
+
+            HorizontalDivider(modifier = Modifier.padding(horizontal = 1.dp, vertical = 4.dp))
 
             DropdownMenuItem(
                 text = {
