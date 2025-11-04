@@ -9,7 +9,7 @@ class PlayerState {
     var isPlayerActive by mutableStateOf(false)
     var playerVolume by mutableStateOf(1f)
 
-    /** Initial list include all the built-in sounds, but it's mutable so the user can add more in the future. */
+    /** The initial list includes all the built-in sounds, but it's mutable, so the user can add more in the future. */
     var playlist = mutableStateListOf<Sound>(
         Sound(AudioResource.RAIN),
         Sound(AudioResource.STORM),
@@ -24,8 +24,7 @@ class PlayerState {
         Sound(AudioResource.COFFEE_SHOP),
         Sound(AudioResource.FIREPLACE),
         Sound(AudioResource.PINK_NOISE),
-        Sound(AudioResource.WHITE_NOISE),
-        Sound(AudioResource.CAT_MEOW)
+        Sound(AudioResource.WHITE_NOISE)
     )
 }
 

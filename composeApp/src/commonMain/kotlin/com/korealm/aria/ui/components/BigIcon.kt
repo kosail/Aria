@@ -18,6 +18,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.korealm.aria.state.DeviceSizeCategory
 import com.korealm.aria.state.LocalDeviceSizeCategory
+import com.korealm.aria.utils.Target
+import com.korealm.aria.utils.getTargetPlatform
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 
@@ -38,12 +40,12 @@ fun BigIcon(
 
     val iconSize = when(LocalDeviceSizeCategory.current) {
         DeviceSizeCategory.Mobile -> 64.dp
-        else -> 96.dp
+        else -> if(getTargetPlatform() == Target.WEB) 96.dp else 76.dp
     }
 
     val circleSize = when (LocalDeviceSizeCategory.current) {
-        DeviceSizeCategory.Mobile -> 72.dp
-        else -> 150.dp
+        DeviceSizeCategory.Mobile -> if(getTargetPlatform() == Target.WEB) 72.dp else 80.dp
+        else -> if(getTargetPlatform() == Target.WEB) 150.dp else 110.dp
     }
 
     Box(

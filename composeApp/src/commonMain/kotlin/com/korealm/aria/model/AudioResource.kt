@@ -18,7 +18,6 @@ import aria.composeapp.generated.resources.audio_white_noise
 import aria.composeapp.generated.resources.audio_wind
 import aria.composeapp.generated.resources.birds_symbolic
 import aria.composeapp.generated.resources.boat_symbolic
-import aria.composeapp.generated.resources.cat_symbolic
 import aria.composeapp.generated.resources.city_symbolic
 import aria.composeapp.generated.resources.coffee_shop_symbolic
 import aria.composeapp.generated.resources.fireplace_symbolic
@@ -108,10 +107,5 @@ enum class AudioResource(
         iconRes = Res.drawable.white_noise_symbolic,
         titleRes = Res.string.audio_white_noise,
         audioRes = "composeResources/aria.composeapp.generated.resources/files/white_noise.ogg"
-    ),
-    CAT_MEOW(
-        iconRes = Res.drawable.cat_symbolic,
-        titleRes = Res.string.audio_cat_meow,
-        audioRes = "composeResources/aria.composeapp.generated.resources/files/cat_meow.ogg"
     )
 }

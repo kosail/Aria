@@ -29,19 +29,19 @@ class WebAudioController : AudioController {
     }
 
     override fun stop(audio: AudioResource) {
-        audio[audio]?.let { element ->
+        audios[audio]?.let { element ->
             element.pause()
             element.currentTime = 0.0
         }
     }
 
     override fun setVolume(audio: AudioResource, volume: Float) {
-        audio[audio]?.let { element ->
+        audios[audio]?.let { element ->
             element.volume = volume.toDouble()
         }
     }
 
     override fun setGlobalVolume(volume: Float) {
-        audio.values.forEach { it.volume *= volume.toDouble() }
+        audios.values.forEach { it.volume *= volume.toDouble() }
     }
 }

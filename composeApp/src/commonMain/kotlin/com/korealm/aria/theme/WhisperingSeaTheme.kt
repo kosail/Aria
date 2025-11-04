@@ -54,13 +54,13 @@ fun whisperingSeaLightColors() = lightColorScheme(
 
 
 // --- Whispering Sea Dark Theme ---
-val whisperSeaDarkPrimary = Color(0xFFCAD3D9)            // Misty Blue-Gray
+val whisperSeaDarkPrimary = Color(0xFF8e9fab)            // Misty Blue-Gray
 val whisperSeaDarkPrimaryContainer = Color(0xFF29323A)   // Deep Slate
 
 val whisperSeaDarkSecondary = Color(0xFFC7BBB2)          // Warm Taupe
 val whisperSeaDarkSecondaryContainer = Color(0xFF3A302B) // Dark Clay
 
-val whisperSeaDarkTertiary = Color(0xFFB4B4D2)           // Soft Steel Lavender
+val whisperSeaDarkTertiary = Color(0xFF9191b3)           // Steel Lavender
 val whisperSeaDarkTertiaryContainer = Color(0xFF2F2F3C)  // Deep Indigo Gray
 
 val whisperSeaDarkBackground = Color(0xFF121416)         // Almost Black

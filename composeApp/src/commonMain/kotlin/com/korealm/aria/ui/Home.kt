@@ -21,6 +21,8 @@ import com.korealm.aria.state.LocalDeviceSizeCategory
 import com.korealm.aria.state.PlayerState
 import com.korealm.aria.ui.components.SoundCard
 import com.korealm.aria.utils.PlayerFacade
+import com.korealm.aria.utils.Target
+import com.korealm.aria.utils.getTargetPlatform
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.stringResource
 
@@ -42,28 +44,32 @@ fun Home(
             .padding(horizontal = mainSurfacePadding)
             .padding(top = mainSurfacePadding, bottom = 5.dp)
     ) {
-
-        val titleFont = FontFamily(
-            Font(Res.font.AlegreyaSansSC_Bold, weight = FontWeight.Bold)
-        )
-
         Column(
             modifier = Modifier.fillMaxSize()
         ) {
-            Box(
-                contentAlignment = if (LocalDeviceSizeCategory.current == DeviceSizeCategory.Mobile) Alignment.Center else Alignment.CenterStart,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text(
-                    text = stringResource(Res.string.aria),
-                    fontSize = 72.sp,
-                    fontFamily = titleFont,
-                    fontWeight = FontWeight.Bold,
-                    letterSpacing = 2.sp,
-                    color = MaterialTheme.colorScheme.onBackground,
-                    modifier = Modifier.padding(start = 16.dp)
+
+            // Only show the title of the app if it is being run in a browser.
+            if (getTargetPlatform() == Target.WEB) {
+                val titleFont = FontFamily(
+                    Font(Res.font.AlegreyaSansSC_Bold, weight = FontWeight.Bold)
                 )
+
+                Box(
+                    contentAlignment = if (LocalDeviceSizeCategory.current == DeviceSizeCategory.Mobile) Alignment.Center else Alignment.CenterStart,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(
+                        text = stringResource(Res.string.aria),
+                        fontSize = 72.sp,
+                        fontFamily = titleFont,
+                        fontWeight = FontWeight.Bold,
+                        letterSpacing = 2.sp,
+                        color = MaterialTheme.colorScheme.onBackground,
+                        modifier = Modifier.padding(start = 16.dp)
+                    )
+                }
             }
+
 
             val soundCardPadding = when (LocalDeviceSizeCategory.current) {
                 DeviceSizeCategory.Mobile -> 12.dp
@@ -74,7 +80,7 @@ fun Home(
 
             val soundCardWidth = when (LocalDeviceSizeCategory.current) {
                 DeviceSizeCategory.Mobile -> 124.dp
-                else -> 216.dp
+                else -> if(getTargetPlatform() == Target.WEB) 216.dp else 170.dp
             }
 
             LazyVerticalGrid (

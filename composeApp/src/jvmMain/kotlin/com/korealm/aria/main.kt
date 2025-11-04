@@ -18,7 +18,7 @@ fun main() = application {
         },
         title = "Aria",
         icon = icon,
-        state = WindowState(size = DpSize(1100.dp, 700.dp))
+        state = WindowState(size = DpSize(600.dp, 750.dp))
     ) {
         App()
     }

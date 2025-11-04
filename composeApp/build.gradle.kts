@@ -49,7 +49,6 @@ kotlin {
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
-            implementation("com.soywiz.korge:korge-core:5.1.0")
         }
     }
 }
