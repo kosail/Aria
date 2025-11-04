@@ -55,11 +55,17 @@ cd aria
 ```
 
 ---
+## Known limitations
+#### 1. The Desktop version only supports WAV audio format.
+I did try my best, but I couldn't find an audio library that supported OGG format AND be fast as hell (or well, fast enough to not freeze the UI. I'm still a totally beginner in coroutines and async programming, so it was very hard for me to find a solution).
+
+
+---
 
 ## 🔧 Stack & Resources
 ### Stack
 - **Compose Multiplatform (Desktop + WASM/JS)** — UI framework
-- **Audio library** — Audio library for Desktop Target (JVM) (Up to decide) 
+- **Audio library** — The audio library for Desktop Target (JVM) is Javax.Sample, while on web target uses the browser API. 
 - **GitHub Pages** — For deployment
 
 ### Resources
@@ -91,10 +97,11 @@ If you have ideas, suggestions, or bug reports, open an issue on GitHub.
 
 Sound designers: If you have original nature loops and would love to contribute them to Aria, reach out!
 
-[//]: # (---)
+---
 
-[//]: # ()
-[//]: # (## 🎒 What I learned from this project)
+
+## 🎒 What I have learned so far from this project
+1. I'm still a beginner in Compose Multiplatform, not to say in Kotlin. It's such a difficult language...
 
 ---
 
