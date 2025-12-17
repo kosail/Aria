@@ -6,6 +6,7 @@ import org.w3c.dom.HTMLAudioElement
 
 actual fun provideAudioController(): AudioController = WebAudioController()
 
+@OptIn(ExperimentalWasmJsInterop::class)
 class WebAudioController : AudioController {
     private val audios = mutableMapOf<AudioResource, HTMLAudioElement>()
     private val perSoundVolume = mutableMapOf<AudioResource, Float>()

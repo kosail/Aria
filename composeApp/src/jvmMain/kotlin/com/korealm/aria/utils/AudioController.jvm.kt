@@ -7,8 +7,11 @@ import kotlin.math.log10
 
 actual fun provideAudioController(): AudioController = JvmAudioController()
 
-class JvmAudioController : AudioController {
+class JvmAudioController() : AudioController {
     private val clips = mutableMapOf<AudioResource, Clip>()
+    private val volumeControls = mutableMapOf<AudioResource, FloatControl>()
+    private val perSoundVolume = mutableMapOf<AudioResource, Float>()
+    private var globalVolume: Float = 1f
 
     private fun getOrCreateClip(audio: AudioResource): Clip {
         return clips.getOrPut(audio) {
@@ -17,7 +20,11 @@ class JvmAudioController : AudioController {
             val clip = AudioSystem.getClip()
             clip.open(inputStream)
             clip.loop(Clip.LOOP_CONTINUOUSLY)
-            internalSetVolume(clip, 0.5f)
+            // Initialize volumes similar to WASM impl
+            val base = perSoundVolume[audio] ?: 0.5f
+            val control = clip.getControl(FloatControl.Type.MASTER_GAIN) as FloatControl
+            volumeControls[audio] = control
+            internalSetVolume(control, base * globalVolume)
             clip
         }
     }
@@ -38,21 +45,31 @@ class JvmAudioController : AudioController {
         }
     }
 
-    private fun internalSetVolume(clip: Clip, volume: Float) {
-        val control = clip.getControl(FloatControl.Type.MASTER_GAIN) as FloatControl
-        val dB = (log10(volume.toDouble()) * 20).toFloat()
-        control.value = dB.coerceIn(control.minimum, control.maximum)
+    private fun internalSetVolume(control: FloatControl, volume: Float) {
+        // Avoid -Infinity for zero volume; map zero/near-zero to control.minimum directly
+        val target = if (volume <= 0f) control.minimum else (20f * log10(volume.toDouble())).toFloat()
+        val clamped = target.coerceIn(control.minimum, control.maximum)
+        // Only write when value actually changes to reduce latency on some mixers
+        if (control.value != clamped) {
+            control.value = clamped
+        }
     }
 
     override fun setVolume(audio: AudioResource, volume: Float) {
-        clips[audio]?.let { clip ->
-            internalSetVolume(clip, volume)
+        perSoundVolume[audio] = volume
+        volumeControls[audio]?.let { control ->
+            val effective = (volume * globalVolume).coerceIn(0f, 1f)
+            internalSetVolume(control, effective)
         }
     }
 
     override fun setGlobalVolume(volume: Float) {
-        clips.values.forEach { clip ->
-            internalSetVolume(clip, volume)
+        globalVolume = volume
+        // Recompute effective volume for all loaded sounds
+        volumeControls.forEach { (res, control) ->
+            val base = perSoundVolume[res] ?: 1f
+            val effective = (base * globalVolume).coerceIn(0f, 1f)
+            internalSetVolume(control, effective)
         }
     }
 }
