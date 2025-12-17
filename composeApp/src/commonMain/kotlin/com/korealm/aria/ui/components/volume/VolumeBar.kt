@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -19,6 +18,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.korealm.aria.state.AppThemeState
+import com.korealm.aria.utils.Target
+import com.korealm.aria.utils.getTargetPlatform
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -29,12 +30,16 @@ fun VolumeBar(
     modifier: Modifier = Modifier,
     onVolumeChange: (Float) -> Unit
 ) {
+    val barHeight = when(getTargetPlatform()) {
+        Target.DESKTOP -> 8.dp
+        else -> 10.dp
+    }
+
     Slider(
         value = actualVolume,
         onValueChange = onVolumeChange,
         valueRange = 0f..1f,
-        modifier = modifier
-            .height(1.dp),
+        modifier = modifier.height(1.dp),
         thumb = {},
         track = { sliderState ->
             val fraction by remember {
@@ -52,7 +57,7 @@ fun VolumeBar(
                     Modifier
                         .fillMaxWidth(fraction)
                         .align(Alignment.CenterStart)
-                        .height(8.dp)
+                        .height(barHeight)
                         .background(
                             if (isSelected) {
                                 MaterialTheme.colorScheme.primary
@@ -65,7 +70,7 @@ fun VolumeBar(
                     Modifier
                         .fillMaxWidth(1f - fraction)
                         .align(Alignment.CenterEnd)
-                        .height(8.dp)
+                        .height(barHeight)
                         .background(
                             if (isSelected) {
                                 if (themeState.isDarkTheme) MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.7f) else Color.LightGray.copy(alpha = 0.9f)

@@ -31,7 +31,7 @@ fun BigIcon(
     iconColor: Color = MaterialTheme.colorScheme.onSurface,
     modifier: Modifier = Modifier
 ) {
-    val color = if (isActive) MaterialTheme.colorScheme.tertiary else Color.Transparent
+    val color = if (isActive) MaterialTheme.colorScheme.tertiary.copy(alpha = 0.5f) else Color.Transparent
 
     val animatedColor by animateColorAsState(
         targetValue = color,

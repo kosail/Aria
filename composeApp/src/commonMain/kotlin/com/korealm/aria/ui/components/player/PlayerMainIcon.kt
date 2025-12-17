@@ -17,7 +17,8 @@ import androidx.compose.ui.unit.dp
 import aria.composeapp.generated.resources.Res
 import aria.composeapp.generated.resources.pause
 import aria.composeapp.generated.resources.play
-import com.korealm.aria.utils.Target.*
+import com.korealm.aria.utils.Target.DESKTOP
+import com.korealm.aria.utils.Target.WEB
 import com.korealm.aria.utils.getTargetPlatform
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -25,13 +26,13 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun PlayerMainIcon(
     backgroundColor: Color = MaterialTheme.colorScheme.tertiary,
-    iconTint: Color = MaterialTheme.colorScheme.onBackground,
+    iconTint: Color,
     isPlaying: Boolean,
     modifier: Modifier = Modifier,
     onClick: () -> Unit
 ) {
     val iconSize = when (getTargetPlatform()) {
-        DESKTOP -> 64.dp
+        DESKTOP -> 54.dp
         WEB -> 60.dp
     }
 

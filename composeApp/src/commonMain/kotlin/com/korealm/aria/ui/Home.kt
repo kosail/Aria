@@ -89,7 +89,7 @@ fun Home(
                 verticalArrangement = Arrangement.spacedBy(soundCardPadding / 2),
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(20.dp)
+                    .padding(5.dp)
             ) {
                 playerState.playlist.forEach { sound ->
                     item {

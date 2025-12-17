@@ -17,6 +17,7 @@ import com.korealm.aria.ui.components.player.PlayerMainIcon
 import com.korealm.aria.ui.components.player.PlayerSecondaryIcon
 import com.korealm.aria.ui.components.volume.VolumeMenu
 import com.korealm.aria.utils.PlayerFacade
+import com.korealm.aria.utils.darken
 
 
 @Composable
@@ -34,7 +35,8 @@ fun Player(
     }
 
     Surface(
-        color = MaterialTheme.colorScheme.primaryContainer,
+        color = MaterialTheme.colorScheme.primaryContainer.copy(0.3f),
+        shadowElevation = 1.dp,
         modifier = modifier.fillMaxSize()
     ) {
         Row(
@@ -68,6 +70,7 @@ fun Player(
 
             PlayerMainIcon(
                 isPlaying = playerState.isPlayerActive,
+                iconTint = if (themeState.isDarkTheme) MaterialTheme.colorScheme.onBackground else MaterialTheme.colorScheme.background,
                 modifier = Modifier.padding(horizontal = iconsPadding)
             ) { playerFacade.toggleGlobalPlayer() }
 

@@ -13,8 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.korealm.aria.state.DeviceSizeCategory
-import com.korealm.aria.state.LocalDeviceSizeCategory
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.painterResource
@@ -28,10 +26,7 @@ fun PlayerSecondaryIcon(
     modifier: Modifier = Modifier,
     onClick: () -> Unit
 ) {
-    val iconSize = when(LocalDeviceSizeCategory.current) {
-        DeviceSizeCategory.CompactDesktop -> 40.dp
-        else -> 48.dp
-    }
+    val iconSize = 40.dp
 
     Box(
         contentAlignment = Alignment.Center,

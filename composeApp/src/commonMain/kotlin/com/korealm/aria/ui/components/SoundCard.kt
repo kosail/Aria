@@ -18,6 +18,8 @@ import androidx.compose.ui.unit.dp
 import com.korealm.aria.model.Sound
 import com.korealm.aria.state.AppThemeState
 import com.korealm.aria.ui.components.volume.VolumeBar
+import com.korealm.aria.utils.Target
+import com.korealm.aria.utils.getTargetPlatform
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -52,6 +54,11 @@ fun SoundCard(
 
     val iconRes = sound.resource.iconRes
     val titleRes = sound.resource.titleRes
+
+    val bottomBarPadding = when(getTargetPlatform()) {
+        Target.DESKTOP -> 22.dp
+        else -> 24.dp
+    }
 
     Box(
         modifier = modifier.size(cardSize)
@@ -98,14 +105,13 @@ fun SoundCard(
             contentAlignment = Alignment.Center,
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .padding(bottom = 24.dp)
+                .padding(bottom = bottomBarPadding)
         ) {
             VolumeBar(
                 actualVolume = sound.volume,
                 isSelected = sound.isSelected,
                 themeState = themeState,
-                modifier = Modifier
-                    .padding(horizontal = 24.dp)
+                modifier = Modifier.padding(horizontal = 18.dp)
             ) { newVolume -> onVolumeChange(newVolume) }
         }
     }
