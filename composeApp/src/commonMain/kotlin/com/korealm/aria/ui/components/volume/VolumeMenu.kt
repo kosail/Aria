@@ -1,5 +1,6 @@
 package com.korealm.aria.ui.components.volume
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -20,6 +21,8 @@ import aria.composeapp.generated.resources.general_volume
 import aria.composeapp.generated.resources.reset_sounds
 import aria.composeapp.generated.resources.volume_off
 import com.korealm.aria.state.AppThemeState
+import com.korealm.aria.utils.darken
+import com.korealm.aria.utils.lighten
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -39,11 +42,13 @@ fun VolumeMenu(
         onDismissRequest = onDismissRequest,
         shape = RoundedCornerShape(12.dp),
         offset = offset,
-        tonalElevation = 4.dp,
         shadowElevation = 12.dp,
+        border = BorderStroke(2.dp, MaterialTheme.colorScheme.onBackground.copy(alpha = 0.05f)),
         modifier = modifier
             .widthIn(min = 200.dp, max = 250.dp)
-            .background(if (themeState.isDarkTheme) MaterialTheme.colorScheme.surfaceVariant else MaterialTheme.colorScheme.tertiaryContainer)
+            .background(
+                if (themeState.isDarkTheme) MaterialTheme.colorScheme.background.lighten(0.15f)
+            else MaterialTheme.colorScheme.tertiaryContainer)
     ) {
 
         Column(

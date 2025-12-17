@@ -5,7 +5,6 @@ package com.korealm.aria
  * Create a ScreenDimensions State or something like that
 
  TODO: Features that I want to add in the future:
- * Enable/Disable animated background to have a plain background, like I did in Kvantage.
  * Implement settings capabilities: (I'll have to add kotlinx-serialization-json)
      * Desktop: store in a json the app preferences.
      * Web: store in a cookie a json with the app preferences.
