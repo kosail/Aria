@@ -5,7 +5,7 @@ Nature’s silent symphony.
 
 **Aria** is an ambient sound app.
 
-Built from scratch using [Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform), **Aria** is designed to flow across platforms — from Linux to Windows, from macOS to Web — while honoring the quiet beauty of the original [Blanket app](https://github.com/rafaelmardojai/blanket), built by Rafael Mardojai for the GNOME desktop.
+Built from scratch using [Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform), **Aria** is designed to flow across platforms. From Linux to Windows, from macOS to Web, while honoring the quiet beauty of the original [Blanket app](https://github.com/rafaelmardojai/blanket), built by Rafael Mardojai for the GNOME desktop.
 
 ---
 
@@ -35,7 +35,11 @@ Web version
 
 Desktop version
 
+<p align = center >
+
 ![Nightly screenshot, dark mode](repo_images/screenshot2.webp)
+
+</p>
 
 ---
 
@@ -58,6 +62,8 @@ cd aria
 ## Known limitations
 #### 1. The Desktop version only supports WAV audio format.
 I did try my best, but I couldn't find an audio library that supported OGG format AND be fast as hell (or well, fast enough to not freeze the UI. I'm still a totally beginner in coroutines and async programming, so it was very hard for me to find a solution).
+#### 2. The Desktop version have a delay on changing the volume
+It happen both on individual sounds and the master volume. I can't figure out why... is it a limitation of javax.sample?
 
 
 ---
@@ -65,7 +71,7 @@ I did try my best, but I couldn't find an audio library that supported OGG forma
 ## 🔧 Stack & Resources
 ### Stack
 - **Compose Multiplatform (Desktop + WASM/JS)** — UI framework
-- **Audio library** — The audio library for Desktop Target (JVM) is Javax.Sample, while on web target uses the browser API. 
+- **Audio library** — The audio library for Desktop Target (JVM) is javax.sample, while on web target uses the browser API. 
 - **GitHub Pages** — For deployment
 
 ### Resources
