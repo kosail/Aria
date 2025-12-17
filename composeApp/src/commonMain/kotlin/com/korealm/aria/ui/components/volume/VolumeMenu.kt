@@ -3,17 +3,14 @@ package com.korealm.aria.ui.components.volume
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import aria.composeapp.generated.resources.Res
@@ -21,7 +18,6 @@ import aria.composeapp.generated.resources.general_volume
 import aria.composeapp.generated.resources.reset_sounds
 import aria.composeapp.generated.resources.volume_off
 import com.korealm.aria.state.AppThemeState
-import com.korealm.aria.utils.darken
 import com.korealm.aria.utils.lighten
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -66,9 +62,10 @@ fun VolumeMenu(
                 )
 
                 VolumeBar(
-                    value = volume,
-                    onValueChange = onVolumeChange,
-                    backgroundColor = if (themeState.isDarkTheme) Color.LightGray.copy(alpha = 0.2f) else Color.LightGray.copy(alpha = 0.9f)
+                    actualVolume = volume,
+                    isSelected = true, // Audios require this to swap between active/disabled colors. So let's just mock that it's "active" to display colors.
+                    themeState = themeState,
+                    onVolumeChange = onVolumeChange,
                 )
             }
 

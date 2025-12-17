@@ -38,7 +38,7 @@ fun SoundCard(
     }
 
     val targetAlpha = if (isHover) {
-        if (themeState.isDarkTheme) 0.15f else 1f
+        if (themeState.isDarkTheme) 0.1f else 1f
     } else {
         0f
     }
@@ -102,21 +102,12 @@ fun SoundCard(
                 .padding(bottom = 24.dp)
         ) {
             VolumeBar(
-                value = sound.volume,
-                backgroundColor = if (sound.isSelected) {
-                    if (themeState.isDarkTheme) MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.7f) else Color.LightGray.copy(alpha = 0.9f)
-                } else {
-                    if (themeState.isDarkTheme) MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f) else Color.LightGray.copy(alpha = 0.6f)
-                },
-                progressColor = if (sound.isSelected) {
-                    MaterialTheme.colorScheme.primary
-                } else {
-                    if (themeState.isDarkTheme) Color.DarkGray else Color.LightGray
-                },
-                modifier = Modifier.padding(horizontal = 24.dp)
-            ) { newVolume ->
-                onVolumeChange(newVolume)
-            }
+                actualVolume = sound.volume,
+                isSelected = sound.isSelected,
+                themeState = themeState,
+                modifier = Modifier
+                    .padding(horizontal = 24.dp)
+            ) { newVolume -> onVolumeChange(newVolume) }
         }
     }
 }
