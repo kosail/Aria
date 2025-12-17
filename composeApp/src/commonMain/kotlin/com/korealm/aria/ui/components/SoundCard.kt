@@ -54,8 +54,7 @@ fun SoundCard(
     val titleRes = sound.resource.titleRes
 
     Box(
-        modifier = modifier
-            .size(cardSize)
+        modifier = modifier.size(cardSize)
     ) {
         Surface(
             shape = RoundedCornerShape(10.dp),

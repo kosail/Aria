@@ -28,6 +28,13 @@ class PlayerFacade(
         controller.setVolume(sound.resource, volume)
     }
 
+    fun stopAll() {
+        state.playlist.forEach { sound ->
+            updateSound(sound) { it.copy(isSelected = false) }
+            stop(sound)
+        }
+    }
+
     /**
      * This function works interacting with sounds that are selected/enabled by the user.
      * It just stops the audio without touching if they are selected or not.

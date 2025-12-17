@@ -17,6 +17,7 @@ class JvmAudioController : AudioController {
             val clip = AudioSystem.getClip()
             clip.open(inputStream)
             clip.loop(Clip.LOOP_CONTINUOUSLY)
+            internalSetVolume(clip, 0.5f)
             clip
         }
     }
@@ -37,19 +38,21 @@ class JvmAudioController : AudioController {
         }
     }
 
+    private fun internalSetVolume(clip: Clip, volume: Float) {
+        val control = clip.getControl(FloatControl.Type.MASTER_GAIN) as FloatControl
+        val dB = (log10(volume.toDouble()) * 20).toFloat()
+        control.value = dB.coerceIn(control.minimum, control.maximum)
+    }
+
     override fun setVolume(audio: AudioResource, volume: Float) {
         clips[audio]?.let { clip ->
-            val control = clip.getControl(FloatControl.Type.MASTER_GAIN) as FloatControl
-            val dB = (log10(volume.toDouble()) * 20).toFloat()
-            control.value = dB.coerceIn(control.minimum, control.maximum)
+            internalSetVolume(clip, volume)
         }
     }
 
     override fun setGlobalVolume(volume: Float) {
         clips.values.forEach { clip ->
-            val control = clip.getControl(FloatControl.Type.MASTER_GAIN) as FloatControl
-            val dB = (log10(volume.toDouble()) * 20).toFloat()
-            control.value = dB.coerceIn(control.minimum, control.maximum)
+            internalSetVolume(clip, volume)
         }
     }
 }

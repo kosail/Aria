@@ -8,13 +8,16 @@ actual fun provideAudioController(): AudioController = WebAudioController()
 
 class WebAudioController : AudioController {
     private val audios = mutableMapOf<AudioResource, HTMLAudioElement>()
+    private val perSoundVolume = mutableMapOf<AudioResource, Float>()
+    private var globalVolume: Float = 1f
 
     private fun getOrCreateAudio(audio: AudioResource): HTMLAudioElement {
         return audios.getOrPut(audio) {
             val element = document.createElement("audio") as HTMLAudioElement
             element.src = audio.audioRes
             element.loop = true
-            element.volume = 0.5
+            val base = perSoundVolume[audio] ?: 0.5f
+            element.volume = (base * globalVolume).toDouble()
             element
         }
     }
@@ -36,12 +39,17 @@ class WebAudioController : AudioController {
     }
 
     override fun setVolume(audio: AudioResource, volume: Float) {
+        perSoundVolume[audio] = volume
         audios[audio]?.let { element ->
-            element.volume = volume.toDouble()
+            element.volume = (volume * globalVolume).toDouble()
         }
     }
 
     override fun setGlobalVolume(volume: Float) {
-        audios.values.forEach { it.volume *= volume.toDouble() }
+        globalVolume = volume
+        audios.forEach { (res, element) ->
+            val base = perSoundVolume[res] ?: 1f
+            element.volume = (base * globalVolume).toDouble()
+        }
     }
 }

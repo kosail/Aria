@@ -26,8 +26,6 @@ fun Player(
     themeState: AppThemeState,
     modifier: Modifier = Modifier
 ) {
-    // This will multiply the sound level of each sound.
-    var generalVolumeFactor by remember { mutableStateOf(1f) }
     var isVolumeMenuVisible by remember { mutableStateOf(false) }
 
     val iconsPadding = when(LocalDeviceSizeCategory.current) {
@@ -54,9 +52,14 @@ fun Player(
                 VolumeMenu(
                     expanded = isVolumeMenuVisible,
                     onDismissRequest = { isVolumeMenuVisible = false },
-                    onResetButtonClick = { },
-                    volume = generalVolumeFactor,
-                    onVolumeChange = { generalVolumeFactor = it },
+                    onResetButtonClick = {
+                        playerFacade.stopAll()
+                    },
+                    volume = playerState.playerVolume,
+                    onVolumeChange = {
+                        playerState.playerVolume = it
+                        playerFacade.setGlobalVolume(playerState.playerVolume)
+                    },
                     offset = DpOffset((-128).dp, 0.dp),
                     themeState = themeState,
                     modifier = Modifier.align(Alignment.TopCenter)
