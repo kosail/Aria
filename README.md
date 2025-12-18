@@ -34,14 +34,19 @@ A quiet attempt to capture the essence of **Blanket**, but retold with different
 Web version
 ![Nightly screenshot, dark mode](repo_images/screenshot_web.webp)
 
-<br/>
+
+<details>
+  <summary>Desktop and Android previews here:</summary>
 
 Desktop version
 ![Nightly screenshot, dark mode](repo_images/screenshot_jvm.webp)
 
+<br/>
 
 Android version
 ![Nightly screenshot, dark mode](repo_images/screenshot_android.webp)
+
+</details>
 ---
 
 ## 🌻 Setup
