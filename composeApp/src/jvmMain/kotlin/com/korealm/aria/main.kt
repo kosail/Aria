@@ -7,10 +7,12 @@ import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
 import aria.composeapp.generated.resources.Res
 import aria.composeapp.generated.resources.favicon
+import com.korealm.aria.utils.JvmAudioController
 import org.jetbrains.compose.resources.painterResource
 
 fun main() = application {
     val icon = painterResource(Res.drawable.favicon)
+    val audioController = JvmAudioController()
 
     Window(
         onCloseRequest = {
@@ -20,6 +22,6 @@ fun main() = application {
         icon = icon,
         state = WindowState(size = DpSize(565.dp, 600.dp))
     ) {
-        App()
+        App(audioController)
     }
 }

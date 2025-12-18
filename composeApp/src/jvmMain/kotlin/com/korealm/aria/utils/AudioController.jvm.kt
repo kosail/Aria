@@ -5,9 +5,7 @@ import java.io.File
 import javax.sound.sampled.*
 import kotlin.math.log10
 
-actual fun provideAudioController(): AudioController = JvmAudioController()
-
-class JvmAudioController() : AudioController {
+class JvmAudioController : AudioController {
     private val clips = mutableMapOf<AudioResource, Clip>()
     private val volumeControls = mutableMapOf<AudioResource, FloatControl>()
     private val perSoundVolume = mutableMapOf<AudioResource, Float>()
@@ -20,8 +18,8 @@ class JvmAudioController() : AudioController {
             val clip = AudioSystem.getClip()
             clip.open(inputStream)
             clip.loop(Clip.LOOP_CONTINUOUSLY)
-            // Initialize volumes similar to WASM impl
-            val base = perSoundVolume[audio] ?: 0.5f
+
+            val base = perSoundVolume[audio] ?: 0.8f
             val control = clip.getControl(FloatControl.Type.MASTER_GAIN) as FloatControl
             volumeControls[audio] = control
             internalSetVolume(control, base * globalVolume)

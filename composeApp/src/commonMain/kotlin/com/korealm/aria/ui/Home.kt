@@ -34,7 +34,7 @@ fun Home(
     modifier: Modifier = Modifier
 ) {
     val mainSurfacePadding = when (LocalDeviceSizeCategory.current) {
-        DeviceSizeCategory.Mobile -> 20.dp
+        DeviceSizeCategory.Mobile -> 10.dp
         DeviceSizeCategory.CompactDesktop -> 40.dp
         DeviceSizeCategory.FullDesktop -> 50.dp
     }
@@ -48,15 +48,16 @@ fun Home(
             modifier = Modifier.fillMaxSize()
         ) {
 
-            // Only show the title of the app if it is being run in a browser.
-            if (getTargetPlatform() == Target.WEB) {
+            // Only show the title of the app if it is being run as web or mobile app.
+            if (getTargetPlatform() != Target.DESKTOP) {
                 val titleFont = FontFamily(
                     Font(Res.font.AlegreyaSansSC_Bold, weight = FontWeight.Bold)
                 )
 
                 Box(
                     contentAlignment = if (LocalDeviceSizeCategory.current == DeviceSizeCategory.Mobile) Alignment.Center else Alignment.CenterStart,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
                 ) {
                     Text(
                         text = stringResource(Res.string.aria),
@@ -65,7 +66,7 @@ fun Home(
                         fontWeight = FontWeight.Bold,
                         letterSpacing = 2.sp,
                         color = MaterialTheme.colorScheme.onBackground,
-                        modifier = Modifier.padding(start = 16.dp)
+                        modifier = Modifier
                     )
                 }
             }

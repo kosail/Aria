@@ -4,8 +4,6 @@ import com.korealm.aria.model.AudioResource
 import kotlinx.browser.document
 import org.w3c.dom.HTMLAudioElement
 
-actual fun provideAudioController(): AudioController = WebAudioController()
-
 @OptIn(ExperimentalWasmJsInterop::class)
 class WebAudioController : AudioController {
     private val audios = mutableMapOf<AudioResource, HTMLAudioElement>()
@@ -17,7 +15,7 @@ class WebAudioController : AudioController {
             val element = document.createElement("audio") as HTMLAudioElement
             element.src = audio.audioRes
             element.loop = true
-            val base = perSoundVolume[audio] ?: 0.5f
+            val base = perSoundVolume[audio] ?: 0.8f
             element.volume = (base * globalVolume).toDouble()
             element
         }

@@ -5,14 +5,14 @@ Nature’s silent symphony.
 
 **Aria** is an ambient sound app.
 
-Built from scratch using [Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform), **Aria** is designed to flow across platforms. From Linux to Windows, from macOS to Web, while honoring the quiet beauty of the original [Blanket app](https://github.com/rafaelmardojai/blanket), built by Rafael Mardojai for the GNOME desktop.
+Built from scratch using [Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform), **Aria** is designed to flow across platforms. From Linux to Windows, from web to Android, while honoring the quiet beauty of the original [Blanket app](https://github.com/rafaelmardojai/blanket), built by Rafael Mardojai for the GNOME desktop.
 
 ---
 
 ## 🌺 Goal of this project:
 
 **Aria’s mission is simple:**  
-To bring peace, calm, and ambient beauty — to more people, on more platforms. Blanket is currently only available for Linux and I wanted to bring it to the rest of the world.
+To bring peace, calm, and ambient beauty — to more people, on more platforms. Blanket is currently only available for Linux, and I wanted to bring it to the rest of the world.
 
 This isn’t a fork or a reimplementation. It’s a handcrafted tribute.
 
@@ -22,25 +22,26 @@ A quiet attempt to capture the essence of **Blanket**, but retold with different
 
 ## 🌼 Features
 
-- 🎵 A curated library of ambient nature sounds: rain, fire, birds, forest, and more
-- 🎚 Per-sound volume sliders + master volume control
-- 🕰 Built-in timer to gently fade out after a chosen duration (perfect for sleep)
-- 💻 Runs on Desktop (Linux, Windows, macOS, all via JVM) and Web (WASM/JS)
+**Everything that Blanket already bring to us:** 
+- A curated library of ambient nature sounds: rain, fire, birds, forest, and more
+- Per-sound volume sliders + master volume control
+
+**But Aria brings this too:**
+- Built-in timer to gently fade out after a chosen duration (perfect for sleep)
+- Runs on Desktop (Linux, Windows, macOS, all via JVM), Android and Web (WASM/JS)
 
 ### Screenshots of the nightly version.
 Web version
-![Nightly screenshot, dark mode](repo_images/screenshot.webp)
+![Nightly screenshot, dark mode](repo_images/screenshot_web.webp)
 
 <br/>
 
 Desktop version
+![Nightly screenshot, dark mode](repo_images/screenshot_jvm.webp)
 
-<p align = center >
 
-![Nightly screenshot, dark mode](repo_images/screenshot2.webp)
-
-</p>
-
+Android version
+![Nightly screenshot, dark mode](repo_images/screenshot_android.webp)
 ---
 
 ## 🌻 Setup
@@ -64,7 +65,7 @@ cd aria
 I did try my best, but I couldn't find an audio library that supported OGG format AND be fast as hell (or well, fast enough to not freeze the UI. I'm still a totally beginner in coroutines and async programming, so it was very hard for me to find a solution).
 #### 2. The Desktop version have a delay on changing the volume
 It happen both on individual sounds and the master volume. I can't figure out why... is it a limitation of javax.sample?
-
+#### 3. There is a bug in the Android version when changing the theme. It forgets the state of isSelected in the Audios.
 
 ---
 

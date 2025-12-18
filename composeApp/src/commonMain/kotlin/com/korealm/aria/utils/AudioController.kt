@@ -11,6 +11,3 @@ interface AudioController {
     fun setVolume(audio: AudioResource, volume: Float)
     fun setGlobalVolume(volume: Float)
 }
-
-// Platform resolver
-expect fun provideAudioController(): AudioController

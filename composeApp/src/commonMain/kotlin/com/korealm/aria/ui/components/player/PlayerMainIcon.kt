@@ -17,8 +17,7 @@ import androidx.compose.ui.unit.dp
 import aria.composeapp.generated.resources.Res
 import aria.composeapp.generated.resources.pause
 import aria.composeapp.generated.resources.play
-import com.korealm.aria.utils.Target.DESKTOP
-import com.korealm.aria.utils.Target.WEB
+import com.korealm.aria.utils.Target.*
 import com.korealm.aria.utils.getTargetPlatform
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -32,8 +31,9 @@ fun PlayerMainIcon(
     onClick: () -> Unit
 ) {
     val iconSize = when (getTargetPlatform()) {
-        DESKTOP -> 54.dp
         WEB -> 60.dp
+        DESKTOP -> 54.dp
+        ANDROID -> 60.dp
     }
 
     // Not using an IconButton because I did not like the default behavior on hover,
