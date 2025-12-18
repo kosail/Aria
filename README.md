@@ -12,11 +12,11 @@ Built from scratch using [Compose Multiplatform](https://github.com/JetBrains/co
 ## 🌺 Goal of this project:
 
 **Aria’s mission is simple:**  
-To bring peace, calm, and ambient beauty — to more people, on more platforms. Blanket is currently only available for Linux, and I wanted to bring it to the rest of the world.
+To bring peace, calm, and ambient beauty to more people, on more platforms. Blanket is currently only available for Linux, and I wanted to bring it to the rest of the world.
 
 This isn’t a fork or a reimplementation. It’s a handcrafted tribute.
 
-A quiet attempt to capture the essence of **Blanket**, but retold with different tools, for different platforms, and with a different heartbeat — mine.
+A quiet attempt to capture the essence of **Blanket**, but retold with different tools, for different platforms, and with a different heartbeat (mine).
 
 ---
 
@@ -72,7 +72,7 @@ It happen both on individual sounds and the master volume. I can't figure out wh
 ## 🔧 Stack & Resources
 ### Stack
 - **Compose Multiplatform (Desktop + WASM/JS)** — UI framework
-- **Audio library** — The audio library for Desktop Target (JVM) is javax.sample, while on web target uses the browser API. 
+- **Audio library** — The audio library for Desktop Target (JVM) is javax.sample, while on web target uses the browser API. On Android, it uses MediaPlayer.
 - **GitHub Pages** — For deployment
 
 ### Resources
