@@ -4,5 +4,34 @@ html, body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #404040;
+    background-color: #121416;
+}
+
+#loading {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #bfc9d0;
+    font-family: 'Alegreya Sans SC', system-ui, sans-serif;
+}
+
+#loading .main_text {
+    font-size: 1.5rem;
+}
+
+.spinner {
+    width: 48px;
+    height: 48px;
+    border: 5px solid #2a2f36;
+    border-top-color: #bfc9d0;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 12px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
