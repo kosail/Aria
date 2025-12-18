@@ -75,7 +75,7 @@ cd aria
 I did try my best, but I couldn't find an audio library that supported OGG format AND be fast as hell (or well, fast enough to not freeze the UI. I'm still a totally beginner in coroutines and async programming, so it was very hard for me to find a solution).
 #### 2. The Desktop version have a delay on changing the volume
 It happen both on individual sounds and the master volume. I can't figure out why... is it a limitation of javax.sample?
-#### 3. There is a bug in the Android version when changing the theme. It forgets the state of isSelected in the Audios.
+
 
 ---
 

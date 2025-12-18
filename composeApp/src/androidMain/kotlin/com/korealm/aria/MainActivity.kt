@@ -5,21 +5,21 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.korealm.aria.utils.AndroidAudioController
+import com.korealm.aria.view.AudioControllerViewModel
+import com.korealm.aria.view.PlayerViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
 
-        val audioController = AndroidAudioController(applicationContext)
-
         setContent {
-            val viewModel: PlayerViewModel = viewModel()
+            val playerView: PlayerViewModel = viewModel()
+            val audioControllerView: AudioControllerViewModel = viewModel()
 
             App(
-                audioController,
-                playerState = viewModel.state
+                audioController = audioControllerView.state,
+                playerState = playerView.state
             )
         }
     }

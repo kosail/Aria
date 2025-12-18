@@ -66,4 +66,13 @@ class AndroidAudioController(
             player.setVolume(effectiveVolume, effectiveVolume)
         }
     }
+
+    fun release() {
+        players.values.forEach { player ->
+            player.stop()
+            player.release()
+        }
+        players.clear()
+    }
+
 }
