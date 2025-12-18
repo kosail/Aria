@@ -16,7 +16,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -31,12 +30,15 @@ import com.korealm.aria.utils.getTargetPlatform
 import com.korealm.aria.utils.rememberPlayerFacade
 
 @Composable
-fun App(audioController: AudioController) {
+fun App(
+    audioController: AudioController,
+    playerState: PlayerState = rememberPlayerState()
+) {
     // This DeviceSizeProvider provides LocalDeviceSizeCategory.current
     // which will allow me to change fixed sized UI components, paddings, text...
     DeviceSizeProvider {
         val themeState = rememberAppThemeState()
-        val playerState = rememberPlayerState()
+        val playerState = playerState
         val playerFacade = rememberPlayerFacade(playerState, audioController)
 
         AppTheme(darkTheme = themeState.isDarkTheme) {

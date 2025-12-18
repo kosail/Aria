@@ -17,7 +17,9 @@ import com.korealm.aria.ui.components.player.PlayerMainIcon
 import com.korealm.aria.ui.components.player.PlayerSecondaryIcon
 import com.korealm.aria.ui.components.volume.VolumeMenu
 import com.korealm.aria.utils.PlayerFacade
+import com.korealm.aria.utils.Target
 import com.korealm.aria.utils.darken
+import com.korealm.aria.utils.getTargetPlatform
 
 
 @Composable
@@ -34,6 +36,11 @@ fun Player(
         else -> 32.dp
     }
 
+    val volumeMenuOffset = when(getTargetPlatform()) {
+        Target.ANDROID -> DpOffset((-20).dp, (-1).dp)
+        else -> DpOffset((-128).dp, 0.dp)
+    }
+
     Surface(
         color = MaterialTheme.colorScheme.primaryContainer.copy(0.3f),
         shadowElevation = 1.dp,
@@ -42,7 +49,8 @@ fun Player(
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center,
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
         ) {
             Box {
                 PlayerSecondaryIcon(
@@ -56,15 +64,17 @@ fun Player(
                     onDismissRequest = { isVolumeMenuVisible = false },
                     onResetButtonClick = {
                         playerFacade.stopAll()
+                        isVolumeMenuVisible = false
                     },
                     volume = playerState.playerVolume,
                     onVolumeChange = {
                         playerState.playerVolume = it
                         playerFacade.setGlobalVolume(playerState.playerVolume)
                     },
-                    offset = DpOffset((-128).dp, 0.dp),
+                    offset = volumeMenuOffset,
                     themeState = themeState,
-                    modifier = Modifier.align(Alignment.TopCenter)
+                    modifier = Modifier
+                        .align(Alignment.TopCenter)
                 )
             }
 

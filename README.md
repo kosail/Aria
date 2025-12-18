@@ -36,7 +36,8 @@ Web version
 
 
 <details>
-  <summary>Desktop and Android previews here:</summary>
+<summary>Desktop and Android previews here:</summary>
+<br/>
 
 Desktop version
 

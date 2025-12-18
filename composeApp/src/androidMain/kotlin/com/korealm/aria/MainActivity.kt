@@ -4,8 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.korealm.aria.utils.AndroidAudioController
 
 class MainActivity : ComponentActivity() {
@@ -14,8 +13,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         val audioController = AndroidAudioController(applicationContext)
+
         setContent {
-            App(audioController)
+            val viewModel: PlayerViewModel = viewModel()
+
+            App(
+                audioController,
+                playerState = viewModel.state
+            )
         }
     }
 }
