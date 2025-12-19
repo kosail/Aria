@@ -15,10 +15,10 @@ import androidx.compose.ui.unit.sp
 import aria.composeapp.generated.resources.AlegreyaSansSC_Bold
 import aria.composeapp.generated.resources.Res
 import aria.composeapp.generated.resources.aria
-import com.korealm.aria.state.AppThemeState
 import com.korealm.aria.state.DeviceSizeCategory
 import com.korealm.aria.state.LocalDeviceSizeCategory
 import com.korealm.aria.state.PlayerState
+import com.korealm.aria.state.rememberAppThemeState
 import com.korealm.aria.ui.components.SoundCard
 import com.korealm.aria.utils.PlayerFacade
 import com.korealm.aria.utils.Target
@@ -30,9 +30,10 @@ import org.jetbrains.compose.resources.stringResource
 fun Home(
     playerState: PlayerState,
     playerFacade: PlayerFacade,
-    themeState: AppThemeState,
     modifier: Modifier = Modifier
 ) {
+    val themeState = rememberAppThemeState()
+
     val mainSurfacePadding = when (LocalDeviceSizeCategory.current) {
         DeviceSizeCategory.Mobile -> 10.dp
         DeviceSizeCategory.CompactDesktop -> 40.dp

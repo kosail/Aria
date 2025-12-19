@@ -9,10 +9,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import aria.composeapp.generated.resources.*
-import com.korealm.aria.state.AppThemeState
 import com.korealm.aria.state.DeviceSizeCategory
 import com.korealm.aria.state.LocalDeviceSizeCategory
 import com.korealm.aria.state.PlayerState
+import com.korealm.aria.state.rememberAppThemeState
 import com.korealm.aria.ui.components.player.PlayerMainIcon
 import com.korealm.aria.ui.components.player.PlayerSecondaryIcon
 import com.korealm.aria.ui.components.settings.SettingsMenu
@@ -26,9 +26,12 @@ import com.korealm.aria.utils.getTargetPlatform
 fun PlayerBar(
     playerState: PlayerState,
     playerFacade: PlayerFacade,
-    themeState: AppThemeState,
+    onOpenPreferences: () -> Unit,
+    onOpenAbout: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val themeState = rememberAppThemeState()
+
     var isVolumeMenu by remember { mutableStateOf(false) }
     var isSettingsMenu by remember { mutableStateOf(false) }
 
@@ -37,14 +40,21 @@ fun PlayerBar(
         else -> 32.dp
     }
 
-    val volumeMenuOffset = when(getTargetPlatform()) {
-        Target.ANDROID -> DpOffset((-20).dp, (-1).dp)
-        else -> DpOffset((-128).dp, 0.dp)
+    val volumeMenuOffset = when(LocalDeviceSizeCategory.current) {
+        DeviceSizeCategory.Mobile -> DpOffset((-20).dp, (-1).dp)
+        DeviceSizeCategory.FullDesktop -> DpOffset((-120).dp, 0.dp)
+        else -> DpOffset((30).dp, 0.dp)
     }
 
-    val settingsMenuOffset = when(getTargetPlatform()) {
-        Target.ANDROID -> DpOffset(20.dp, 1.dp)
-        else -> DpOffset(128.dp, 0.dp)
+    val settingsMenuOffset = when(LocalDeviceSizeCategory.current) {
+        DeviceSizeCategory.Mobile -> DpOffset(20.dp, 1.dp)
+        DeviceSizeCategory.FullDesktop -> DpOffset(0.dp, 0.dp)
+        else -> DpOffset((-30).dp, 0.dp)
+    }
+
+    val mainIconWeight = when(LocalDeviceSizeCategory.current) {
+        DeviceSizeCategory.FullDesktop -> 0.2f
+        else -> 0.7f
     }
 
     Surface(
@@ -93,7 +103,7 @@ fun PlayerBar(
             Box(
                 contentAlignment = Alignment.Center,
                 modifier = Modifier
-                    .weight(0.7f)
+                    .weight(mainIconWeight)
                     .align(Alignment.CenterVertically)
             ) {
                 PlayerMainIcon(
@@ -119,8 +129,8 @@ fun PlayerBar(
                     SettingsMenu(
                         expanded = isSettingsMenu,
                         onDismissRequest = { isSettingsMenu = false },
-                        onPreferencesButton = {  },
-                        onAboutButton = {  },
+                        onPreferencesButton = onOpenPreferences,
+                        onAboutButton = onOpenAbout,
                         offset = settingsMenuOffset,
                         themeState = themeState,
                         modifier = Modifier

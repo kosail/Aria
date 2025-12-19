@@ -21,19 +21,47 @@
 
     <string name="play">Play</string>
     <string name="pause">Pause</string>
-    <string name="hide_inactive_sounds">Hide inactive sounds</string>
 
     <string name="volume_menu">Volume Menu</string>
-    <string name="general_volume">General volume</string>
+    <string name="general_volume">Master volume</string>
     <string name="reset_sounds">Reset sounds</string>
 
-    <string name="sounds_menu">Sounds Menu</string>
+    <string name="settings_menu">Settings Menu</string>
+    <string name="settings_timer_start">Set a timer</string>
+    <string name="settings_timer_cancel">Cancel timer</string>
+    <string name="settings_preferences">Preferences</string>
+    <string name="settings_about">About Aria</string>
 
 
-    <string name="about_aria">About Aria</string>
-    <string name="kosail">kosail</string>
+    <!--  About section  -->
+    <string name="kosail">Made by kosail</string>
+
+    <string name="tribute_two">I created this app because I wanted that my mom had better sleep without spending too much mobile data on YouTube Videos.</string>
+    <string name="tribute">Aria is a handcrafted tribute to Blanket, a wonderful Linux ambient sounds app, originally created by Rafael Mardojai.</string>
+
+    <string name="donations_text">
+        If you enjoy Aria and find it useful, you can support its development with a voluntary donation.
+
+        Your support helps keep the project free, open-source, and actively maintained.
+    </string>
+    <string name="donate">Donate on Paypal</string>
+
     <string name="kosail_in_korealm">kosail in the korealm</string>
     <string name="from_honduras">With love, from Honduras</string>
+    <string name="copyright">GPLv3 licensed</string>
 
+    <string name="report_an_issue">Report an issue</string>
+    <string name="report_issue_url">https://github.com/kosail/Aria/issues</string>
+    <!-- ********************* -->
+
+    <!--  Preferences section  -->
+    <string name="dark_theme">Theme accent color</string>
+    <string name="inhibit_suspension">Inhibit suspension while playing</string>
+
+    <string name="delete_all_personal_sounds">Clear all user-added sounds</string>
+    <string name="delete_all_personal_sounds_confirm">Are you sure you want to clear all sounds you have added to Aria?</string>
+    <string name="confirm_yes">Yes, clean it up</string>
+    <string name="confirm_no">No, go back</string>
+    <!-- ********************* -->
 
 </resources>
