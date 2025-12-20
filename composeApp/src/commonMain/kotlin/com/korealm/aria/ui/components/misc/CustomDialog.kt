@@ -1,7 +1,9 @@
-package com.korealm.aria.ui.components
+package com.korealm.aria.ui.components.misc
 
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -20,8 +22,8 @@ fun CustomDialog(
 ) {
     val dialogSize = when(LocalDeviceSizeCategory.current) {
         DeviceSizeCategory.Mobile -> Pair(350.dp, 550.dp)
-        DeviceSizeCategory.CompactDesktop -> Pair(450.dp, 500.dp)
-        DeviceSizeCategory.FullDesktop -> Pair(650.dp, 600.dp)
+        DeviceSizeCategory.CompactDesktop -> Pair(450.dp, 550.dp)
+        DeviceSizeCategory.FullDesktop -> Pair(600.dp, 560.dp)
     }
 
     Dialog(
@@ -33,6 +35,7 @@ fun CustomDialog(
             shape = RoundedCornerShape(8.dp),
             modifier = modifier
                 .size(dialogSize.first, dialogSize.second)
+                .verticalScroll(rememberScrollState())
         ) {
             children()
         }

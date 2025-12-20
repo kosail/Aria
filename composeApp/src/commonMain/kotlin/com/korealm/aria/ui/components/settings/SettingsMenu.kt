@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.DpOffset
 import aria.composeapp.generated.resources.*
 import com.korealm.aria.state.AppThemeState
-import com.korealm.aria.ui.components.CustomDropdownMenu
+import com.korealm.aria.ui.components.misc.CustomDropdownMenu
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 

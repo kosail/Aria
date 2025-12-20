@@ -2,7 +2,7 @@ package com.korealm.aria.ui.components.settings
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.korealm.aria.ui.components.CustomDialog
+import com.korealm.aria.ui.components.misc.CustomDialog
 
 @Composable
 fun PreferencesDialog(

@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.korealm.aria.model.Sound
 import com.korealm.aria.state.AppThemeState
+import com.korealm.aria.ui.components.misc.BigIcon
 import com.korealm.aria.ui.components.volume.VolumeBar
 import com.korealm.aria.utils.Target
 import com.korealm.aria.utils.getTargetPlatform

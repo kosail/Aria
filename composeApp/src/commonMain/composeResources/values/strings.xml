@@ -36,8 +36,10 @@
     <!--  About section  -->
     <string name="kosail">Made by kosail</string>
 
-    <string name="tribute_two">I created this app because I wanted that my mom had better sleep without spending too much mobile data on YouTube Videos.</string>
-    <string name="tribute">Aria is a handcrafted tribute to Blanket, a wonderful Linux ambient sounds app, originally created by Rafael Mardojai.</string>
+    <string name="about_this_app">Why this app?</string>
+
+    <string name="tribute">I created this app because I wanted that my mom had better sleep without spending too much mobile data on YouTube Videos.</string>
+    <string name="tribute_two">Aria is a handcrafted tribute to Blanket, a wonderful Linux ambient sounds app, originally created by Rafael Mardojai.</string>
 
     <string name="donations_text">
         If you enjoy Aria and find it useful, you can support its development with a voluntary donation.

@@ -1,4 +1,4 @@
-package com.korealm.aria.ui.components
+package com.korealm.aria.ui.components.misc
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background

@@ -14,7 +14,7 @@ import aria.composeapp.generated.resources.general_volume
 import aria.composeapp.generated.resources.reset_sounds
 import aria.composeapp.generated.resources.volume_off
 import com.korealm.aria.state.AppThemeState
-import com.korealm.aria.ui.components.CustomDropdownMenu
+import com.korealm.aria.ui.components.misc.CustomDropdownMenu
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 

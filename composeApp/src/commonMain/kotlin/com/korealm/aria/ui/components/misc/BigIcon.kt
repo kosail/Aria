@@ -1,4 +1,4 @@
-package com.korealm.aria.ui.components
+package com.korealm.aria.ui.components.misc
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.LinearEasing
