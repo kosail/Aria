@@ -28,7 +28,7 @@ fun GtkButton(
     val containerColor = if (themeState.isDarkTheme) {
         MaterialTheme.colorScheme.surface.lighten(0.7f)
     } else {
-        MaterialTheme.colorScheme.surface.darken(0.4f)
+        MaterialTheme.colorScheme.surface
     }
 
 

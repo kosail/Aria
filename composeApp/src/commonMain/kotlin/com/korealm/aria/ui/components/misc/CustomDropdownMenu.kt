@@ -29,8 +29,8 @@ fun CustomDropdownMenu(
         onDismissRequest = onDismissRequest,
         shape = RoundedCornerShape(12.dp),
         offset = offset,
-        shadowElevation = 12.dp,
-        border = BorderStroke(2.dp, MaterialTheme.colorScheme.onBackground.copy(alpha = 0.05f)),
+        shadowElevation = 2.dp,
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.onBackground.copy(alpha = 0.05f)),
         modifier = modifier
             .widthIn(min = 200.dp, max = 250.dp)
             .background(

@@ -19,6 +19,7 @@ import aria.composeapp.generated.resources.*
 import com.korealm.aria.ui.components.misc.CustomDialog
 import com.korealm.aria.ui.components.misc.GtkButton
 import com.korealm.aria.ui.components.misc.LabelWithIcon
+import com.korealm.aria.utils.openUrl
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import org.jetbrains.compose.resources.painterResource
@@ -69,11 +70,11 @@ fun AboutDialog(
                 modifier = Modifier
                     .size(width = 80.dp, height = 32.dp)
                     .clip(RoundedCornerShape(24.dp))
-                    .background(MaterialTheme.colorScheme.surface)
+                    .background(MaterialTheme.colorScheme.tertiaryContainer)
             ) {
                 Text(
                     text = stringResource(Res.string.version),
-                    color = MaterialTheme.colorScheme.primary,
+                    color = MaterialTheme.colorScheme.tertiary,
                     fontWeight = FontWeight.Bold,
                     style = MaterialTheme.typography.bodyLarge,
                     modifier = Modifier.align(Alignment.Center)
@@ -98,8 +99,9 @@ fun AboutDialog(
                     )
                 }
 
+                val issueUrl = stringResource(Res.string.report_issue_url)
                 GtkButton(
-                    onClick = {},
+                    onClick = { openUrl(issueUrl) },
                     modifier = Modifier
                 ) {
                     LabelWithIcon(
