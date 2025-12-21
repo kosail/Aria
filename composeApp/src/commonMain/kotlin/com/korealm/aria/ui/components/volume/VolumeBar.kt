@@ -18,8 +18,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.korealm.aria.state.AppThemeState
-import com.korealm.aria.utils.Target
-import com.korealm.aria.utils.getTargetPlatform
+import com.korealm.aria.shared.Target
+import com.korealm.aria.shared.getTargetPlatform
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

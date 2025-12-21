@@ -1,6 +1,7 @@
-package com.korealm.aria.utils
+package com.korealm.aria.shared
 
 import com.korealm.aria.model.AudioResource
+import com.korealm.aria.shared.AudioController
 import kotlinx.browser.document
 import org.w3c.dom.HTMLAudioElement
 

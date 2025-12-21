@@ -18,8 +18,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.korealm.aria.state.DeviceSizeCategory
 import com.korealm.aria.state.LocalDeviceSizeCategory
-import com.korealm.aria.utils.Target
-import com.korealm.aria.utils.getTargetPlatform
+import com.korealm.aria.shared.Target
+import com.korealm.aria.shared.getTargetPlatform
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 

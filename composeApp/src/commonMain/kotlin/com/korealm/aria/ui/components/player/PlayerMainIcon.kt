@@ -17,8 +17,8 @@ import androidx.compose.ui.unit.dp
 import aria.composeapp.generated.resources.Res
 import aria.composeapp.generated.resources.pause
 import aria.composeapp.generated.resources.play
-import com.korealm.aria.utils.Target.*
-import com.korealm.aria.utils.getTargetPlatform
+import com.korealm.aria.shared.Target.*
+import com.korealm.aria.shared.getTargetPlatform
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 

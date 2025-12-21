@@ -1,6 +1,7 @@
-package com.korealm.aria.utils
+package com.korealm.aria.shared
 
 import com.korealm.aria.model.AudioResource
+import com.korealm.aria.shared.AudioController
 import java.io.File
 import javax.sound.sampled.*
 import kotlin.math.log10

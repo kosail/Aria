@@ -3,6 +3,7 @@ package com.korealm.aria.utils
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import com.korealm.aria.model.Sound
+import com.korealm.aria.shared.AudioController
 import com.korealm.aria.state.PlayerState
 
 // This class is the one which binds the state holder PlayerState with the low implementations in AudioController

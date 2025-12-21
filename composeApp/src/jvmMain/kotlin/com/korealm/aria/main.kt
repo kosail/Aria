@@ -7,7 +7,7 @@ import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
 import aria.composeapp.generated.resources.Res
 import aria.composeapp.generated.resources.favicon
-import com.korealm.aria.utils.JvmAudioController
+import com.korealm.aria.shared.JvmAudioController
 import org.jetbrains.compose.resources.painterResource
 
 fun main() = application {

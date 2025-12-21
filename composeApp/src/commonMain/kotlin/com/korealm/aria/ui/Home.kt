@@ -21,8 +21,8 @@ import com.korealm.aria.state.PlayerState
 import com.korealm.aria.state.rememberAppThemeState
 import com.korealm.aria.ui.components.SoundCard
 import com.korealm.aria.utils.PlayerFacade
-import com.korealm.aria.utils.Target
-import com.korealm.aria.utils.getTargetPlatform
+import com.korealm.aria.shared.Target
+import com.korealm.aria.shared.getTargetPlatform
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.stringResource
 

@@ -1,4 +1,4 @@
-package com.korealm.aria.utils
+package com.korealm.aria.shared
 
 import kotlinx.browser.window
 

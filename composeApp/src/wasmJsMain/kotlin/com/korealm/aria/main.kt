@@ -2,7 +2,7 @@ package com.korealm.aria
 
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.window.ComposeViewport
-import com.korealm.aria.utils.WebAudioController
+import com.korealm.aria.shared.WebAudioController
 import kotlinx.browser.document
 
 @OptIn(ExperimentalComposeUiApi::class)

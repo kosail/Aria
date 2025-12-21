@@ -18,8 +18,6 @@ import com.korealm.aria.ui.components.player.PlayerSecondaryIcon
 import com.korealm.aria.ui.components.settings.SettingsMenu
 import com.korealm.aria.ui.components.volume.VolumeMenu
 import com.korealm.aria.utils.PlayerFacade
-import com.korealm.aria.utils.Target
-import com.korealm.aria.utils.getTargetPlatform
 
 
 @Composable

@@ -1,3 +1,3 @@
-package com.korealm.aria.utils
+package com.korealm.aria.shared
 
 expect fun openUrl(url: String)
