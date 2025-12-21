@@ -23,6 +23,7 @@ import com.korealm.aria.ui.components.SoundCard
 import com.korealm.aria.utils.PlayerFacade
 import com.korealm.aria.shared.Target
 import com.korealm.aria.shared.getTargetPlatform
+import com.korealm.aria.ui.components.misc.AriaTitleFont
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.stringResource
 
@@ -51,23 +52,13 @@ fun Home(
 
             // Only show the title of the app if it is being run as web or mobile app.
             if (getTargetPlatform() != Target.DESKTOP) {
-                val titleFont = FontFamily(
-                    Font(Res.font.AlegreyaSansSC_Bold, weight = FontWeight.Bold)
-                )
-
                 Box(
                     contentAlignment = if (LocalDeviceSizeCategory.current == DeviceSizeCategory.Mobile) Alignment.Center else Alignment.CenterStart,
-                    modifier = Modifier
-                        .fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text(
-                        text = stringResource(Res.string.aria),
-                        fontSize = 72.sp,
-                        fontFamily = titleFont,
-                        fontWeight = FontWeight.Bold,
-                        letterSpacing = 2.sp,
-                        color = MaterialTheme.colorScheme.onBackground,
-                        modifier = Modifier
+                    AriaTitleFont(
+                        stringRes = Res.string.aria,
+                        fontSize = 72.sp
                     )
                 }
             }

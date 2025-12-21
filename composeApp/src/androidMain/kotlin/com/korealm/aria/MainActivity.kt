@@ -16,11 +16,6 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
 
-        startKoin {
-            androidContext(this@MainActivity)
-            modules(androidModule)
-        }
-
         setContent {
             val playerView: PlayerViewModel = viewModel()
             val audioControllerView: AudioControllerViewModel = viewModel()

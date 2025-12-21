@@ -46,7 +46,7 @@
 
         Your support helps keep the project free, open-source, and actively maintained.
     </string>
-    <string name="donate">Donate on Paypal</string>
+    <string name="donate">Support my work</string>
 
     <string name="kosail_in_korealm">kosail in the korealm</string>
     <string name="from_honduras">With love, from Honduras.</string>
@@ -57,13 +57,18 @@
     <!-- ********************* -->
 
     <!--  Preferences section  -->
-    <string name="dark_theme">Theme accent color</string>
+    <string name="theme_accent_color">Theme accent color</string>
+    <string name="inhibit_suspension_title">Keep screen on</string>
     <string name="inhibit_suspension">Inhibit suspension while playing</string>
 
     <string name="delete_all_personal_sounds">Clear all user-added sounds</string>
     <string name="delete_all_personal_sounds_confirm">Are you sure you want to clear all sounds you have added to Aria?</string>
     <string name="confirm_yes">Yes, clean it up</string>
     <string name="confirm_no">No, go back</string>
+
+    <string name="suggestions">
+        Do you have any extra feature or idea?
+        Check 'About Aria' section to reach me out.</string>
     <!-- ********************* -->
 
 </resources>
