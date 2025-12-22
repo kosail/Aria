@@ -26,11 +26,12 @@ import com.korealm.aria.state.*
 import com.korealm.aria.theme.AppTheme
 import com.korealm.aria.ui.Home
 import com.korealm.aria.ui.PlayerBar
-import com.korealm.aria.ui.components.settings.AboutDialog
-import com.korealm.aria.ui.components.settings.PreferencesDialog
+import com.korealm.aria.ui.components.settings.about.AboutDialog
+import com.korealm.aria.ui.components.settings.preferences.PreferencesDialog
 import com.korealm.aria.shared.AudioController
 import com.korealm.aria.shared.Target.WEB
 import com.korealm.aria.shared.getTargetPlatform
+import com.korealm.aria.ui.components.settings.timer.TimerDialog
 import com.korealm.aria.utils.rememberPlayerFacade
 
 @Composable
@@ -46,6 +47,7 @@ fun App(
         val playerState = playerState
         val playerFacade = rememberPlayerFacade(playerState, audioController)
 
+        var isTimerDialog by remember { mutableStateOf(false) }
         var isPreferencesDialog by remember { mutableStateOf(false) }
         var isAboutDialog by remember { mutableStateOf(false) }
 
@@ -72,6 +74,7 @@ fun App(
                 PlayerBar(
                     playerState = playerState,
                     playerFacade = playerFacade,
+                    onOpenTimer = { isTimerDialog = true },
                     onOpenPreferences = { isPreferencesDialog = true },
                     onOpenAbout = { isAboutDialog = true },
                     modifier = Modifier
@@ -96,6 +99,14 @@ fun App(
             ) {
                 AboutDialog(
                     onDismissRequest = { isAboutDialog = false },
+                )
+            }
+
+            AnimatedVisibility(
+                visible = isTimerDialog
+            ) {
+                TimerDialog(
+                    onDismissRequest = { isTimerDialog = false },
                 )
             }
 

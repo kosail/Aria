@@ -17,6 +17,7 @@ import org.jetbrains.compose.resources.stringResource
 fun SettingsMenu(
     expanded: Boolean,
     onDismissRequest: () -> Unit,
+    onTimerButton: () -> Unit,
     onPreferencesButton: () -> Unit,
     onAboutButton: () -> Unit,
     offset: DpOffset,
@@ -44,7 +45,7 @@ fun SettingsMenu(
                     tint = MaterialTheme.colorScheme.onSurface
                 )
             },
-            onClick = {},
+            onClick = onTimerButton,
         )
 
         DropdownMenuItem(

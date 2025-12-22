@@ -1,4 +1,4 @@
-package com.korealm.aria.ui.components.settings
+package com.korealm.aria.ui.components.settings.preferences
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*

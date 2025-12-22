@@ -24,6 +24,7 @@ import com.korealm.aria.utils.PlayerFacade
 fun PlayerBar(
     playerState: PlayerState,
     playerFacade: PlayerFacade,
+    onOpenTimer: () -> Unit,
     onOpenPreferences: () -> Unit,
     onOpenAbout: () -> Unit,
     modifier: Modifier = Modifier
@@ -127,6 +128,7 @@ fun PlayerBar(
                     SettingsMenu(
                         expanded = isSettingsMenu,
                         onDismissRequest = { isSettingsMenu = false },
+                        onTimerButton = onOpenTimer,
                         onPreferencesButton = onOpenPreferences,
                         onAboutButton = onOpenAbout,
                         offset = settingsMenuOffset,

@@ -71,4 +71,16 @@
         Check 'About Aria' section to reach me out.</string>
     <!-- ********************* -->
 
+
+    <!-- Timer section -->
+    <string name="timer_quick_presets">Quick presets</string>
+    <string name="timer_custom_duration">Custom duration</string>
+    <string name="timer_start">Start timer</string>
+    <string name="timer_minutes_short">min</string>
+    <string name="timer_hours">hours</string>
+    <string name="timer_hh">HH</string>
+    <string name="timer_mm">MM</string>
+
+    <!-- ********************* -->
+
 </resources>
