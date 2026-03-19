@@ -2,10 +2,7 @@ package com.korealm.aria.ui.components.settings.timer
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -15,10 +12,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import aria.composeapp.generated.resources.Res
 import aria.composeapp.generated.resources.timer_hours
 import aria.composeapp.generated.resources.timer_minutes_short
+import com.korealm.aria.shared.Target
+import com.korealm.aria.shared.getTargetPlatform
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -32,42 +33,46 @@ fun PresetCard(
     val bgColor = if (isSelected) MaterialTheme.colorScheme.tertiary else Color.Transparent
     val surfaceColor = if (isSelected) MaterialTheme.colorScheme.tertiary else MaterialTheme.colorScheme.tertiaryContainer
 
+    val cardSize: Triple<Dp, Dp, Dp> = if (getTargetPlatform() != Target.ANDROID) Triple(92.dp, 86.dp, 80.dp) else Triple(74.dp, 68.dp, 62.dp)
+
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier
-            .size(92.dp)
+            .size(cardSize.first)
             .clip(RoundedCornerShape(32.dp))
             .background(bgColor)
     ) {
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier
-                .size(86.dp)
+                .size(cardSize.second)
                 .clip(RoundedCornerShape(28.dp))
                 .background(MaterialTheme.colorScheme.background)
         ) {
             Surface(
                 color = surfaceColor,
                 shape = RoundedCornerShape(26.dp),
-                modifier = Modifier.size(80.dp)
+                modifier = Modifier.size(cardSize.third)
             ) {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center,
                     modifier = Modifier
-                        .size(80.dp)
+                        .size(cardSize.third)
                         .clickable { onClick() }
                 ) {
                     Text(
                         text = amount.toString(),
                         style = MaterialTheme.typography.headlineLarge,
                         color = MaterialTheme.colorScheme.background,
+                        fontWeight = FontWeight.Medium,
                         modifier = Modifier
                     )
 
                     Text(
                         text = stringResource(if (minutes) Res.string.timer_minutes_short else Res.string.timer_hours),
                         style = MaterialTheme.typography.bodyLarge,
+                        fontWeight = FontWeight.Medium,
                         color = MaterialTheme.colorScheme.background,
                         modifier = Modifier
                     )

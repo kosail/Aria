@@ -36,6 +36,8 @@ import aria.composeapp.generated.resources.settings_timer_start
 import aria.composeapp.generated.resources.timer_custom_duration
 import aria.composeapp.generated.resources.timer_quick_presets
 import aria.composeapp.generated.resources.timer_start
+import com.korealm.aria.shared.Target
+import com.korealm.aria.shared.getTargetPlatform
 import com.korealm.aria.ui.components.misc.CustomDialog
 import com.korealm.aria.ui.components.misc.GtkButton
 import org.jetbrains.compose.resources.stringResource
@@ -117,7 +119,7 @@ fun TimerDialog(
 
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween,
+                horizontalArrangement = Arrangement.Center,
                 modifier = Modifier
                     .fillMaxWidth().padding(horizontal = 8.dp)
                     .clip(RoundedCornerShape(20.dp))
@@ -127,45 +129,15 @@ fun TimerDialog(
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.05f),
                         shape = RoundedCornerShape(20.dp))
             ) {
-                Button(
-                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.tertiary.copy(alpha = 0.5f)),
-                    shape = RoundedCornerShape(40),
-                    onClick = {},
-                    modifier = Modifier.padding(start = 8.dp)
-                ) {
-                    Text(
-                        text = "–",
-                        fontSize = 36.sp,
-                        fontWeight = FontWeight.Bold,
-                        textAlign = TextAlign.Center,
-                        color = MaterialTheme.colorScheme.onSurface,
-                        modifier = Modifier.padding(vertical = 2.dp)
-                    )
-                }
                 TimeInput(
                     state = rememberTimePickerState(1, 0, true),
                     colors = TimePickerDefaults.colors(
                         timeSelectorSelectedContainerColor = Color.Transparent,
                         timeSelectorUnselectedContainerColor = Color.Transparent
                     ),
-                    modifier = Modifier.padding(top = 8.dp)
+                    modifier = Modifier.padding(top = 16.dp)
 
                 )
-
-                Button(
-                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.tertiary.copy(alpha = 0.5f)),
-                    shape = RoundedCornerShape(40),
-                    onClick = {},
-                    modifier = Modifier.padding(end = 8.dp)
-                ) {
-                    Text(
-                        text = "+",
-                        fontSize = 36.sp,
-                        fontWeight = FontWeight.Bold,
-                        textAlign = TextAlign.Center,
-                        color = MaterialTheme.colorScheme.onSurface
-                    )
-                }
             }
 
             Spacer(
