@@ -38,17 +38,19 @@
 
     <string name="about_this_app">Why this app?</string>
 
-    <string name="tribute">
-        Aria is a handcrafted tribute to Blanket, a wonderful Linux ambient sounds app, originally created by Rafael Mardojai.
+    <string name="tribute_zero">Aria is a handcrafted tribute to Blanket, a wonderful Linux ambient sounds app, originally created by Rafael Mardojai.</string>
 
-        Though beautiful, it was only for Linux. I rebuilt it from scratch so it could live not only on Linux, but on Windows, macOS, Android, and the web. Why I did this? Because I wanted that my mom had better sleep without spending too much mobile data on YouTube videos.
-    </string>
+    <string name="tribute_one">Though beautiful, it was only for Linux. I rebuilt it from scratch so it could for Windows, macOS, Android, and the web. Why I did this? Because I wanted that my mom had better sleep without spending too much mobile data on YouTube videos.</string>
 
     <string name="tribute_two">
-        Like the original, Aria has no accounts, no ads, no clutter. Just nature’s sounds.
-
-        Mix them, adjust them, let them fade away as you rest or work. A rewrite often means adding more, but this one is different: Aria isn’t about more features. It’s about preserving the calm and carrying it everywhere without breaking its spirit.
+        Like the original, Aria has no accounts, no ads, no clutter. Just nature’s sounds. Mix them, adjust them, let them fade away as you rest or work.
     </string>
+
+    <string name="tribute_three">
+        This app is totally free, and it is released under the GNU GPLv3 License, which means you are free to use, share, and modify this app. If you distribute modified versions, you must share your changes under the same license. You may not impose additional restrictions on others’ rights.
+    </string>
+
+    <string name="tribute_legal">License and legal info</string>
 
     <string name="donations_text">
         If you enjoy Aria and find it useful, you can support its development with a voluntary donation.

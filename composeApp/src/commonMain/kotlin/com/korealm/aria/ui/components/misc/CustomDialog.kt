@@ -37,7 +37,6 @@ fun CustomDialog(
             shape = RoundedCornerShape(8.dp),
             modifier = modifier
                 .size(dialogSize.first, dialogSize.second)
-                .verticalScroll(rememberScrollState())
         ) {
             children()
         }
