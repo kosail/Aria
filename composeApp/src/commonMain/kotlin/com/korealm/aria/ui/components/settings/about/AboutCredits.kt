@@ -2,7 +2,9 @@ package com.korealm.aria.ui.components.settings.about
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -11,22 +13,39 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import aria.composeapp.generated.resources.*
+import com.korealm.aria.ui.components.misc.GtkCard
 import com.korealm.aria.ui.components.misc.SimpleNavbar
+import com.korealm.aria.utils.GtkButtonShape
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
 private fun SimpleTitle(
-    titleRes: StringResource
+    titleRes: StringResource,
+    modifier: Modifier = Modifier
 ) {
     Text(
         text = stringResource(titleRes),
         fontSize = 16.sp,
         fontWeight = FontWeight.Medium,
-        modifier = Modifier.padding(bottom = 16.dp)
+        modifier = modifier.padding(bottom = 16.dp)
+    )
+}
+
+@Composable
+private fun SimpleText(
+    stringRes: StringResource,
+    modifier: Modifier = Modifier
+) {
+    Text(
+        text = stringResource(stringRes),
+        fontSize = 16.sp,
+        fontWeight = FontWeight.Light,
+        modifier = modifier
     )
 }
 
@@ -36,20 +55,20 @@ fun AboutCredits(
     onExit: () -> Unit
 ) {
     val soundsBy = listOf(
-        stringResource(Res.string.credits_sounds_by_one),
-        stringResource(Res.string.credits_sounds_by_two),
-        stringResource(Res.string.credits_sounds_by_three),
-        stringResource(Res.string.credits_sounds_by_four),
-        stringResource(Res.string.credits_sounds_by_five),
-        stringResource(Res.string.credits_sounds_by_six),
-        stringResource(Res.string.credits_sounds_by_seven),
-        stringResource(Res.string.credits_sounds_by_eight),
-        stringResource(Res.string.credits_sounds_by_nine),
-        stringResource(Res.string.credits_sounds_by_ten),
-        stringResource(Res.string.credits_sounds_by_eleven),
-        stringResource(Res.string.credits_sounds_by_twelve),
-        stringResource(Res.string.credits_sounds_by_thirteen),
-        stringResource(Res.string.credits_sounds_by_fourteen),
+        Res.string.credits_sounds_by_one,
+        Res.string.credits_sounds_by_two,
+        Res.string.credits_sounds_by_three,
+        Res.string.credits_sounds_by_four,
+        Res.string.credits_sounds_by_five,
+        Res.string.credits_sounds_by_six,
+        Res.string.credits_sounds_by_seven,
+        Res.string.credits_sounds_by_eight,
+        Res.string.credits_sounds_by_nine,
+        Res.string.credits_sounds_by_ten,
+        Res.string.credits_sounds_by_eleven,
+        Res.string.credits_sounds_by_twelve,
+        Res.string.credits_sounds_by_thirteen,
+        Res.string.credits_sounds_by_fourteen,
     )
 
     Column(
@@ -73,16 +92,52 @@ fun AboutCredits(
                 .padding(horizontal = 24.dp)
         ) {
             SimpleTitle(Res.string.credits_code_by)
-
+            GtkCard(
+                modifier = Modifier.padding(bottom = 16.dp),
+                content = { SimpleText(Res.string.credits_kosail) }
+            )
 
             SimpleTitle(Res.string.credits_design_by)
+            GtkCard(
+                buttonShape = GtkButtonShape.TOP,
+                content = { SimpleText(Res.string.credits_design_by_one) }
+            )
+
+            GtkCard(
+                buttonShape = GtkButtonShape.MIDDLE,
+                content = { SimpleText(Res.string.credits_design_by_two) }
+            )
+
+
+            GtkCard(
+                modifier = Modifier.padding(bottom = 16.dp),
+                buttonShape = GtkButtonShape.BOTTOM,
+                content = { SimpleText(Res.string.credits_design_by_three) }
+            )
 
 
             SimpleTitle(Res.string.credits_sounds_by)
+            soundsBy.forEach { sound ->
+                val shape = when(soundsBy.indexOf(sound)) {
+                    0 -> GtkButtonShape.TOP
+                    soundsBy.size - 1 -> GtkButtonShape.BOTTOM
+                    else -> GtkButtonShape.MIDDLE
+                }
 
+                GtkCard(
+                    buttonShape = shape,
+                    content = { SimpleText(sound) }
+                )
+            }
+            Spacer(modifier = Modifier.height(16.dp))
 
             SimpleTitle(Res.string.credits_sounds_edited_by)
-
+            GtkCard(
+                content = { SimpleText(Res.string.credits_sounds_edited_by_one) },
+                modifier = Modifier
+                    .padding(bottom = 16.dp)
+                    .height(60.dp)
+            )
         }
     }
 }

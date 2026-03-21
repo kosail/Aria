@@ -2,6 +2,7 @@ package com.korealm.aria.ui.components.settings.about
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -16,6 +17,7 @@ import androidx.compose.ui.unit.sp
 import aria.composeapp.generated.resources.Res
 import aria.composeapp.generated.resources.license_legal
 import aria.composeapp.generated.resources.license_legal_message
+import com.korealm.aria.ui.components.misc.Copyright
 import com.korealm.aria.ui.components.misc.SimpleNavbar
 import org.jetbrains.compose.resources.stringResource
 
@@ -50,6 +52,10 @@ fun AboutLegal(
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Light
             )
+
+            Spacer(modifier = Modifier.weight(1f))
+
+            Copyright()
         }
     }
 }
