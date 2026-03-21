@@ -38,9 +38,9 @@
 
     <string name="about_this_app">Why this app?</string>
 
-    <string name="tribute_zero">Aria is a handcrafted tribute to Blanket, a wonderful Linux ambient sounds app, originally created by Rafael Mardojai.</string>
+    <string name="tribute_zero">Aria is a handcrafted tribute to Blanket, a wonderful Linux ambient sounds app, originally created by Rafael Mardojai, part of the GNOME Desktop Circle.</string>
 
-    <string name="tribute_one">Though beautiful, it was only for Linux. I rebuilt it from scratch so it could for Windows, macOS, Android, and the web. Why I did this? Because I wanted that my mom had better sleep without spending too much mobile data on YouTube videos.</string>
+    <string name="tribute_one">Though beautiful, it was only for Linux. I rebuilt it from scratch for many other devices, because I wanted that my mom had better sleep without spending too much mobile data on YouTube videos.</string>
 
     <string name="tribute_two">
         Like the original, Aria has no accounts, no ads, no clutter. Just nature’s sounds. Mix them, adjust them, let them fade away as you rest or work.

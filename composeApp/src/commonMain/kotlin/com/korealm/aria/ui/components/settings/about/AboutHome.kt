@@ -2,8 +2,10 @@ package com.korealm.aria.ui.components.settings.about
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,8 +27,32 @@ import kotlin.time.Clock
 
 @Composable
 fun AboutHome(
-    onTabChange: (AboutPages) -> Unit
+    onTabChange: (AboutPages) -> Unit,
+    onExit: () -> Unit
 ) {
+    Box(
+        contentAlignment = Alignment.TopEnd,
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(56.dp)
+    ) {
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+                .height(56.dp)
+                .width(56.dp)
+                .clip(RoundedCornerShape(10))
+                .clickable { onExit() }
+        ) {
+            Icon(
+                painter = painterResource(Res.drawable.close),
+                contentDescription = stringResource(Res.string.close_menu),
+                tint = MaterialTheme.colorScheme.onSurface,
+                modifier = Modifier.size(32.dp)
+            )
+        }
+    }
+
     Column(
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -118,7 +144,7 @@ fun AboutHome(
             modifier = Modifier
         ) {
             Text(
-                text = "$year © ${stringResource(Res.string.kosail_in_korealm)}",
+                text = "2025 - $year © ${stringResource(Res.string.kosail_in_korealm)}",
                 style = MaterialTheme.typography.bodySmall,
                 fontWeight = FontWeight.Light,
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)

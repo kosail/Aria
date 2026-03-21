@@ -41,52 +41,55 @@ fun AboutThisApp(
         ) {
             Spacer(modifier = Modifier.height(24.dp))
 
-            Text(
-                text = stringResource(Res.string.tribute_zero),
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Light,
-                modifier = Modifier.padding(horizontal = 16.dp)
-            )
+            Column(
+                modifier = Modifier.padding(horizontal = 24.dp)
+            ) {
+                Text(
+                    text = stringResource(Res.string.tribute_zero),
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Light,
+                )
 
-            Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(16.dp))
 
-            Text(
-                text = stringResource(Res.string.tribute_one),
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Light,
-                modifier = Modifier.padding(horizontal = 16.dp)
-            )
+                Text(
+                    text = stringResource(Res.string.tribute_one),
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Light,
+                )
 
-            Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(16.dp))
 
-            Text(
-                text = stringResource(Res.string.tribute_two).trimIndent(),
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Light,
-                modifier = Modifier.padding(horizontal = 16.dp)
-            )
+                Text(
+                    text = stringResource(Res.string.tribute_two).trimIndent(),
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Light,
+                )
+            }
 
             HorizontalDivider(
                 modifier = Modifier.padding(16.dp)
             )
 
-            Text(
-                text = stringResource(Res.string.tribute_legal),
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Normal,
-                modifier = Modifier
-                    .padding(horizontal = 16.dp)
-                    .padding(bottom = 16.dp)
-            )
+            Column(
+                modifier = Modifier.padding(horizontal = 24.dp)
+            ) {
+                Text(
+                    text = stringResource(Res.string.tribute_legal),
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Normal,
+                    modifier = Modifier
+                        .padding(bottom = 16.dp)
+                )
 
-            Text(
-                text = stringResource(Res.string.tribute_three).trimIndent(),
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Light,
-                modifier = Modifier
-                    .padding(horizontal = 16.dp)
-                    .padding(bottom = 24.dp)
-            )
+                Text(
+                    text = stringResource(Res.string.tribute_three).trimIndent(),
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Light,
+                    modifier = Modifier
+                        .padding(bottom = 24.dp)
+                )
+            }
         }
     }
 }

@@ -22,7 +22,8 @@ fun AboutDialog(
         ) { navItem ->
             when (navItem) {
                 AboutPages.HOME -> AboutHome(
-                    onTabChange = { page = it }
+                    onTabChange = { page = it },
+                    onExit = onDismissRequest
                 )
                 AboutPages.DONATE -> AboutDonate(
                     onBack = { page = AboutPages.HOME },
