@@ -39,15 +39,11 @@ Web version
 <summary>Desktop and Android previews here:</summary>
 <br/>
 
-Desktop version
+Desktop & Android version
 
-![Nightly screenshot, dark mode](repo_images/screenshot_jvm.webp)
+![Nightly screenshot, dark mode](repo_images/screenshot_jvm_android.webp)
 
 <br/>
-
-Android version
-
-![Nightly screenshot, dark mode](repo_images/screenshot_android.webp)
 
 </details>
 
