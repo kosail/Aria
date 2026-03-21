@@ -33,6 +33,15 @@ fun AboutDialog(
                     onBack = { page = AboutPages.HOME },
                     onExit = onDismissRequest
                 )
+                AboutPages.LEGAL -> AboutLegal(
+                    onBack = { page = AboutPages.HOME },
+                    onExit = onDismissRequest
+                )
+
+                AboutPages.CREDITS -> AboutCredits(
+                    onBack = { page = AboutPages.HOME },
+                    onExit = onDismissRequest
+                )
             }
         }
     }

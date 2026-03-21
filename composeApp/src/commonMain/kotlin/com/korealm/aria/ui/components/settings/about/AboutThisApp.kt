@@ -12,6 +12,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import aria.composeapp.generated.resources.*
+import com.korealm.aria.shared.openUrl
+import com.korealm.aria.ui.components.misc.Copyright
+import com.korealm.aria.ui.components.misc.GtkButton
+import com.korealm.aria.ui.components.misc.LabelWithIcon
 import com.korealm.aria.ui.components.misc.SimpleNavbar
 import org.jetbrains.compose.resources.stringResource
 
@@ -38,9 +42,8 @@ fun AboutThisApp(
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
+                .padding(top = 16.dp)
         ) {
-            Spacer(modifier = Modifier.height(24.dp))
-
             Column(
                 modifier = Modifier.padding(horizontal = 24.dp)
             ) {
@@ -71,25 +74,20 @@ fun AboutThisApp(
                 modifier = Modifier.padding(16.dp)
             )
 
-            Column(
+            val githubUrl = stringResource(Res.string.github_url)
+            GtkButton(
+                onClick = { openUrl(githubUrl) },
                 modifier = Modifier.padding(horizontal = 24.dp)
             ) {
-                Text(
-                    text = stringResource(Res.string.tribute_legal),
-                    fontSize = 24.sp,
-                    fontWeight = FontWeight.Normal,
-                    modifier = Modifier
-                        .padding(bottom = 16.dp)
-                )
-
-                Text(
-                    text = stringResource(Res.string.tribute_three).trimIndent(),
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Light,
-                    modifier = Modifier
-                        .padding(bottom = 24.dp)
+                LabelWithIcon(
+                    stringRes = Res.string.github_project,
+                    iconRes = Res.drawable.external_link
                 )
             }
+
+            Spacer(modifier = Modifier.weight(1f))
+
+            Copyright(modifier = Modifier.padding(bottom = 16.dp))
         }
     }
 }

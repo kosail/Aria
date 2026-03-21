@@ -36,7 +36,7 @@
     <!--  About section  -->
     <string name="kosail">Made by kosail</string>
 
-    <string name="about_this_app">Why this app?</string>
+    <string name="about_this_app">Details about this app</string>
 
     <string name="tribute_zero">Aria is a handcrafted tribute to Blanket, a wonderful Linux ambient sounds app, originally created by Rafael Mardojai, part of the GNOME Desktop Circle.</string>
 
@@ -46,18 +46,18 @@
         Like the original, Aria has no accounts, no ads, no clutter. Just nature’s sounds. Mix them, adjust them, let them fade away as you rest or work.
     </string>
 
-    <string name="tribute_three">
-        This app is totally free, and it is released under the GNU GPLv3 License, which means you are free to use, share, and modify this app. If you distribute modified versions, you must share your changes under the same license. You may not impose additional restrictions on others’ rights.
-    </string>
-
-    <string name="tribute_legal">License and legal info</string>
-
     <string name="donations_text">
         If you enjoy Aria and find it useful, you can support its development with a voluntary donation.
 
         Your support helps keep the project free, open-source, and actively maintained.
     </string>
     <string name="donate">Support my work</string>
+    <string name="donate_on_paypal">Donate on PayPal</string>
+    <string name="paypal_url">https://paypal.com/</string>
+    <string name="no_donations_currently">
+        Currently, there are no options to financially support this project. I hope to work on this in future releases, but I really appreciate you took for time and willing to support. Thank you!
+    </string>
+
 
     <string name="kosail_in_korealm">kosail in the korealm</string>
     <string name="from_honduras">With love, from Honduras.</string>
@@ -67,6 +67,46 @@
 
     <string name="report_an_issue">Report an issue</string>
     <string name="report_issue_url">https://github.com/kosail/Aria/issues</string>
+
+    <string name="github_project">Check the project's page on GitHub</string>
+    <string name="github_url">https://github.com/kosail/Aria</string>
+
+
+    <string name="license_legal">License and legal info</string>
+    <string name="license_legal_message">
+        This app is totally free, and it is released under the GNU GPLv3 License, which means you are free to use, share, and modify this app.
+
+        If you distribute modified versions, you must share your changes under the same license. You may not impose additional restrictions on others’ rights.
+    </string>
+
+
+    <string name="credits">Credits</string>
+    <string name="credits_code_by">Code by</string>
+    <string name="credits_design_by">Design by</string>
+    <string name="credits_sounds_by">Sounds by</string>
+    <string name="credits_sounds_edited_by">Sounds edited by</string>
+
+    <string name="credits_kosail">kosail [琥偲霖]</string>
+    <string name="credits_design_by_one">Jakub Steiner: Sounds icons</string>
+    <string name="credits_design_by_two">kosail [琥偲霖]: App icon</string>
+
+    <string name="credits_sounds_by_one">alex36917: Rain</string>
+    <string name="credits_sounds_by_two">Digifish music: Storm</string>
+    <string name="credits_sounds_by_three">ezwa: Fireplace</string>
+    <string name="credits_sounds_by_four">Falcet: Boat</string>
+    <string name="credits_sounds_by_five">gezortenplotz: City</string>
+    <string name="credits_sounds_by_six">gluckose: Stream</string>
+    <string name="credits_sounds_by_seven">Jorge Stolfi: White Noise</string>
+    <string name="credits_sounds_by_eight">kvgarlic: Birds</string>
+    <string name="credits_sounds_by_nine">Lisa Redfern: Summer Night</string>
+    <string name="credits_sounds_by_ten">Luftrum: Waves</string>
+    <string name="credits_sounds_by_eleven">stephan: Coffee Shop</string>
+    <string name="credits_sounds_by_twelve">Omegatron: Pink Noise</string>
+    <string name="credits_sounds_by_thirteen">felix.blume: Wind</string>
+    <string name="credits_sounds_by_fourteen">SDLx: Train</string>
+
+    <string name="credits_sounds_edited_by_one">Porrumentzio: Birds, Rain, Storm, Waves, Boat, City, Wind</string>
+
     <!-- ********************* -->
 
     <!--  Preferences section  -->
