@@ -85,6 +85,7 @@ fun AboutThisApp(
                 )
             }
 
+            Spacer(modifier = Modifier.height(16.dp))
             Spacer(modifier = Modifier.weight(1f))
 
             Copyright(modifier = Modifier.padding(bottom = 16.dp))

@@ -172,7 +172,7 @@ fun PreferencesDialog(
             Spacer(Modifier.fillMaxHeight().weight(1f))
 
             Text(
-                text = stringResource(Res.string.suggestions),
+                text = stringResource(Res.string.suggestions).trimIndent(),
                 style = MaterialTheme.typography.labelMedium,
                 fontWeight = FontWeight.Light,
                 textAlign = TextAlign.Center,

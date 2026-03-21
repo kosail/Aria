@@ -33,7 +33,7 @@ fun PresetCard(
     val bgColor = if (isSelected) MaterialTheme.colorScheme.tertiary else Color.Transparent
     val surfaceColor = if (isSelected) MaterialTheme.colorScheme.tertiary else MaterialTheme.colorScheme.tertiaryContainer
 
-    val cardSize: Triple<Dp, Dp, Dp> = if (getTargetPlatform() != Target.ANDROID) Triple(92.dp, 86.dp, 80.dp) else Triple(74.dp, 68.dp, 62.dp)
+    val cardSize: Triple<Dp, Dp, Dp> = if (getTargetPlatform() != Target.ANDROID) Triple(86.dp, 80.dp, 74.dp) else Triple(74.dp, 68.dp, 62.dp)
 
     Box(
         contentAlignment = Alignment.Center,
