@@ -1,11 +1,6 @@
 package com.korealm.aria.ui.components.settings.about
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
@@ -13,7 +8,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import aria.composeapp.generated.resources.*
@@ -51,8 +45,7 @@ private fun SimpleText(
 
 @Composable
 fun AboutCredits(
-    onBack: () -> Unit,
-    onExit: () -> Unit
+    onBack: () -> Unit
 ) {
     val soundsBy = listOf(
         Res.string.credits_sounds_by_one,
@@ -79,7 +72,6 @@ fun AboutCredits(
         SimpleNavbar(
             title = stringResource(Res.string.credits),
             onBack = onBack,
-            onClose = onExit
         )
 
         Column(

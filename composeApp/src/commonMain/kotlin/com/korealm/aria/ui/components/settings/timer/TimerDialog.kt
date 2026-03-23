@@ -2,44 +2,20 @@ package com.korealm.aria.ui.components.settings.timer
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.material3.TimeInput
-import androidx.compose.material3.TimePicker
-import androidx.compose.material3.TimePickerDefaults
-import androidx.compose.material3.TimePickerLayoutType
-import androidx.compose.material3.rememberTimePickerState
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import aria.composeapp.generated.resources.Res
-import aria.composeapp.generated.resources.settings_timer_start
-import aria.composeapp.generated.resources.timer_custom_duration
-import aria.composeapp.generated.resources.timer_quick_presets
-import aria.composeapp.generated.resources.timer_start
-import com.korealm.aria.shared.Target
-import com.korealm.aria.shared.getTargetPlatform
+import aria.composeapp.generated.resources.*
 import com.korealm.aria.ui.components.misc.CustomDialog
 import com.korealm.aria.ui.components.misc.GtkButton
 import org.jetbrains.compose.resources.stringResource
@@ -51,6 +27,7 @@ fun TimerDialog(
 ) {
     CustomDialog(
         onDismissRequest = onDismissRequest,
+        showNavbar = true,
         modifier = Modifier
             .verticalScroll(rememberScrollState())
     ) {

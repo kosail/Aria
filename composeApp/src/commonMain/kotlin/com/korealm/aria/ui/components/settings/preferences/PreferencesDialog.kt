@@ -19,7 +19,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import aria.composeapp.generated.resources.*
-import com.korealm.aria.shared.Target.*
+import com.korealm.aria.shared.Target.ANDROID
+import com.korealm.aria.shared.Target.WEB
 import com.korealm.aria.shared.getTargetPlatform
 import com.korealm.aria.state.LocalThemeState
 import com.korealm.aria.theme.AccentColor
@@ -39,6 +40,7 @@ fun PreferencesDialog(
 
     CustomDialog(
         onDismissRequest = onDismissRequest,
+        showNavbar = true,
         modifier = modifier
             .verticalScroll(rememberScrollState())
     ) {
@@ -121,28 +123,29 @@ fun PreferencesDialog(
                     }
                 }
 
-                // Toggle dark theme
-                InvisibleButton(
-                    title = Res.string.theme_dark_mode,
-                    ripple = false,
-                    onClick = { themeState.toggleTheme() },
-                    modifier = Modifier.padding(horizontal = 8.dp)
-                ) {
-                    Switch(
-                        checked = themeState.isDarkTheme,
-                        onCheckedChange = { themeState.toggleTheme() },
-                        colors = SwitchDefaults.colors(
-                            uncheckedTrackColor = MaterialTheme.colorScheme.surface,
-                        ),
-                        modifier = modifier.scale(0.9f)
-                    )
-                }
-
 
                 // Per device target settings section
                 // ---------------------------------
-                if (getTargetPlatform() != ANDROID) { // TODO: Work in this inhibit suspension thing
+                if (getTargetPlatform() != ANDROID) {
+                    // TODO: Work in this inhibit suspension thing and remove this state
                     var inhibitSleep by remember { mutableStateOf(false) }
+
+                    // Toggle dark theme
+                    InvisibleButton(
+                        title = Res.string.theme_dark_mode,
+                        ripple = false,
+                        onClick = { themeState.toggleTheme() },
+                        modifier = Modifier.padding(horizontal = 8.dp)
+                    ) {
+                        Switch(
+                            checked = themeState.isDarkTheme,
+                            onCheckedChange = { themeState.toggleTheme() },
+                            colors = SwitchDefaults.colors(
+                                uncheckedTrackColor = MaterialTheme.colorScheme.surface,
+                            ),
+                            modifier = modifier.scale(0.9f)
+                        )
+                    }
 
                     // Inhibit suspension
                     InvisibleButton(

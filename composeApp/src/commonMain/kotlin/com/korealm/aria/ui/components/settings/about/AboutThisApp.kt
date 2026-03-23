@@ -22,7 +22,6 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun AboutThisApp(
     onBack: () -> Unit,
-    onExit: () -> Unit
 ) {
     Column(
         verticalArrangement = Arrangement.Top,
@@ -33,7 +32,6 @@ fun AboutThisApp(
         SimpleNavbar(
             title = stringResource(Res.string.about_this_app),
             onBack = onBack,
-            onClose = onExit
         )
 
         Column(

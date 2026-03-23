@@ -1,10 +1,6 @@
 package com.korealm.aria.ui.components.settings.about
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
@@ -23,8 +19,7 @@ import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun AboutLegal(
-    onBack: () -> Unit,
-    onExit: () -> Unit
+    onBack: () -> Unit
 ) {
 
     Column(
@@ -35,7 +30,6 @@ fun AboutLegal(
         SimpleNavbar(
             title = stringResource(Res.string.license_legal),
             onBack = onBack,
-            onClose = onExit
         )
 
         Column(

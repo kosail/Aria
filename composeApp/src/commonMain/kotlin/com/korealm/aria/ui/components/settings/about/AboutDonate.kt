@@ -21,7 +21,6 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun AboutDonate(
     onBack: () -> Unit,
-    onExit: () -> Unit
 ) {
 
     Column(
@@ -32,7 +31,6 @@ fun AboutDonate(
         SimpleNavbar(
             title = stringResource(Res.string.donate),
             onBack = onBack,
-            onClose = onExit
         )
 
         Column(

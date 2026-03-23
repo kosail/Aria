@@ -15,6 +15,7 @@ fun AboutDialog(
 
     CustomDialog(
         onDismissRequest = onDismissRequest,
+        showNavbar = true,
         modifier = modifier
     ) {
         AnimatedContent(
@@ -23,24 +24,19 @@ fun AboutDialog(
             when (navItem) {
                 AboutPages.HOME -> AboutHome(
                     onTabChange = { page = it },
-                    onExit = onDismissRequest
                 )
                 AboutPages.DONATE -> AboutDonate(
                     onBack = { page = AboutPages.HOME },
-                    onExit = onDismissRequest
                 )
                 AboutPages.THIS_APP -> AboutThisApp(
                     onBack = { page = AboutPages.HOME },
-                    onExit = onDismissRequest
                 )
                 AboutPages.LEGAL -> AboutLegal(
                     onBack = { page = AboutPages.HOME },
-                    onExit = onDismissRequest
                 )
 
                 AboutPages.CREDITS -> AboutCredits(
                     onBack = { page = AboutPages.HOME },
-                    onExit = onDismissRequest
                 )
             }
         }

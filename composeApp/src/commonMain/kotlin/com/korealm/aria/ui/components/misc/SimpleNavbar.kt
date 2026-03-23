@@ -12,9 +12,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import aria.composeapp.generated.resources.*
-import com.korealm.aria.shared.Target
-import com.korealm.aria.shared.getTargetPlatform
+import aria.composeapp.generated.resources.Res
+import aria.composeapp.generated.resources.chevron_left
+import aria.composeapp.generated.resources.go_back
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -23,7 +23,6 @@ fun SimpleNavbar(
     title: String? = null,
     modifier: Modifier = Modifier,
     onBack: () -> Unit,
-    onClose: () -> Unit = {}
 ) {
     Box(
         contentAlignment = Alignment.Center,
@@ -63,24 +62,6 @@ fun SimpleNavbar(
                     tint = MaterialTheme.colorScheme.onSurface,
                     modifier = Modifier.size(32.dp)
                 )
-            }
-
-            if (getTargetPlatform() != Target.ANDROID) {
-                Box(
-                    contentAlignment = Alignment.Center,
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .clip(RoundedCornerShape(10))
-                        .width(56.dp)
-                        .clickable { onClose() }
-                ) {
-                    Icon(
-                        painter = painterResource(Res.drawable.close),
-                        contentDescription = stringResource(Res.string.close_menu),
-                        tint = MaterialTheme.colorScheme.onSurface,
-                        modifier = Modifier.size(32.dp)
-                    )
-                }
             }
         }
     }
