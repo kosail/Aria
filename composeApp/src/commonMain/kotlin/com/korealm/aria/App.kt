@@ -22,19 +22,19 @@ import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import com.korealm.aria.shared.AudioController
+import com.korealm.aria.shared.Target.WEB
+import com.korealm.aria.shared.getTargetPlatform
 import com.korealm.aria.state.*
+import com.korealm.aria.state.DeviceSizeCategory.Mobile
 import com.korealm.aria.theme.AppTheme
 import com.korealm.aria.ui.Home
 import com.korealm.aria.ui.PlayerBar
 import com.korealm.aria.ui.components.settings.about.AboutDialog
 import com.korealm.aria.ui.components.settings.preferences.PreferencesDialog
-import com.korealm.aria.shared.AudioController
-import com.korealm.aria.shared.Target.WEB
-import com.korealm.aria.shared.getTargetPlatform
 import com.korealm.aria.ui.components.settings.timer.TimerDialog
 import com.korealm.aria.utils.LocalPlayerFacadeState
 import com.korealm.aria.utils.rememberPlayerFacade
-import com.korealm.aria.state.DeviceSizeCategory.Mobile
 
 @Composable
 fun App(

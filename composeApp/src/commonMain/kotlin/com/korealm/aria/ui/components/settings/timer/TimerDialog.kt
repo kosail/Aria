@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -55,14 +56,15 @@ fun TimerDialog(
             HorizontalDivider(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 8.dp, bottom = 24.dp)
+                    .padding(top = 8.dp, bottom = 16.dp)
             )
 
             Text(
-                text = stringResource(Res.string.timer_quick_presets).uppercase(),
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
-                modifier = Modifier.padding(bottom = 8.dp)
+                text = stringResource(Res.string.timer_quick_presets),
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Light,
+                textAlign = TextAlign.Start,
+                modifier = Modifier.padding(8.dp)
             )
 
             Row(
@@ -70,7 +72,7 @@ fun TimerDialog(
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = 16.dp)
+                    .padding(bottom = 24.dp)
             ) {
                 PresetCard(
                     amount = 30,
@@ -83,7 +85,6 @@ fun TimerDialog(
 
                 PresetCard(
                     amount = 2,
-                    isSelected = true
                 ) {}
 
                 PresetCard(
@@ -92,29 +93,33 @@ fun TimerDialog(
             }
 
             Text(
-                text = stringResource(Res.string.timer_custom_duration).uppercase(),
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
-                modifier = Modifier.padding(bottom = 16.dp)
+                text = stringResource(Res.string.timer_custom_duration),
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Light,
+                textAlign = TextAlign.Start,
+                modifier = Modifier
+                    .padding(bottom = 16.dp, start = 8.dp)
             )
 
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center,
                 modifier = Modifier
-                    .fillMaxWidth().padding(horizontal = 8.dp)
-                    .clip(RoundedCornerShape(20.dp))
-                    .background(MaterialTheme.colorScheme.tertiaryContainer.copy(alpha = 0.7f))
+                    .fillMaxWidth()
+                    .padding(horizontal = 8.dp)
+                    .clip(RoundedCornerShape(12.dp))
+                    .background(MaterialTheme.colorScheme.tertiaryContainer.copy(alpha = 0.6f))
                     .border(
                         width = (1.5).dp,
-                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.05f),
-                        shape = RoundedCornerShape(20.dp))
+                        color = MaterialTheme.colorScheme.tertiary,
+                        shape = RoundedCornerShape(12.dp))
             ) {
                 TimeInput(
                     state = rememberTimePickerState(1, 0, true),
                     colors = TimePickerDefaults.colors(
                         timeSelectorSelectedContainerColor = Color.Transparent,
-                        timeSelectorUnselectedContainerColor = Color.Transparent
+                        timeSelectorUnselectedContainerColor = Color.Transparent,
+                        periodSelectorBorderColor = Color.Transparent,
                     ),
                     modifier = Modifier.padding(top = 16.dp)
 

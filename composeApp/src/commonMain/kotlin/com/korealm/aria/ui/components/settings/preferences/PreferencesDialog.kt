@@ -130,7 +130,7 @@ fun PreferencesDialog(
                     // TODO: Work in this inhibit suspension thing and remove this state
                     var inhibitSleep by remember { mutableStateOf(false) }
 
-                    // Toggle dark theme
+                    // Toggle dark theme. TODO: Change this for a multiple button to switch between system, light and dark mode
                     InvisibleButton(
                         title = Res.string.theme_dark_mode,
                         ripple = false,

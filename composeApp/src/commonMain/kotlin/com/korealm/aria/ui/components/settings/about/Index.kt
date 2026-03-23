@@ -18,26 +18,17 @@ fun AboutDialog(
         showNavbar = true,
         modifier = modifier
     ) {
+        val backToHome: () -> Unit = { page = AboutPages.HOME }
+
         AnimatedContent(
             targetState = page,
         ) { navItem ->
             when (navItem) {
-                AboutPages.HOME -> AboutHome(
-                    onTabChange = { page = it },
-                )
-                AboutPages.DONATE -> AboutDonate(
-                    onBack = { page = AboutPages.HOME },
-                )
-                AboutPages.THIS_APP -> AboutThisApp(
-                    onBack = { page = AboutPages.HOME },
-                )
-                AboutPages.LEGAL -> AboutLegal(
-                    onBack = { page = AboutPages.HOME },
-                )
-
-                AboutPages.CREDITS -> AboutCredits(
-                    onBack = { page = AboutPages.HOME },
-                )
+                AboutPages.HOME -> AboutHome(onTabChange = { page = it })
+                AboutPages.DONATE -> AboutDonate(onBack = backToHome)
+                AboutPages.THIS_APP -> AboutThisApp(onBack = backToHome)
+                AboutPages.LEGAL -> AboutLegal(onBack = backToHome)
+                AboutPages.CREDITS -> AboutCredits(onBack = backToHome)
             }
         }
     }
