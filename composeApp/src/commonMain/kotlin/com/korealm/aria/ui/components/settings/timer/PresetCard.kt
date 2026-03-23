@@ -27,7 +27,7 @@ fun PresetCard(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {}
 ) {
-    val cardSize = if (getTargetPlatform() != Target.ANDROID) 74.dp else 62.dp
+    val cardSize = if (getTargetPlatform() != Target.ANDROID) 74.dp else 68.dp
 
     Surface(
         color = MaterialTheme.colorScheme.tertiary,
@@ -46,7 +46,6 @@ fun PresetCard(
                 style = MaterialTheme.typography.headlineLarge,
                 color = MaterialTheme.colorScheme.background,
                 fontWeight = FontWeight.Medium,
-                modifier = Modifier
             )
 
             Text(
@@ -54,7 +53,6 @@ fun PresetCard(
                 style = MaterialTheme.typography.bodyLarge,
                 fontWeight = FontWeight.Medium,
                 color = MaterialTheme.colorScheme.background,
-                modifier = Modifier
             )
         }
     }

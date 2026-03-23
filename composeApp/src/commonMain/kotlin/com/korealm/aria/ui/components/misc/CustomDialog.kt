@@ -44,7 +44,7 @@ fun CustomDialog(
             color = MaterialTheme.colorScheme.background,
             shape = RoundedCornerShape(8.dp),
             modifier = modifier
-                .size(dialogWidth, 550.dp)
+                .size(dialogWidth, 600.dp)
         ) {
             if (showNavbar) {
                 if (getTargetPlatform() != Target.ANDROID) {
