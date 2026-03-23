@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.unit.dp
-import com.korealm.aria.state.rememberAppThemeState
+import com.korealm.aria.state.LocalThemeState
 import com.korealm.aria.utils.GtkButtonShape
 import com.korealm.aria.utils.getGtkButtonShape
 import com.korealm.aria.utils.getGtkContainerColor
@@ -25,7 +25,8 @@ fun GtkButton(
     buttonShape: GtkButtonShape = GtkButtonShape.UNIQUE,
     content: @Composable RowScope.() -> Unit
 ) {
-    val themeState = rememberAppThemeState()
+    val themeState = LocalThemeState.current
+
     val color = getGtkContainerColor(MaterialTheme.colorScheme.surface, themeState.isDarkTheme)
     val shape = getGtkButtonShape(buttonShape)
 

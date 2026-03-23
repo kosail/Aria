@@ -3,42 +3,36 @@ package com.korealm.aria.ui
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import aria.composeapp.generated.resources.AlegreyaSansSC_Bold
 import aria.composeapp.generated.resources.Res
 import aria.composeapp.generated.resources.aria
-import com.korealm.aria.state.DeviceSizeCategory
-import com.korealm.aria.state.LocalDeviceSizeCategory
-import com.korealm.aria.state.PlayerState
-import com.korealm.aria.state.rememberAppThemeState
-import com.korealm.aria.ui.components.SoundCard
-import com.korealm.aria.utils.PlayerFacade
 import com.korealm.aria.shared.Target
 import com.korealm.aria.shared.getTargetPlatform
+import com.korealm.aria.state.DeviceSizeCategory.*
+import com.korealm.aria.state.LocalDeviceSizeCategory
+import com.korealm.aria.state.LocalPlayerState
+import com.korealm.aria.state.LocalThemeState
+import com.korealm.aria.ui.components.SoundCard
 import com.korealm.aria.ui.components.misc.AriaTitleFont
-import org.jetbrains.compose.resources.Font
-import org.jetbrains.compose.resources.stringResource
+import com.korealm.aria.utils.LocalPlayerFacadeState
 
 @Composable
 fun Home(
-    playerState: PlayerState,
-    playerFacade: PlayerFacade,
     modifier: Modifier = Modifier
 ) {
-    val themeState = rememberAppThemeState()
+    val themeState = LocalThemeState.current
+    val deviceSizeState = LocalDeviceSizeCategory.current
+    val playerState = LocalPlayerState.current
+    val playerFacade = LocalPlayerFacadeState.current
 
-    val mainSurfacePadding = when (LocalDeviceSizeCategory.current) {
-        DeviceSizeCategory.Mobile -> 10.dp
-        DeviceSizeCategory.CompactDesktop -> 40.dp
-        DeviceSizeCategory.FullDesktop -> 50.dp
+    val mainSurfacePadding = when (deviceSizeState) {
+        Mobile -> 10.dp
+        CompactDesktop -> 40.dp
+        FullDesktop -> 50.dp
     }
 
     Box(
@@ -53,7 +47,7 @@ fun Home(
             // Only show the title of the app if it is being run as web or mobile app.
             if (getTargetPlatform() != Target.DESKTOP) {
                 Box(
-                    contentAlignment = if (LocalDeviceSizeCategory.current == DeviceSizeCategory.Mobile) Alignment.Center else Alignment.CenterStart,
+                    contentAlignment = if (deviceSizeState == Mobile) Alignment.Center else Alignment.CenterStart,
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     AriaTitleFont(
@@ -64,15 +58,15 @@ fun Home(
             }
 
 
-            val soundCardPadding = when (LocalDeviceSizeCategory.current) {
-                DeviceSizeCategory.Mobile -> 12.dp
-                DeviceSizeCategory.CompactDesktop -> 18.dp
-                DeviceSizeCategory.FullDesktop -> 24.dp
+            val soundCardPadding = when (deviceSizeState) {
+                Mobile -> 12.dp
+                CompactDesktop -> 18.dp
+                FullDesktop -> 24.dp
             }
 
 
-            val soundCardWidth = when (LocalDeviceSizeCategory.current) {
-                DeviceSizeCategory.Mobile -> 124.dp
+            val soundCardWidth = when (deviceSizeState) {
+                Mobile -> 124.dp
                 else -> if(getTargetPlatform() == Target.WEB) 216.dp else 170.dp
             }
 

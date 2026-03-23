@@ -1,12 +1,7 @@
 package com.korealm.aria.ui.components.misc
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -14,7 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.unit.dp
-import com.korealm.aria.state.rememberAppThemeState
+import com.korealm.aria.state.LocalThemeState
 import com.korealm.aria.utils.GtkButtonShape
 import com.korealm.aria.utils.getGtkButtonShape
 import com.korealm.aria.utils.getGtkContainerColor
@@ -25,7 +20,7 @@ fun GtkCard(
     buttonShape: GtkButtonShape = GtkButtonShape.UNIQUE,
     content: @Composable RowScope.() -> Unit
 ) {
-    val themeState = rememberAppThemeState()
+    val themeState = LocalThemeState.current
     val color = getGtkContainerColor(MaterialTheme.colorScheme.surface, themeState.isDarkTheme)
     val shape = getGtkButtonShape(buttonShape)
 

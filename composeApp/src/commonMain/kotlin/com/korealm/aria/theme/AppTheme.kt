@@ -7,18 +7,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import aria.composeapp.generated.resources.*
+import com.korealm.aria.theme.schemes.*
+import com.korealm.aria.utils.getColorScheme
 import org.jetbrains.compose.resources.Font
 
 @Composable
 fun AppTheme(
-    theme: Theme = Theme.WhisperingSea,
+    accentColor: AccentColor = AccentColor.BLUE,
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when (theme) {
-        Theme.WhisperingSea -> if (darkTheme) whisperingSeaDarkColors() else whisperingSeaLightColors()
-        Theme.WhisperingNature -> if (darkTheme) whisperingNatureDarkColors() else whisperingNatureLightColors()
-    }
+    val colorScheme = getColorScheme(accentColor, darkTheme)
+    val theme = if (darkTheme) getDarkBase(colorScheme) else getLightBase(colorScheme)
 
     val alegreyaSansFont = FontFamily(
         Font(Res.font.AlegreyaSans_Black, weight = FontWeight.Black),
@@ -51,7 +51,7 @@ fun AppTheme(
     }
 
     MaterialTheme(
-        colorScheme = colorScheme,
+        colorScheme = theme,
         typography = defaultTypography,
         content = content
     )

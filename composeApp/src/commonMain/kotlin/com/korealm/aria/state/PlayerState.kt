@@ -28,5 +28,7 @@ class PlayerState {
     )
 }
 
+val LocalPlayerState = staticCompositionLocalOf<PlayerState> { error("No player state provided") }
+
 @Composable
 fun rememberPlayerState(): PlayerState = remember { PlayerState() }

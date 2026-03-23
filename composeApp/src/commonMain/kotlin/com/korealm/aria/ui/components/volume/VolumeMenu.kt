@@ -13,7 +13,7 @@ import aria.composeapp.generated.resources.Res
 import aria.composeapp.generated.resources.general_volume
 import aria.composeapp.generated.resources.reset_sounds
 import aria.composeapp.generated.resources.volume_off
-import com.korealm.aria.state.AppThemeState
+import com.korealm.aria.state.LocalThemeState
 import com.korealm.aria.ui.components.misc.CustomDropdownMenu
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -26,9 +26,10 @@ fun VolumeMenu(
     volume: Float,
     offset: DpOffset,
     onVolumeChange: (Float) -> Unit,
-    themeState: AppThemeState,
     modifier: Modifier = Modifier
 ) {
+    val themeState = LocalThemeState.current
+
     CustomDropdownMenu(
         expanded = expanded,
         onDismissRequest = onDismissRequest,

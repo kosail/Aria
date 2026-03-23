@@ -2,6 +2,7 @@ package com.korealm.aria.utils
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.staticCompositionLocalOf
 import com.korealm.aria.model.Sound
 import com.korealm.aria.shared.AudioController
 import com.korealm.aria.state.PlayerState
@@ -59,6 +60,8 @@ class PlayerFacade(
         if (index != -1) state.playlist[index] = update(state.playlist[index])
     }
 }
+
+val LocalPlayerFacadeState = staticCompositionLocalOf<PlayerFacade> { error("No player facade provided") }
 
 @Composable
 fun rememberPlayerFacade(

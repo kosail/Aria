@@ -10,6 +10,8 @@ class AppThemeState(initialDarkTheme: Boolean) {
     fun toggleTheme() { isDarkTheme = !isDarkTheme }
 }
 
+val LocalThemeState = staticCompositionLocalOf<AppThemeState> { error("No theme state provided") }
+
 @Composable
 fun rememberAppThemeState(
     initialDarkTheme: Boolean = isSystemInDarkTheme()

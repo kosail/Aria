@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.DpOffset
 import aria.composeapp.generated.resources.*
-import com.korealm.aria.state.AppThemeState
+import com.korealm.aria.state.LocalThemeState
 import com.korealm.aria.ui.components.misc.CustomDropdownMenu
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -21,9 +21,10 @@ fun SettingsMenu(
     onPreferencesButton: () -> Unit,
     onAboutButton: () -> Unit,
     offset: DpOffset,
-    themeState: AppThemeState,
     modifier: Modifier = Modifier
 ) {
+    val themeState = LocalThemeState.current
+
     CustomDropdownMenu(
         expanded = expanded,
         onDismissRequest = onDismissRequest,

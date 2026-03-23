@@ -11,47 +11,48 @@ import androidx.compose.ui.unit.dp
 import aria.composeapp.generated.resources.*
 import com.korealm.aria.state.DeviceSizeCategory
 import com.korealm.aria.state.LocalDeviceSizeCategory
-import com.korealm.aria.state.PlayerState
-import com.korealm.aria.state.rememberAppThemeState
+import com.korealm.aria.state.LocalPlayerState
+import com.korealm.aria.state.LocalThemeState
 import com.korealm.aria.ui.components.player.PlayerMainIcon
 import com.korealm.aria.ui.components.player.PlayerSecondaryIcon
 import com.korealm.aria.ui.components.settings.SettingsMenu
 import com.korealm.aria.ui.components.volume.VolumeMenu
-import com.korealm.aria.utils.PlayerFacade
+import com.korealm.aria.utils.LocalPlayerFacadeState
 
 
 @Composable
 fun PlayerBar(
-    playerState: PlayerState,
-    playerFacade: PlayerFacade,
     onOpenTimer: () -> Unit,
     onOpenPreferences: () -> Unit,
     onOpenAbout: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val themeState = rememberAppThemeState()
+    val themeState = LocalThemeState.current
+    val deviceSizeState = LocalDeviceSizeCategory.current
+    val playerState = LocalPlayerState.current
+    val playerFacade = LocalPlayerFacadeState.current
 
     var isVolumeMenu by remember { mutableStateOf(false) }
     var isSettingsMenu by remember { mutableStateOf(false) }
 
-    val iconsPadding = when(LocalDeviceSizeCategory.current) {
+    val iconsPadding = when(deviceSizeState) {
         DeviceSizeCategory.Mobile -> 16.dp
         else -> 32.dp
     }
 
-    val volumeMenuOffset = when(LocalDeviceSizeCategory.current) {
+    val volumeMenuOffset = when(deviceSizeState) {
         DeviceSizeCategory.Mobile -> DpOffset((-20).dp, (-1).dp)
         DeviceSizeCategory.FullDesktop -> DpOffset((-120).dp, 0.dp)
         else -> DpOffset((30).dp, 0.dp)
     }
 
-    val settingsMenuOffset = when(LocalDeviceSizeCategory.current) {
+    val settingsMenuOffset = when(deviceSizeState) {
         DeviceSizeCategory.Mobile -> DpOffset(20.dp, 1.dp)
         DeviceSizeCategory.FullDesktop -> DpOffset(0.dp, 0.dp)
         else -> DpOffset((-30).dp, 0.dp)
     }
 
-    val mainIconWeight = when(LocalDeviceSizeCategory.current) {
+    val mainIconWeight = when(deviceSizeState) {
         DeviceSizeCategory.FullDesktop -> 0.2f
         else -> 0.7f
     }
@@ -93,7 +94,6 @@ fun PlayerBar(
                             playerFacade.setGlobalVolume(playerState.playerVolume)
                         },
                         offset = volumeMenuOffset,
-                        themeState = themeState,
                         modifier = Modifier
                     )
                 }
@@ -132,7 +132,6 @@ fun PlayerBar(
                         onPreferencesButton = onOpenPreferences,
                         onAboutButton = onOpenAbout,
                         offset = settingsMenuOffset,
-                        themeState = themeState,
                         modifier = Modifier
                     )
                 }

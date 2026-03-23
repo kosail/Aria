@@ -20,8 +20,11 @@ import androidx.compose.ui.unit.sp
 import aria.composeapp.generated.resources.*
 import com.korealm.aria.shared.Target
 import com.korealm.aria.shared.getTargetPlatform
+import com.korealm.aria.state.LocalThemeState
+import com.korealm.aria.theme.AccentColor
 import com.korealm.aria.ui.components.misc.CustomDialog
 import com.korealm.aria.ui.components.misc.InvisibleButton
+import com.korealm.aria.utils.getColorScheme
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -29,6 +32,12 @@ fun PreferencesDialog(
     onDismissRequest: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val isDarkTheme = LocalThemeState.current.isDarkTheme
+
+    val colorSchemes = AccentColor.entries.map { accentColor ->
+        Color(getColorScheme(accentColor, isDarkTheme).primary)
+    }.toList()
+
     CustomDialog(
         onDismissRequest = onDismissRequest,
         modifier = modifier
@@ -92,35 +101,35 @@ fun PreferencesDialog(
                             modifier = Modifier
                                 .size(32.dp)
                                 .clip(CircleShape)
-                                .background(Color(0xFFC34043))
+                                .background(colorSchemes[0])
                         )
 
                         Box(
                             modifier = Modifier
                                 .size(32.dp)
                                 .clip(CircleShape)
-                                .background(Color(0xFF76946A))
+                                .background(colorSchemes[1])
                         )
 
                         Box(
                             modifier = Modifier
                                 .size(32.dp)
                                 .clip(CircleShape)
-                                .background(Color(0xFFC0A36E))
+                                .background(colorSchemes[2])
                         )
 
                         Box(
                             modifier = Modifier
                                 .size(32.dp)
                                 .clip(CircleShape)
-                                .background(Color(0xFF7E9CD8))
+                                .background(colorSchemes[3])
                         )
 
                         Box(
                             modifier = Modifier
                                 .size(32.dp)
                                 .clip(CircleShape)
-                                .background(Color(0xFF957FB8))
+                                .background(colorSchemes[4])
                         )
 
                         Box(
@@ -134,7 +143,7 @@ fun PreferencesDialog(
                                 modifier = Modifier
                                     .size(32.dp)
                                     .clip(CircleShape)
-                                    .background(MaterialTheme.colorScheme.primary)
+                                    .background(colorSchemes[5])
                             )
                         }
                     }

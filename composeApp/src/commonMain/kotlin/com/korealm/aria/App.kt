@@ -32,6 +32,7 @@ import com.korealm.aria.shared.AudioController
 import com.korealm.aria.shared.Target.WEB
 import com.korealm.aria.shared.getTargetPlatform
 import com.korealm.aria.ui.components.settings.timer.TimerDialog
+import com.korealm.aria.utils.LocalPlayerFacadeState
 import com.korealm.aria.utils.rememberPlayerFacade
 
 @Composable
@@ -39,78 +40,78 @@ fun App(
     audioController: AudioController,
     playerState: PlayerState = rememberPlayerState()
 ) {
-    // This DeviceSizeProvider provides LocalDeviceSizeCategory.current
-    // which will allow me to change fixed sized UI components, paddings, text...
-    DeviceSizeProvider {
-        val themeState = rememberAppThemeState()
+    val themeState = rememberAppThemeState()
+    val playerFacadeState = rememberPlayerFacade(playerState, audioController)
 
-        val playerState = playerState
-        val playerFacade = rememberPlayerFacade(playerState, audioController)
+    CompositionLocalProvider(
+        LocalThemeState provides themeState,
+        LocalPlayerState provides playerState,
+        LocalPlayerFacadeState provides playerFacadeState
+    ) {
+        DeviceSizeProvider {
+            val themeState = LocalThemeState.current
+            val deviceSizeState = LocalDeviceSizeCategory.current
 
-        var isTimerDialog by remember { mutableStateOf(false) }
-        var isPreferencesDialog by remember { mutableStateOf(false) }
-        var isAboutDialog by remember { mutableStateOf(false) }
+            var isTimerDialog by remember { mutableStateOf(false) }
+            var isPreferencesDialog by remember { mutableStateOf(false) }
+            var isAboutDialog by remember { mutableStateOf(false) }
 
-        AppTheme(darkTheme = themeState.isDarkTheme) {
-            val homeWeight = when (getTargetPlatform()) {
-                WEB -> if (LocalDeviceSizeCategory.current == DeviceSizeCategory.Mobile) .90f else 0.92f
-                else -> 0.89f
-            }
+            AppTheme(darkTheme = themeState.isDarkTheme) {
+                val homeWeight = when (getTargetPlatform()) {
+                    WEB -> if (deviceSizeState == DeviceSizeCategory.Mobile) .90f else 0.92f
+                    else -> 0.89f
+                }
 
-            Column (
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(MaterialTheme.colorScheme.background)
-                    .systemBarsPadding()
-            ) {
-                Home(
-                    playerState = playerState,
-                    playerFacade = playerFacade,
+                Column (
                     modifier = Modifier
                         .fillMaxSize()
-                        .weight(homeWeight),
-                )
+                        .background(MaterialTheme.colorScheme.background)
+                        .systemBarsPadding()
+                ) {
+                    Home(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .weight(homeWeight),
+                    )
 
-                PlayerBar(
-                    playerState = playerState,
-                    playerFacade = playerFacade,
-                    onOpenTimer = { isTimerDialog = true },
-                    onOpenPreferences = { isPreferencesDialog = true },
-                    onOpenAbout = { isAboutDialog = true },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(1 - homeWeight),
-                )
+                    PlayerBar(
+                        onOpenTimer = { isTimerDialog = true },
+                        onOpenPreferences = { isPreferencesDialog = true },
+                        onOpenAbout = { isAboutDialog = true },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .weight(1 - homeWeight),
+                    )
+                }
+
+                // Settings and about dialogs
+                AnimatedVisibility(
+                    visible = isPreferencesDialog,
+                    enter = fadeIn(animationSpec = tween(durationMillis = 150)) + expandIn(animationSpec = tween(durationMillis = 150)),
+                    exit = fadeOut(animationSpec = tween(durationMillis = 150)) + shrinkOut(animationSpec = tween(durationMillis = 150))
+                ) {
+                    PreferencesDialog(
+                        onDismissRequest = { isPreferencesDialog = false },
+                    )
+                }
+
+                AnimatedVisibility(
+                    visible = isAboutDialog
+                ) {
+                    AboutDialog(
+                        onDismissRequest = { isAboutDialog = false },
+                    )
+                }
+
+                AnimatedVisibility(
+                    visible = isTimerDialog
+                ) {
+                    TimerDialog(
+                        onDismissRequest = { isTimerDialog = false },
+                    )
+                }
+
             }
-
-            // Settings and about dialogs
-            AnimatedVisibility(
-                visible = isPreferencesDialog,
-                enter = fadeIn(animationSpec = tween(durationMillis = 150)) + expandIn(animationSpec = tween(durationMillis = 150)),
-                exit = fadeOut(animationSpec = tween(durationMillis = 150)) + shrinkOut(animationSpec = tween(durationMillis = 150))
-            ) {
-                PreferencesDialog(
-                    onDismissRequest = { isPreferencesDialog = false },
-                )
-            }
-
-            AnimatedVisibility(
-                visible = isAboutDialog
-            ) {
-                AboutDialog(
-                    onDismissRequest = { isAboutDialog = false },
-                )
-            }
-
-            AnimatedVisibility(
-                visible = isTimerDialog
-            ) {
-                TimerDialog(
-                    onDismissRequest = { isTimerDialog = false },
-                )
-            }
-
         }
     }
-
 }
