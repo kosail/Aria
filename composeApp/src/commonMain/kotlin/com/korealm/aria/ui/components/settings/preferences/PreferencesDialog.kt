@@ -1,6 +1,7 @@
 package com.korealm.aria.ui.components.settings.preferences
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -18,7 +19,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import aria.composeapp.generated.resources.*
-import com.korealm.aria.shared.Target
+import com.korealm.aria.shared.Target.*
 import com.korealm.aria.shared.getTargetPlatform
 import com.korealm.aria.state.LocalThemeState
 import com.korealm.aria.theme.AccentColor
@@ -32,11 +33,9 @@ fun PreferencesDialog(
     onDismissRequest: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val isDarkTheme = LocalThemeState.current.isDarkTheme
+    val themeState = LocalThemeState.current
 
-    val colorSchemes = AccentColor.entries.map { accentColor ->
-        Color(getColorScheme(accentColor, isDarkTheme).primary)
-    }.toList()
+    val colorSchemes = AccentColor.entries.associateWith { getColorScheme(it, themeState.isDarkTheme) }
 
     CustomDialog(
         onDismissRequest = onDismissRequest,
@@ -85,7 +84,6 @@ fun PreferencesDialog(
                     modifier = Modifier.padding(horizontal = 8.dp)
                 )
 
-//                MOCK COLOR SELECTOR FOR NOW. TODO: IMPLEMENT ACTUAL SELECTOR
                 Surface(
                     color = Color.Transparent,
                     modifier = Modifier
@@ -97,61 +95,56 @@ fun PreferencesDialog(
                         horizontalArrangement = Arrangement.SpaceEvenly,
                         modifier = Modifier.fillMaxWidth()
                     ) {
-                        Box(
-                            modifier = Modifier
-                                .size(32.dp)
-                                .clip(CircleShape)
-                                .background(colorSchemes[0])
-                        )
+                        colorSchemes.forEach { (accentColor, scheme) ->
+                            val isSelected = themeState.accentColor == accentColor
+                            val primaryColor = Color(scheme.primary)
 
-                        Box(
-                            modifier = Modifier
-                                .size(32.dp)
-                                .clip(CircleShape)
-                                .background(colorSchemes[1])
-                        )
-
-                        Box(
-                            modifier = Modifier
-                                .size(32.dp)
-                                .clip(CircleShape)
-                                .background(colorSchemes[2])
-                        )
-
-                        Box(
-                            modifier = Modifier
-                                .size(32.dp)
-                                .clip(CircleShape)
-                                .background(colorSchemes[3])
-                        )
-
-                        Box(
-                            modifier = Modifier
-                                .size(32.dp)
-                                .clip(CircleShape)
-                                .background(colorSchemes[4])
-                        )
-
-                        Box(
-                            contentAlignment = Alignment.Center,
-                            modifier = Modifier
-                                .size(40.dp)
-                                .clip(CircleShape)
-                                .background(MaterialTheme.colorScheme.surfaceVariant)
-                        ){
                             Box(
+                                contentAlignment = Alignment.Center,
                                 modifier = Modifier
-                                    .size(32.dp)
+                                    .size(44.dp)
                                     .clip(CircleShape)
-                                    .background(colorSchemes[5])
-                            )
+                                    .clickable { themeState.setAccent(accentColor) }
+                                    .background(
+                                        if (isSelected) MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f) else Color.Transparent
+                                    )
+                            ){
+                                Box(
+                                    modifier = Modifier
+                                        .size(32.dp)
+                                        .clip(CircleShape)
+                                        .background(primaryColor)
+                                )
+                            }
                         }
+
                     }
                 }
 
-                if (getTargetPlatform() != Target.ANDROID) {
+                // Toggle dark theme
+                InvisibleButton(
+                    title = Res.string.theme_dark_mode,
+                    ripple = false,
+                    onClick = { themeState.toggleTheme() },
+                    modifier = Modifier.padding(horizontal = 8.dp)
+                ) {
+                    Switch(
+                        checked = themeState.isDarkTheme,
+                        onCheckedChange = { themeState.toggleTheme() },
+                        colors = SwitchDefaults.colors(
+                            uncheckedTrackColor = MaterialTheme.colorScheme.surface,
+                        ),
+                        modifier = modifier.scale(0.9f)
+                    )
+                }
+
+
+                // Per device target settings section
+                // ---------------------------------
+                if (getTargetPlatform() != ANDROID) { // TODO: Work in this inhibit suspension thing
                     var inhibitSleep by remember { mutableStateOf(false) }
 
+                    // Inhibit suspension
                     InvisibleButton(
                         title = Res.string.inhibit_suspension_title,
                         subtitle = Res.string.inhibit_suspension,
@@ -170,12 +163,14 @@ fun PreferencesDialog(
                     }
                 }
 
-                InvisibleButton(
-                    title = Res.string.delete_all_personal_sounds,
-                    onClick = { },
-                    modifier = Modifier.clip(RoundedCornerShape(16.dp)),
-                    titleModifier = Modifier.padding(vertical = 12.dp, horizontal = 8.dp)
-                )
+                if (getTargetPlatform() != WEB) {
+                    InvisibleButton(
+                        title = Res.string.delete_all_personal_sounds,
+                        onClick = { },
+                        modifier = Modifier.clip(RoundedCornerShape(16.dp)),
+                        titleModifier = Modifier.padding(vertical = 12.dp, horizontal = 8.dp)
+                    )
+                }
             }
 
             Spacer(Modifier.fillMaxHeight().weight(1f))

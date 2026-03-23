@@ -1,6 +1,5 @@
 package com.korealm.aria.theme
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
@@ -12,8 +11,8 @@ import org.jetbrains.compose.resources.Font
 
 @Composable
 fun AppTheme(
-    accentColor: AccentColor = AccentColor.BLUE,
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    accentColor: AccentColor,
+    darkTheme: Boolean,
     content: @Composable () -> Unit
 ) {
     val colorScheme = getColorScheme(accentColor, darkTheme)

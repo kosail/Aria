@@ -57,7 +57,10 @@ fun App(
             var isPreferencesDialog by remember { mutableStateOf(false) }
             var isAboutDialog by remember { mutableStateOf(false) }
 
-            AppTheme(darkTheme = themeState.isDarkTheme) {
+            AppTheme(
+                darkTheme = themeState.isDarkTheme,
+                accentColor = themeState.accentColor
+            ) {
                 val homeWeight = when (getTargetPlatform()) {
                     WEB -> if (deviceSizeState == Mobile) .90f else 0.92f
                     else -> 0.89f

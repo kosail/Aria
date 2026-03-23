@@ -14,12 +14,12 @@ val yellowLightScheme = AccentColorScheme(
 )
 
 val yellowDarkScheme = AccentColorScheme(
-    primary = 0xFFE6D39A,            // lifted soft gold
-    primaryContainer = 0xFF332817,   // deep warm brown
+    primary = 0xFFBFA55F,            // darker ochre, reduced brightness
+    primaryContainer = 0xFF2B220F,   // deep brown-gold
 
-    secondary = 0xFFB5A66B,          // softened olive-gold
-    secondaryContainer = 0xFF2A2416, // darker olive-brown
+    secondary = 0xFF9A8C52,          // muted olive-gold
+    secondaryContainer = 0xFF221D0E, // darker olive base
 
-    tertiary = 0xFFE0DF8F,           // muted yellow-green
-    tertiaryContainer = 0xFF2F2E18   // deep olive surface
+    tertiary = 0xFFB7B45A,           // subdued yellow-green
+    tertiaryContainer = 0xFF26250F   // deep olive surface
 )

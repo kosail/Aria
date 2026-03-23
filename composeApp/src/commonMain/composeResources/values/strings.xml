@@ -112,6 +112,7 @@
 
     <!--  Preferences section  -->
     <string name="theme_accent_color">Theme accent color</string>
+    <string name="theme_dark_mode">Dark mode</string>
     <string name="inhibit_suspension_title">Keep screen on</string>
     <string name="inhibit_suspension">Inhibit suspension while playing</string>
 
