@@ -78,7 +78,7 @@ It happen both on individual sounds and the master volume. I can't figure out wh
 ## 🔧 Stack & Resources
 ### Stack
 - **Compose Multiplatform (Desktop + WASM/JS)** — UI framework
-- **Audio library** — The audio library for Desktop Target (JVM) is javax.sample, while on web target uses the browser API. On Android, it uses MediaPlayer.
+- **Audio library** — The audio library for Desktop Target (JVM) is javax.sample, while on web target uses the browser API. On Android, it currently uses MediaPlayer (but I'm planning to move to ExoPlayer).
 - **GitHub Pages** — For deployment
 
 ### Resources
@@ -115,6 +115,7 @@ Sound designers: If you have original nature loops and would love to contribute 
 
 ## 🎒 What I have learned so far from this project
 1. I'm still a beginner in Compose Multiplatform, not to say in Kotlin. It's such a difficult language...
+2. LocalCompositions are a very powerful feature. I'm still learning how to use them properly, and I take them similarly as Zustand stores in the React world. Anyway, I love how easy the code becomes when you use them.
 
 ---
 
