@@ -11,7 +11,7 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.korealm.aria.shared.Target
 import com.korealm.aria.shared.getTargetPlatform
-import com.korealm.aria.state.DeviceSizeCategory
+import com.korealm.aria.state.DeviceSizeCategory.*
 import com.korealm.aria.state.LocalDeviceSizeCategory
 
 @Composable
@@ -21,9 +21,9 @@ fun CustomDialog(
     children: @Composable () -> Unit
 ) {
     val dialogWidth = when(LocalDeviceSizeCategory.current) {
-        DeviceSizeCategory.Mobile -> if (getTargetPlatform() == Target.ANDROID) 350.dp else 400.dp
-        DeviceSizeCategory.CompactDesktop -> 400.dp
-        DeviceSizeCategory.FullDesktop -> 450.dp
+        Mobile -> if (getTargetPlatform() == Target.ANDROID) 350.dp else 400.dp
+        CompactDesktop -> 400.dp
+        FullDesktop -> 450.dp
     }
 
     Dialog(

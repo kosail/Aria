@@ -34,6 +34,7 @@ import com.korealm.aria.shared.getTargetPlatform
 import com.korealm.aria.ui.components.settings.timer.TimerDialog
 import com.korealm.aria.utils.LocalPlayerFacadeState
 import com.korealm.aria.utils.rememberPlayerFacade
+import com.korealm.aria.state.DeviceSizeCategory.Mobile
 
 @Composable
 fun App(
@@ -58,7 +59,7 @@ fun App(
 
             AppTheme(darkTheme = themeState.isDarkTheme) {
                 val homeWeight = when (getTargetPlatform()) {
-                    WEB -> if (deviceSizeState == DeviceSizeCategory.Mobile) .90f else 0.92f
+                    WEB -> if (deviceSizeState == Mobile) .90f else 0.92f
                     else -> 0.89f
                 }
 

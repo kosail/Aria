@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import aria.composeapp.generated.resources.*
-import com.korealm.aria.state.DeviceSizeCategory
+import com.korealm.aria.state.DeviceSizeCategory.*
 import com.korealm.aria.state.LocalDeviceSizeCategory
 import com.korealm.aria.state.LocalPlayerState
 import com.korealm.aria.state.LocalThemeState
@@ -36,24 +36,24 @@ fun PlayerBar(
     var isSettingsMenu by remember { mutableStateOf(false) }
 
     val iconsPadding = when(deviceSizeState) {
-        DeviceSizeCategory.Mobile -> 16.dp
+        Mobile -> 16.dp
         else -> 32.dp
     }
 
     val volumeMenuOffset = when(deviceSizeState) {
-        DeviceSizeCategory.Mobile -> DpOffset((-20).dp, (-1).dp)
-        DeviceSizeCategory.FullDesktop -> DpOffset((-120).dp, 0.dp)
+        Mobile -> DpOffset((-20).dp, (-1).dp)
+        FullDesktop -> DpOffset((-120).dp, 0.dp)
         else -> DpOffset((30).dp, 0.dp)
     }
 
     val settingsMenuOffset = when(deviceSizeState) {
-        DeviceSizeCategory.Mobile -> DpOffset(20.dp, 1.dp)
-        DeviceSizeCategory.FullDesktop -> DpOffset(0.dp, 0.dp)
+        Mobile -> DpOffset(20.dp, 1.dp)
+        FullDesktop -> DpOffset(0.dp, 0.dp)
         else -> DpOffset((-30).dp, 0.dp)
     }
 
     val mainIconWeight = when(deviceSizeState) {
-        DeviceSizeCategory.FullDesktop -> 0.2f
+        FullDesktop -> 0.2f
         else -> 0.7f
     }
 

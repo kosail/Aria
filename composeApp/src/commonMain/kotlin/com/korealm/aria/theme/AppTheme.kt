@@ -7,7 +7,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import aria.composeapp.generated.resources.*
-import com.korealm.aria.theme.schemes.*
 import com.korealm.aria.utils.getColorScheme
 import org.jetbrains.compose.resources.Font
 
