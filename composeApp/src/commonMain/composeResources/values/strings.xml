@@ -28,7 +28,6 @@
 
     <string name="settings_menu">Settings Menu</string>
     <string name="settings_timer_start">Set a timer</string>
-    <string name="settings_timer_cancel">Cancel timer</string>
     <string name="settings_preferences">Preferences</string>
     <string name="settings_about">About Aria</string>
 
@@ -131,6 +130,8 @@
     <string name="timer_quick_presets">Quick presets</string>
     <string name="timer_custom_duration">Custom duration</string>
     <string name="timer_start">Start timer</string>
+    <string name="timer_remaining_time">Remaining time</string>
+    <string name="timer_stop">Stop timer</string>
     <string name="timer_minutes_short">min</string>
     <string name="timer_hours">hours</string>
     <string name="timer_hh">HH</string>

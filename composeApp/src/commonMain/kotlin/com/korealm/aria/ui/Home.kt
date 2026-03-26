@@ -19,6 +19,7 @@ import com.korealm.aria.state.LocalThemeState
 import com.korealm.aria.ui.components.SoundCard
 import com.korealm.aria.ui.components.misc.AriaTitleFont
 import com.korealm.aria.utils.LocalPlayerFacadeState
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun Home(
@@ -51,7 +52,7 @@ fun Home(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     AriaTitleFont(
-                        stringRes = Res.string.aria,
+                        text = stringResource(Res.string.aria),
                         fontSize = 72.sp
                     )
                 }

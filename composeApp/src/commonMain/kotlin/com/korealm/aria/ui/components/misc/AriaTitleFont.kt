@@ -12,12 +12,10 @@ import androidx.compose.ui.unit.sp
 import aria.composeapp.generated.resources.AlegreyaSansSC_Bold
 import aria.composeapp.generated.resources.Res
 import org.jetbrains.compose.resources.Font
-import org.jetbrains.compose.resources.StringResource
-import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun AriaTitleFont(
-    stringRes: StringResource,
+    text: String,
     fontSize: TextUnit = 48.sp,
     fontWeight: FontWeight = FontWeight.Bold,
     letterSpacing: TextUnit = 2.sp,
@@ -29,7 +27,7 @@ fun AriaTitleFont(
     )
 
     Text(
-        text = stringResource(stringRes),
+        text = text,
         fontSize = fontSize,
         fontFamily = titleFont,
         fontWeight = fontWeight,

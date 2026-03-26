@@ -5,11 +5,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.korealm.aria.di.androidModule
 import com.korealm.aria.view.AudioControllerViewModel
 import com.korealm.aria.view.PlayerViewModel
-import org.koin.android.ext.koin.androidContext
-import org.koin.core.context.startKoin
+import com.korealm.aria.view.TimerViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,10 +17,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             val playerView: PlayerViewModel = viewModel()
             val audioControllerView: AudioControllerViewModel = viewModel()
+            val timerState: TimerViewModel = viewModel()
 
             App(
                 audioController = audioControllerView.state,
-                playerState = playerView.state
+                playerState = playerView.state,
+                timerState = timerState
             )
         }
     }

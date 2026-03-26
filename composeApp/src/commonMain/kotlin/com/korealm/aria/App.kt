@@ -24,6 +24,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import com.korealm.aria.shared.AudioController
 import com.korealm.aria.shared.Target.WEB
+import com.korealm.aria.shared.TimerController
 import com.korealm.aria.shared.getTargetPlatform
 import com.korealm.aria.state.*
 import com.korealm.aria.state.DeviceSizeCategory.Mobile
@@ -39,7 +40,8 @@ import com.korealm.aria.utils.rememberPlayerFacade
 @Composable
 fun App(
     audioController: AudioController,
-    playerState: PlayerState = rememberPlayerState()
+    playerState: PlayerState = rememberPlayerState(),
+    timerState: TimerController = rememberTimerController()
 ) {
     val themeState = rememberAppThemeState()
     val playerFacadeState = rememberPlayerFacade(playerState, audioController)
@@ -47,7 +49,8 @@ fun App(
     CompositionLocalProvider(
         LocalThemeState provides themeState,
         LocalPlayerState provides playerState,
-        LocalPlayerFacadeState provides playerFacadeState
+        LocalPlayerFacadeState provides playerFacadeState,
+        LocalTimerState provides timerState
     ) {
         DeviceSizeProvider {
             val themeState = LocalThemeState.current

@@ -1,22 +1,29 @@
 package com.korealm.aria.ui.components.settings.timer
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import aria.composeapp.generated.resources.*
+import aria.composeapp.generated.resources.Res
+import aria.composeapp.generated.resources.settings_timer_start
+import aria.composeapp.generated.resources.timer_remaining_time
+import aria.composeapp.generated.resources.timer_start
+import aria.composeapp.generated.resources.timer_stop
+import com.korealm.aria.state.LocalTimerState
 import com.korealm.aria.ui.components.misc.CustomDialog
 import com.korealm.aria.ui.components.misc.GtkButton
 import org.jetbrains.compose.resources.stringResource
@@ -26,6 +33,9 @@ import org.jetbrains.compose.resources.stringResource
 fun TimerDialog(
     onDismissRequest: () -> Unit
 ) {
+    val timer = LocalTimerState.current
+    var seconds by remember { mutableStateOf(0L) }
+
     CustomDialog(
         onDismissRequest = onDismissRequest,
         showNavbar = true,
@@ -45,12 +55,20 @@ fun TimerDialog(
                 modifier = Modifier
                     .fillMaxWidth()
             ) {
-
-                Text(
-                    text = stringResource(Res.string.settings_timer_start).uppercase(),
-                    style = MaterialTheme.typography.headlineLarge,
-                    letterSpacing = 1.sp,
-                )
+                AnimatedContent(
+                    targetState = timer.isRunning,
+                    transitionSpec = {
+                        fadeIn(tween(200)) togetherWith
+                                fadeOut(tween(150))
+                    }
+                ) { isRunning ->
+                    val titleRes = if (isRunning) Res.string.timer_remaining_time else Res.string.settings_timer_start
+                    Text(
+                        text = stringResource(titleRes).uppercase(),
+                        style = MaterialTheme.typography.headlineLarge,
+                        letterSpacing = 1.sp,
+                    )
+                }
             }
 
             HorizontalDivider(
@@ -59,87 +77,58 @@ fun TimerDialog(
                     .padding(top = 8.dp, bottom = 16.dp)
             )
 
-            Text(
-                text = stringResource(Res.string.timer_quick_presets),
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.Light,
-                textAlign = TextAlign.Start,
-                modifier = Modifier.padding(8.dp)
-            )
-
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 24.dp)
-            ) {
-                PresetCard(
-                    amount = 30,
-                    minutes = true
-                ) {}
-
-                PresetCard(
-                    amount = 1,
-                ) {}
-
-                PresetCard(
-                    amount = 2,
-                ) {}
-
-                PresetCard(
-                    amount = 4,
-                ) {}
+            AnimatedContent(
+                targetState = timer.isRunning,
+                transitionSpec = {
+                    fadeIn(tween(200)) togetherWith
+                            fadeOut(tween(150))
+                }
+            ) { isRunning ->
+                when (isRunning) {
+                    true -> {
+                        ShowTime(
+                            timeInSeconds = timer.remainingSeconds
+                        )
+                    }
+                    false -> {
+                        SelectTime(
+                            onTimeSet = { seconds -> timer.start(seconds) },
+                        )
+                    }
+                }
             }
 
-            Text(
-                text = stringResource(Res.string.timer_custom_duration),
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.Light,
-                textAlign = TextAlign.Start,
-                modifier = Modifier
-                    .padding(bottom = 16.dp, start = 8.dp)
-            )
-
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 8.dp)
-                    .clip(RoundedCornerShape(12.dp))
-                    .background(MaterialTheme.colorScheme.tertiaryContainer.copy(alpha = 0.6f))
-                    .border(
-                        width = (1.5).dp,
-                        color = MaterialTheme.colorScheme.tertiary,
-                        shape = RoundedCornerShape(12.dp))
-            ) {
-                TimeInput(
-                    state = rememberTimePickerState(1, 0, true),
-                    colors = TimePickerDefaults.colors(
-                        timeSelectorSelectedContainerColor = Color.Transparent,
-                        timeSelectorUnselectedContainerColor = Color.Transparent,
-                        periodSelectorBorderColor = Color.Transparent,
-                    ),
-                    modifier = Modifier.padding(top = 16.dp)
-
-                )
-            }
 
             Spacer(
                 modifier = Modifier.weight(1f)
             )
 
             GtkButton(
-                onClick = {},
+                onClick = {
+                    if (timer.isRunning) {
+                        timer.reset()
+                    } else {
+                        timer.start(seconds)
+                    }
+                },
                 modifier = Modifier.align(Alignment.End),
             ) {
-                Text(
-                    text = stringResource(Res.string.timer_start),
-                    style = MaterialTheme.typography.titleLarge,
-                    textAlign = TextAlign.Center,
-                    color = MaterialTheme.colorScheme.onSurface
-                )
+                AnimatedContent(
+                    targetState = timer.isRunning,
+                    transitionSpec = {
+                        fadeIn(tween(200)) togetherWith
+                                fadeOut(tween(150))
+                    }
+                ) { isRunning ->
+                    val titleRes = if (isRunning) Res.string.timer_stop else Res.string.timer_start
+
+                    Text(
+                        text = stringResource(titleRes),
+                        style = MaterialTheme.typography.titleLarge,
+                        textAlign = TextAlign.Center,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                }
             }
         }
     }

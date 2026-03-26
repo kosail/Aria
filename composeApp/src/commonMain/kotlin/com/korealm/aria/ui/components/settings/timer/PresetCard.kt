@@ -25,7 +25,7 @@ fun PresetCard(
     amount: Int,
     minutes: Boolean = false,
     modifier: Modifier = Modifier,
-    onClick: () -> Unit = {}
+    onClick: () -> Unit
 ) {
     val cardSize = if (getTargetPlatform() != Target.ANDROID) 74.dp else 68.dp
 
