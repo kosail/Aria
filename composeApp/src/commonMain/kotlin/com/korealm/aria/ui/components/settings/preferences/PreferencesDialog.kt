@@ -31,8 +31,8 @@ import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun PreferencesDialog(
-    onDismissRequest: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onDismissRequest: () -> Unit
 ) {
     val themeState = LocalThemeState.current
 

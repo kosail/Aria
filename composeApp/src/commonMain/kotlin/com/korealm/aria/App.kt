@@ -46,82 +46,83 @@ fun App(
     val themeState = rememberAppThemeState()
     val playerFacadeState = rememberPlayerFacade(playerState, audioController)
 
-    CompositionLocalProvider(
-        LocalThemeState provides themeState,
-        LocalPlayerState provides playerState,
-        LocalPlayerFacadeState provides playerFacadeState,
-        LocalTimerState provides timerState
-    ) {
-        DeviceSizeProvider {
-            val themeState = LocalThemeState.current
-            val deviceSizeState = LocalDeviceSizeCategory.current
+    AppProvider(playerState, playerFacadeState, timerState, themeState) {
+        val deviceSizeState = LocalDeviceSizeCategory.current
 
-            var isTimerDialog by remember { mutableStateOf(false) }
-            var isPreferencesDialog by remember { mutableStateOf(false) }
-            var isAboutDialog by remember { mutableStateOf(false) }
+        var isTimerDialog by remember { mutableStateOf(false) }
+        var isPreferencesDialog by remember { mutableStateOf(false) }
+        var isAboutDialog by remember { mutableStateOf(false) }
 
-            AppTheme(
-                darkTheme = themeState.isDarkTheme,
-                accentColor = themeState.accentColor
+        AppTheme(
+            darkTheme = themeState.isDarkTheme,
+            accentColor = themeState.accentColor
+        ) {
+            val homeWeight = when (getTargetPlatform()) {
+                WEB -> if (deviceSizeState == Mobile) .90f else 0.92f
+                else -> 0.89f
+            }
+
+            Column (
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(MaterialTheme.colorScheme.background)
+                    .systemBarsPadding()
             ) {
-                val homeWeight = when (getTargetPlatform()) {
-                    WEB -> if (deviceSizeState == Mobile) .90f else 0.92f
-                    else -> 0.89f
-                }
-
-                Column (
+                Home(
                     modifier = Modifier
                         .fillMaxSize()
-                        .background(MaterialTheme.colorScheme.background)
-                        .systemBarsPadding()
-                ) {
-                    Home(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .weight(homeWeight),
-                    )
+                        .weight(homeWeight),
+                )
 
-                    PlayerBar(
-                        onOpenTimer = { isTimerDialog = true },
-                        onOpenPreferences = { isPreferencesDialog = true },
-                        onOpenAbout = { isAboutDialog = true },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .weight(1 - homeWeight),
-                    )
-                }
+                PlayerBar(
+                    onOpenTimer = { isTimerDialog = true },
+                    onOpenPreferences = { isPreferencesDialog = true },
+                    onOpenAbout = { isAboutDialog = true },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1 - homeWeight),
+                )
+            }
 
-                // Settings and about dialogs
-                AnimatedVisibility(
-                    visible = isPreferencesDialog,
-                    enter = fadeIn(animationSpec = tween(durationMillis = 150)) + expandIn(animationSpec = tween(durationMillis = 150)),
-                    exit = fadeOut(animationSpec = tween(durationMillis = 150)) + shrinkOut(animationSpec = tween(durationMillis = 150))
-                ) {
-                    PreferencesDialog(
-                        onDismissRequest = { isPreferencesDialog = false },
-                    )
-                }
+            // Settings and about dialogs
+            AnimatedVisibility(
+                visible = isPreferencesDialog,
+                enter = fadeIn(animationSpec = tween(durationMillis = 150)) + expandIn(animationSpec = tween(durationMillis = 150)),
+                exit = fadeOut(animationSpec = tween(durationMillis = 150)) + shrinkOut(animationSpec = tween(durationMillis = 150))
+            ) {
+                PreferencesDialog { isPreferencesDialog = false }
+            }
 
-                AnimatedVisibility(
-                    visible = isAboutDialog,
-                    enter = fadeIn(animationSpec = tween(durationMillis = 150)) + expandIn(animationSpec = tween(durationMillis = 150)),
-                    exit = fadeOut(animationSpec = tween(durationMillis = 150)) + shrinkOut(animationSpec = tween(durationMillis = 150))
-                ) {
-                    AboutDialog(
-                        onDismissRequest = { isAboutDialog = false },
-                    )
-                }
+            AnimatedVisibility(
+                visible = isAboutDialog,
+                enter = fadeIn(animationSpec = tween(durationMillis = 150)) + expandIn(animationSpec = tween(durationMillis = 150)),
+                exit = fadeOut(animationSpec = tween(durationMillis = 150)) + shrinkOut(animationSpec = tween(durationMillis = 150))
+            ) {
+                AboutDialog { isAboutDialog = false }
+            }
 
-                AnimatedVisibility(
-                    visible = isTimerDialog,
-                    enter = fadeIn(animationSpec = tween(durationMillis = 150)) + expandIn(animationSpec = tween(durationMillis = 150)),
-                    exit = fadeOut(animationSpec = tween(durationMillis = 150)) + shrinkOut(animationSpec = tween(durationMillis = 150))
-                ) {
-                    TimerDialog(
-                        onDismissRequest = { isTimerDialog = false },
-                    )
-                }
+            AnimatedVisibility(
+                visible = isTimerDialog,
+                enter = fadeIn(animationSpec = tween(durationMillis = 150)) + expandIn(animationSpec = tween(durationMillis = 150)),
+                exit = fadeOut(animationSpec = tween(durationMillis = 150)) + shrinkOut(animationSpec = tween(durationMillis = 150))
+            ) {
+                TimerDialog { isTimerDialog = false }
+            }
 
+        }
+
+        // I found no other way to bind the timer to the player state, although I know there must be a cleaner way to do it.
+        LaunchedEffect(timerState.remainingSeconds) {
+            val remaining = timerState.remainingSeconds
+
+            if (timerState.isRunning && remaining in 0..15) {
+                val volume = remaining / 17f
+                playerFacadeState.setGlobalVolume(volume)
+            }
+
+            if (remaining == 0L) {
+                playerFacadeState.stopAll()
+                playerFacadeState.setGlobalVolume(1f)
             }
         }
     }

@@ -7,7 +7,7 @@ import com.korealm.aria.model.Sound
 import com.korealm.aria.shared.AudioController
 import com.korealm.aria.state.PlayerState
 
-// This class is the one which binds the state holder PlayerState with the low implementations in AudioController
+// This class is the one that binds the state holder PlayerState with the low implementations in AudioController
 class PlayerFacade(
     private val state: PlayerState,
     private val controller: AudioController
@@ -38,7 +38,7 @@ class PlayerFacade(
     }
 
     /**
-     * This function works interacting with sounds that are selected/enabled by the user.
+     * This function works by interacting with sounds that are selected/enabled by the user.
      * It just stops the audio without touching if they are selected or not.
      * In that way, the user can click the play button and get all the last playlist sounds back.
      * */

@@ -31,15 +31,16 @@ import org.jetbrains.compose.resources.stringResource
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TimerDialog(
+    modifier: Modifier = Modifier,
     onDismissRequest: () -> Unit
 ) {
     val timer = LocalTimerState.current
-    var seconds by remember { mutableStateOf(0L) }
+    var seconds by remember { mutableStateOf(13L) }
 
     CustomDialog(
         onDismissRequest = onDismissRequest,
         showNavbar = true,
-        modifier = Modifier
+        modifier = modifier
             .verticalScroll(rememberScrollState())
     ) {
         Column(

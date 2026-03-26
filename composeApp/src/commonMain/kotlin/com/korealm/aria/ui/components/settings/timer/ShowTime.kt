@@ -10,7 +10,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import kotlin.time.Duration.Companion.seconds
+import com.korealm.aria.state.DeviceSizeCategory.*
+import com.korealm.aria.state.LocalDeviceSizeCategory
 
 
 // Not Ado's Showtime, but literally show time. You get it? Ado-rable.
@@ -63,10 +64,17 @@ private fun SimpleText(
     color: Color = MaterialTheme.colorScheme.onSurface,
     modifier: Modifier = Modifier
 ) {
+    val device = LocalDeviceSizeCategory.current
+    val textSize = when (device) {
+        Mobile -> 70.sp
+        CompactDesktop -> 70.sp
+        FullDesktop -> 80.sp
+    }
+
     Text(
         text = text,
         style = MaterialTheme.typography.titleMedium,
-        fontSize = 80.sp,
+        fontSize = textSize,
         fontWeight = FontWeight.Normal,
         color = color,
         modifier = modifier

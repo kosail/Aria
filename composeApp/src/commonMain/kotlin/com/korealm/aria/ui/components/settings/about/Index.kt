@@ -14,8 +14,8 @@ import com.korealm.aria.ui.components.misc.CustomDialog
 
 @Composable
 fun AboutDialog(
-    onDismissRequest: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onDismissRequest: () -> Unit
 ) {
     var page by remember { mutableStateOf(AboutPages.HOME) }
 
