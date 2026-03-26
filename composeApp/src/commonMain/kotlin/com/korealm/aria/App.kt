@@ -103,7 +103,9 @@ fun App(
                 }
 
                 AnimatedVisibility(
-                    visible = isAboutDialog
+                    visible = isAboutDialog,
+                    enter = fadeIn(animationSpec = tween(durationMillis = 150)) + expandIn(animationSpec = tween(durationMillis = 150)),
+                    exit = fadeOut(animationSpec = tween(durationMillis = 150)) + shrinkOut(animationSpec = tween(durationMillis = 150))
                 ) {
                     AboutDialog(
                         onDismissRequest = { isAboutDialog = false },
@@ -111,7 +113,9 @@ fun App(
                 }
 
                 AnimatedVisibility(
-                    visible = isTimerDialog
+                    visible = isTimerDialog,
+                    enter = fadeIn(animationSpec = tween(durationMillis = 150)) + expandIn(animationSpec = tween(durationMillis = 150)),
+                    exit = fadeOut(animationSpec = tween(durationMillis = 150)) + shrinkOut(animationSpec = tween(durationMillis = 150))
                 ) {
                     TimerDialog(
                         onDismissRequest = { isTimerDialog = false },
