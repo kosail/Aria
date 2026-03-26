@@ -28,6 +28,7 @@
 
     <string name="settings_menu">Settings Menu</string>
     <string name="settings_timer_start">Set a timer</string>
+    <string name="settings_timer_check_timer">Check timer</string>
     <string name="settings_preferences">Preferences</string>
     <string name="settings_about">About Aria</string>
 
@@ -131,11 +132,13 @@
     <string name="timer_custom_duration">Custom duration</string>
     <string name="timer_start">Start timer</string>
     <string name="timer_remaining_time">Remaining time</string>
+    <string name="timer_running_caption">
+        The timer is running! You can close this dialog, navigate elsewhere, or fall asleep.
+        I'll take care of you for the remaining time.
+    </string>
     <string name="timer_stop">Stop timer</string>
     <string name="timer_minutes_short">min</string>
     <string name="timer_hours">hours</string>
-    <string name="timer_hh">HH</string>
-    <string name="timer_mm">MM</string>
 
     <!-- ********************* -->
 

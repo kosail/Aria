@@ -35,7 +35,7 @@ fun TimerDialog(
     onDismissRequest: () -> Unit
 ) {
     val timer = LocalTimerState.current
-    var seconds by remember { mutableStateOf(13L) }
+    var seconds by remember { mutableStateOf(0L) }
 
     CustomDialog(
         onDismissRequest = onDismissRequest,
@@ -93,7 +93,8 @@ fun TimerDialog(
                     }
                     false -> {
                         SelectTime(
-                            onTimeSet = { seconds -> timer.start(seconds) },
+                            onQuickLaunch = { timeInput -> timer.start(timeInput) },
+                            onTimeSet = { timeInput -> seconds = timeInput },
                         )
                     }
                 }

@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.DpOffset
 import aria.composeapp.generated.resources.*
 import com.korealm.aria.state.LocalThemeState
+import com.korealm.aria.state.LocalTimerState
 import com.korealm.aria.ui.components.misc.CustomDropdownMenu
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -24,6 +25,7 @@ fun SettingsMenu(
     modifier: Modifier = Modifier
 ) {
     val themeState = LocalThemeState.current
+    val timerState = LocalTimerState.current
 
     CustomDropdownMenu(
         expanded = expanded,
@@ -35,7 +37,9 @@ fun SettingsMenu(
         DropdownMenuItem(
             text = {
                 Text(
-                    text = stringResource(Res.string.settings_timer_start),
+                    text = stringResource(
+                        if (timerState.isRunning) Res.string.settings_timer_check_timer else Res.string.settings_timer_start
+                    ),
                     style = MaterialTheme.typography.bodyLarge,
                 )
             },

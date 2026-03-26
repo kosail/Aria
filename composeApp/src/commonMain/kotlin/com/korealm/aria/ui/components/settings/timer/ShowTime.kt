@@ -8,10 +8,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import aria.composeapp.generated.resources.Res
+import aria.composeapp.generated.resources.timer_running_caption
 import com.korealm.aria.state.DeviceSizeCategory.*
 import com.korealm.aria.state.LocalDeviceSizeCategory
+import org.jetbrains.compose.resources.stringResource
 
 
 // Not Ado's Showtime, but literally show time. You get it? Ado-rable.
@@ -30,14 +34,15 @@ fun ShowTime(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
             .fillMaxWidth()
-            .height(400.dp)
+            .height(410.dp)
             .padding(vertical = 24.dp)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center,
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxWidth()
+                .weight(1f)
         ) {
             SimpleText(text = hours)
             SimpleText(
@@ -55,7 +60,17 @@ fun ShowTime(
 
             SimpleText(text = seconds)
         }
+
+        Text(
+            text = stringResource(Res.string.timer_running_caption).trimIndent(),
+            fontWeight = FontWeight.Light,
+            fontSize = 16.sp,
+            textAlign = TextAlign.Start,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.padding(top = 16.dp)
+        )
     }
+
 }
 
 @Composable
@@ -67,8 +82,7 @@ private fun SimpleText(
     val device = LocalDeviceSizeCategory.current
     val textSize = when (device) {
         Mobile -> 70.sp
-        CompactDesktop -> 70.sp
-        FullDesktop -> 80.sp
+        else -> 80.sp
     }
 
     Text(
