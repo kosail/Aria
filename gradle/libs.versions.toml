@@ -12,10 +12,12 @@ androidx-testExt = "1.3.0"
 composeHotReload = "1.0.0"
 composeMultiplatform = "1.9.3"
 junit = "4.13.2"
-kotlin = "2.3.0"
+kotlin = "2.3.20"
 kotlinx-coroutines = "1.10.2"
 kotlinx-datetime = "0.7.1"
 koin = "4.1.1"
+media3_version = "1.9.3"
+kotlin-browser = "2026.4.2"
 
 
 [libraries]
@@ -35,6 +37,11 @@ koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin" }
+exoplayer = { module = "androidx.media3:media3-exoplayer", version.ref = "media3_version" }
+exoplayer-dash = { module = "androidx.media3:media3-exoplayer-dash", version.ref = "media3_version" }
+media3-ui = { module = "androidx.media3:media3-ui", version.ref = "media3_version" }
+media3-ui-compose = { module = "androidx.media3:media3-ui-compose", version.ref = "media3_version" }
+kotlin-wrappers-browser = { module = "org.jetbrains.kotlin-wrappers:kotlin-browser", version.ref = "kotlin-browser" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
