@@ -1,8 +1,14 @@
 package com.korealm.aria.ui
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TooltipAnchorPosition
+import androidx.compose.material3.TooltipBox
+import androidx.compose.material3.TooltipDefaults.rememberTooltipPositionProvider
+import androidx.compose.material3.rememberTooltipState
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -18,8 +24,10 @@ import com.korealm.aria.ui.components.player.PlayerSecondaryIcon
 import com.korealm.aria.ui.components.settings.SettingsMenu
 import com.korealm.aria.ui.components.volume.VolumeMenu
 import com.korealm.aria.utils.LocalPlayerFacadeState
+import com.korealm.aria.utils.SimpleTooltipBox
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PlayerBar(
     onOpenTimer: () -> Unit,
@@ -75,11 +83,20 @@ fun PlayerBar(
                     .align(Alignment.CenterVertically)
             ) {
                 Box {
-                    PlayerSecondaryIcon(
-                        iconRes = Res.drawable.volume,
-                        contentDescription = Res.string.volume_menu,
-                        onClick = { isVolumeMenu = true }
-                    )
+                    TooltipBox(
+                        state = rememberTooltipState(isPersistent = true),
+                        tooltip = { SimpleTooltipBox(Res.string.volume_menu) },
+                        positionProvider = rememberTooltipPositionProvider(
+                            positioning = TooltipAnchorPosition.Below,
+                            spacingBetweenTooltipAndAnchor = 4.dp
+                        )
+                    ) {
+                        PlayerSecondaryIcon(
+                            iconRes = Res.drawable.volume,
+                            contentDescription = Res.string.volume_menu,
+                            onClick = { isVolumeMenu = true }
+                        )
+                    }
 
                     VolumeMenu(
                         expanded = isVolumeMenu,
@@ -118,12 +135,21 @@ fun PlayerBar(
                     .weight(1f)
                     .align(Alignment.CenterVertically)
             ) {
-                Box{
-                    PlayerSecondaryIcon(
-                        iconRes = Res.drawable.menu,
-                        contentDescription = Res.string.settings_menu,
-                        onClick = { isSettingsMenu = true }
-                    )
+                Box {
+                    TooltipBox(
+                        state = rememberTooltipState(isPersistent = true),
+                        tooltip = { SimpleTooltipBox(Res.string.settings_menu) },
+                        positionProvider = rememberTooltipPositionProvider(
+                            positioning = TooltipAnchorPosition.Below,
+                            spacingBetweenTooltipAndAnchor = 4.dp
+                        )
+                    ) {
+                        PlayerSecondaryIcon(
+                            iconRes = Res.drawable.menu,
+                            contentDescription = Res.string.settings_menu,
+                            onClick = { isSettingsMenu = true }
+                        )
+                    }
 
                     SettingsMenu(
                         expanded = isSettingsMenu,
