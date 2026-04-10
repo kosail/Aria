@@ -127,9 +127,6 @@ fun PreferencesDialog(
                 // Per device target settings section
                 // ---------------------------------
                 if (getTargetPlatform() != ANDROID) {
-                    // TODO: Work in this inhibit suspension thing and remove this state
-                    var inhibitSleep by remember { mutableStateOf(false) }
-
                     // Toggle dark theme. TODO: Change this for a multiple button to switch between system, light and dark mode
                     InvisibleButton(
                         title = Res.string.theme_dark_mode,
@@ -140,24 +137,6 @@ fun PreferencesDialog(
                         Switch(
                             checked = themeState.isDarkTheme,
                             onCheckedChange = { themeState.toggleTheme() },
-                            colors = SwitchDefaults.colors(
-                                uncheckedTrackColor = MaterialTheme.colorScheme.surface,
-                            ),
-                            modifier = modifier.scale(0.9f)
-                        )
-                    }
-
-                    // Inhibit suspension
-                    InvisibleButton(
-                        title = Res.string.inhibit_suspension_title,
-                        subtitle = Res.string.inhibit_suspension,
-                        ripple = false,
-                        onClick = { inhibitSleep = !inhibitSleep },
-                        modifier = Modifier.padding(horizontal = 8.dp)
-                    ) {
-                        Switch(
-                            checked = inhibitSleep,
-                            onCheckedChange = { inhibitSleep = !inhibitSleep },
                             colors = SwitchDefaults.colors(
                                 uncheckedTrackColor = MaterialTheme.colorScheme.surface,
                             ),

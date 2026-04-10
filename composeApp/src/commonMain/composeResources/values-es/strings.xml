@@ -109,11 +109,9 @@
     <!--  Preferences section  -->
     <string name="theme_accent_color">Color principal del tema</string>
     <string name="theme_dark_mode">Modo oscuro</string>
-    <string name="inhibit_suspension_title">Mantener la pantalla encendida</string>
-    <string name="inhibit_suspension">Impedir el bloqueo de pantalla</string>
 
     <string name="delete_all_personal_sounds">Eliminar todos los sonidos añadidos por el usuario</string>
-    <string name="delete_all_personal_sounds_confirm">¿Seguro que deseas eliminar todos los sonidos que has añadido a Aria?</string>
+    <string name="delete_all_personal_sounds_confirm">¿Segura/o que deseas eliminar todos los sonidos que has añadido a Aria?</string>
     <string name="confirm_yes">Sí, eliminar todo</string>
     <string name="confirm_no">No, volver</string>
 

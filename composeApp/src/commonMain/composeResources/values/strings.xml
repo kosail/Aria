@@ -117,8 +117,6 @@
     <!--  Preferences section  -->
     <string name="theme_accent_color">Theme accent color</string>
     <string name="theme_dark_mode">Dark mode</string>
-    <string name="inhibit_suspension_title">Keep screen on</string>
-    <string name="inhibit_suspension">Inhibit suspension while playing</string>
 
     <string name="delete_all_personal_sounds">Clear all user-added sounds</string>
     <string name="delete_all_personal_sounds_confirm">Are you sure you want to clear all sounds you have added to Aria?</string>

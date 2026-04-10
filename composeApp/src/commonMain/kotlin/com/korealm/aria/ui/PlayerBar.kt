@@ -65,16 +65,17 @@ fun PlayerBar(
         else -> 0.7f
     }
 
+    val bgColor = if (themeState.isDarkTheme) MaterialTheme.colorScheme.surfaceVariant else MaterialTheme.colorScheme.primaryContainer
+
     Surface(
-        color = MaterialTheme.colorScheme.primaryContainer.copy(0.3f),
+        color = bgColor.copy(0.4f),
         shadowElevation = 1.dp,
         modifier = modifier.fillMaxSize()
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center,
-            modifier = Modifier
-                .fillMaxSize()
+            modifier = Modifier.fillMaxSize()
         ) {
             Box(
                 contentAlignment = Alignment.CenterEnd,
