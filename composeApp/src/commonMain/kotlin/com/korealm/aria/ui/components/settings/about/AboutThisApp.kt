@@ -12,11 +12,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import aria.composeapp.generated.resources.*
+import com.korealm.aria.shared.Target.WEB
+import com.korealm.aria.shared.getTargetPlatform
 import com.korealm.aria.shared.openUrl
 import com.korealm.aria.ui.components.misc.Copyright
 import com.korealm.aria.ui.components.misc.GtkButton
 import com.korealm.aria.ui.components.misc.LabelWithIcon
 import com.korealm.aria.ui.components.misc.SimpleNavbar
+import com.korealm.aria.utils.GtkButtonShape
+import org.jetbrains.compose.resources.DrawableResource
+import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -72,21 +77,52 @@ fun AboutThisApp(
                 modifier = Modifier.padding(16.dp)
             )
 
-            val githubUrl = stringResource(Res.string.github_url)
-            GtkButton(
-                onClick = { openUrl(githubUrl) },
-                modifier = Modifier.padding(horizontal = 24.dp)
-            ) {
-                LabelWithIcon(
-                    stringRes = Res.string.github_project,
-                    iconRes = Res.drawable.external_link
+            if (getTargetPlatform() != WEB) {
+                GtkUrlButton(
+                    urlResource = Res.string.web_version_url,
+                    stringRes = Res.string.web_version_invite,
+                    modifier = Modifier.padding(bottom = 16.dp)
                 )
             }
+
+            GtkUrlButton(
+                urlResource = Res.string.github_url,
+                stringRes = Res.string.github_project,
+                buttonShape = GtkButtonShape.TOP,
+            )
+
+            GtkUrlButton(
+                urlResource = Res.string.codeberg_url,
+                stringRes = Res.string.codeberg_project,
+                buttonShape = GtkButtonShape.BOTTOM,
+            )
 
             Spacer(modifier = Modifier.height(16.dp))
             Spacer(modifier = Modifier.weight(1f))
 
             Copyright(modifier = Modifier.padding(bottom = 16.dp))
         }
+    }
+}
+
+@Composable
+private fun GtkUrlButton(
+    urlResource: StringResource,
+    stringRes: StringResource,
+    iconRes: DrawableResource = Res.drawable.external_link,
+    buttonShape: GtkButtonShape = GtkButtonShape.UNIQUE,
+    modifier: Modifier = Modifier
+) {
+    val url = stringResource(urlResource)
+
+    GtkButton(
+        onClick = { openUrl(url) },
+        buttonShape = buttonShape,
+        modifier = modifier.padding(horizontal = 24.dp)
+    ) {
+        LabelWithIcon(
+            stringRes = stringRes,
+            iconRes = iconRes
+        )
     }
 }

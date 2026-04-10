@@ -14,7 +14,6 @@
     <string name="audio_city">City</string>
     <string name="audio_coffee">Coffee Shop</string>
     <string name="audio_fireplace">Fireplace</string>
-    <string name="audio_cat_meow">Cat Meow</string>
     <string name="audio_pink_noise">Pink Noise</string>
     <string name="audio_white_noise">White Noise</string>
     <string name="audio_add">Add...</string>
@@ -68,8 +67,13 @@
     <string name="report_an_issue">Report an issue</string>
     <string name="report_issue_url">https://github.com/kosail/Aria/issues</string>
 
-    <string name="github_project">Check the project's page on GitHub</string>
+    <string name="web_version_invite">Check out Aria's web version!</string>
+    <string name="github_project">Visit the project's page on GitHub</string>
+    <string name="codeberg_project">Review the source code on Codeberg</string>
+
+    <string name="web_version_url">https://aria.korealm.tech</string>
     <string name="github_url">https://github.com/kosail/Aria</string>
+    <string name="codeberg_url">https://codeberg.org/kosail/aria</string>
 
 
     <string name="license_legal">License and legal info</string>

@@ -1,0 +1,143 @@
+<resources>
+    <string name="audio_rain">Lluvia</string>
+    <string name="audio_storm">Relámpagos</string>
+    <string name="audio_wind">Viento</string>
+    <string name="audio_waves">Olas</string>
+    <string name="audio_stream">Corriente de agua</string>
+    <string name="audio_birds">Pajaros</string>
+    <string name="audio_summer_night">Noche de verano</string>
+    <string name="audio_train">Tren</string>
+    <string name="audio_boat">Bote</string>
+    <string name="audio_city">Ciudad</string>
+    <string name="audio_coffee">Cafetería</string>
+    <string name="audio_fireplace">Fogata</string>
+    <string name="audio_pink_noise">Ruido rosa</string>
+    <string name="audio_white_noise">Ruido blanco</string>
+    <string name="audio_add">Añadir...</string>
+
+    <string name="play">Reproducir</string>
+    <string name="pause">Pausar</string>
+
+    <string name="volume_menu">Volumen</string>
+    <string name="general_volume">Volumen general</string>
+    <string name="reset_sounds">Reiniciar sonidos</string>
+
+    <string name="settings_menu">Ajustes</string>
+    <string name="settings_timer_start">Poner un temporizador</string>
+    <string name="settings_timer_check_timer">Abrir temporizador</string>
+    <string name="settings_preferences">Preferencias</string>
+    <string name="settings_about">Acerca de Aria</string>
+
+
+    <!--  About section  -->
+    <string name="kosail">Hecho por kosail</string>
+
+    <string name="about_this_app">Acerca de esta app</string>
+
+    <string name="tribute_zero">Aria es un tributo que hice todo mi cariño a Blanket, una app de sonidos ambientales para Linux. Blanket fue creada originalmente por Rafael Mardojai, quien parte del GNOME Desktop Circle.</string>
+
+    <string name="tribute_one">Aunque me parece una app perfecta y estéticamente preciosa, solo estaba disponible para Linux. La reconstruí desde cero para muchos otros dispositivos porque quería que mi mamá pudiera dormir mejor, sin tener que gastar tantos datos móviles en videos de lluvia de YouTube.</string>
+
+    <string name="tribute_two">
+        Al igual que la original, Aria no tiene cuentas, ni anuncios, ni distracciones. Solo sonidos de la naturaleza. Mézclalos, ajústalos y deja que se desvanezcan mientras descansas o trabajas.
+    </string>
+
+    <string name="donations_text">
+        Si disfrutas de Aria y te resulta realmente útil, puedes apoyar su desarrollo con una donación voluntaria.
+
+        Tu apoyo ayuda a mantener el proyecto libre, gratis, de código abierto y en constante mejora.
+    </string>
+    <string name="donate">Apoya mi trabajo</string>
+    <string name="donate_on_paypal">Donar con PayPal</string>
+    <string name="no_donations_currently">
+        Por el momento no hay opciones para apoyar económicamente este proyecto. Espero poder trabajar en esto en futuras versiones, pero de verdad agradezco mucho tu interés y tu intención de apoyar. ¡Gracias!
+    </string>
+
+
+    <string name="from_honduras">Con amor, desde Honduras.</string>
+    <string name="copyright">Licenciado con GPLv3</string>
+    <string name="go_back">Regresar al menú anterior</string>
+    <string name="close_menu">Cerrar el menú</string>
+
+    <string name="report_an_issue">Reportar un problema</string>
+    <string name="report_issue_url">https://github.com/kosail/Aria/issues</string>
+
+    <string name="web_version_invite">Visita la versión web de Aria!</string>
+    <string name="github_project">Pasate por la página oficial del proyecto en GitHub</string>
+    <string name="codeberg_project">Revisa el código fuente en Codeberg</string>
+
+
+
+    <string name="license_legal">Licencia e información legal</string>
+    <string name="license_legal_message">
+        Esta app es totalmente gratuita y está publicada bajo la Licencia GNU GPLv3, lo que significa que puedes usarla, compartirla y modificarla libremente.
+
+        Si distribuyes versiones modificadas, debes compartir tus cambios bajo la misma licencia. No puedes imponer restricciones adicionales a los derechos de otras personas.
+    </string>
+
+
+    <string name="credits">Créditos</string>
+    <string name="credits_code_by">Programada por</string>
+    <string name="credits_design_by">Diseñada por</string>
+    <string name="credits_sounds_by">Sonidos gracias a</string>
+    <string name="credits_sounds_edited_by">Sonidos editados por</string>
+
+    <string name="credits_kosail">kosail [琥偲霖]</string>
+    <string name="credits_design_by_one">Jakub Steiner: Iconos</string>
+    <string name="credits_design_by_two">Rafael Mardojai: Creador de Blanket</string>
+    <string name="credits_design_by_three">kosail [琥偲霖]: Icono de Aria</string>
+
+    <string name="credits_sounds_by_one">alex36917: Lluvia</string>
+    <string name="credits_sounds_by_two">Digifish music: Relámpagos</string>
+    <string name="credits_sounds_by_three">ezwa: Fogata</string>
+    <string name="credits_sounds_by_four">Falcet: Bote</string>
+    <string name="credits_sounds_by_five">gezortenplotz: Ciudad</string>
+    <string name="credits_sounds_by_six">gluckose: Corriente de agua</string>
+    <string name="credits_sounds_by_seven">Jorge Stolfi: Ruido blanco</string>
+    <string name="credits_sounds_by_eight">kvgarlic: Pajaros</string>
+    <string name="credits_sounds_by_nine">Lisa Redfern: Noche de verano</string>
+    <string name="credits_sounds_by_ten">Luftrum: Olas</string>
+    <string name="credits_sounds_by_eleven">stephan: Cafetería</string>
+    <string name="credits_sounds_by_twelve">Omegatron: Ruido rosa</string>
+    <string name="credits_sounds_by_thirteen">felix.blume: Viento</string>
+    <string name="credits_sounds_by_fourteen">SDLx: Tren</string>
+
+    <string name="credits_sounds_edited_by_one">Porrumentzio: Pajaros, Lluvia, Relámpagos, Olas, Bote, Ciudad, Viento</string>
+
+    <!-- ********************* -->
+
+    <!--  Preferences section  -->
+    <string name="theme_accent_color">Color principal del tema</string>
+    <string name="theme_dark_mode">Modo oscuro</string>
+    <string name="inhibit_suspension_title">Mantener la pantalla encendida</string>
+    <string name="inhibit_suspension">Impedir el bloqueo de pantalla</string>
+
+    <string name="delete_all_personal_sounds">Eliminar todos los sonidos añadidos por el usuario</string>
+    <string name="delete_all_personal_sounds_confirm">¿Seguro que deseas eliminar todos los sonidos que has añadido a Aria?</string>
+    <string name="confirm_yes">Sí, eliminar todo</string>
+    <string name="confirm_no">No, volver</string>
+
+    <string name="suggestions">
+        ¿Tienes alguna idea o funcionalidad extra en mente?
+        Revisa la sección “Acerca de Aria” para ponerte en contacto conmigo.
+    </string>
+    <!-- ********************* -->
+
+
+    <!-- Timer section -->
+    <string name="timer_quick_presets">Ajustes rápidos</string>
+    <string name="timer_custom_duration">Duración personalizada</string>
+    <string name="timer_start">Iniciar temporizador</string>
+    <string name="timer_remaining_time">Tiempo restante</string>
+    <string name="timer_running_caption">
+        ¡El temporizador ya está en marcha! Puedes cerrar esta ventanita, continuar con lo que hacías o quedarte dormido.
+        Yo me encargaré de ti de aquí hasta que se acabe el tiempo.
+    </string>
+    <string name="timer_stop">Detener temporizador</string>
+    <string name="timer_minutes_short">min</string>
+    <string name="timer_hours">horas</string>
+
+
+    <!-- ********************* -->
+
+</resources>
