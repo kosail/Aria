@@ -7,16 +7,9 @@ Nature’s silent symphony.
 
 Built from scratch using [Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform), **Aria** is designed to flow across platforms. From Linux to Windows, from web to Android, while honoring the quiet beauty of the original [Blanket app](https://github.com/rafaelmardojai/blanket), built by Rafael Mardojai for the GNOME desktop.
 
----
+I wanted to bring peace, calm, and ambient beauty to more people, on more platforms. Blanket is currently only available for Linux, and I wanted to bring it to the rest of the world.
 
-## 🌺 Goal of this project:
-
-**Aria’s mission is simple:**  
-To bring peace, calm, and ambient beauty to more people, on more platforms. Blanket is currently only available for Linux, and I wanted to bring it to the rest of the world.
-
-This isn’t a fork or a reimplementation. It’s a handcrafted tribute.
-
-A quiet attempt to capture the essence of **Blanket**, but retold with different tools, for different platforms, and with a different heartbeat (mine).
+So this is my handcrafted tribute to it, to all the wonderful people who made possible Blanket exist, and thus, made Aria possible too.
 
 ---
 
@@ -29,6 +22,11 @@ A quiet attempt to capture the essence of **Blanket**, but retold with different
 **But Aria brings this too:**
 - Built-in timer to gently fade out after a chosen duration (perfect for sleep)
 - Runs on Desktop (Linux, Windows, macOS, all via JVM), Android and Web (WASM/JS)
+
+### Current state
+- [x] **Web version (WASM/JS)**: Completed!
+- [] **Desktop version (JVM)**: Currently broken due to lack of OGG audio support. I need to find a way to make it work.
+- [] **Android version (WIP)**: Works, but it's not the best due MediaPlayer limitations. I will migrate to ExoPlayer soon.
 
 ### Screenshots of the nightly version.
 Web version
@@ -58,19 +56,17 @@ Desktop & Android version
 git clone https://github.com/kosail/aria.git
 cd aria
 
-# For WEB
+# For WEB builds
 ./gradlew wasmJsBrowserDistribution
 
-# For Desktop
+# For Desktop builds
 ./gradlew packageReleaseUberJarForCurrentOs
 ```
 
 ---
-## Known limitations
-#### 1. The Desktop version only supports WAV audio format.
-I did try my best, but I couldn't find an audio library that supported OGG format AND be fast as hell (or well, fast enough to not freeze the UI. I'm still a totally beginner in coroutines and async programming, so it was very hard for me to find a solution).
-#### 2. The Desktop version have a delay on changing the volume
-It happen both on individual sounds and the master volume. I can't figure out why... is it a limitation of javax.sample?
+## Current issues
+#### 1. The Desktop version does not support an OGG audio format, and thus it is currently broken.
+I did try my best, but I couldn't find an audio library that supported OGG format AND be fast as hell (or well, fast enough to not freeze the UI. I'm still a total beginner in coroutines and async programming, so it is very hard for me to find a solution).
 
 
 ---
@@ -116,13 +112,14 @@ Sound designers: If you have original nature loops and would love to contribute 
 ## 🎒 What I have learned so far from this project
 1. I'm still a beginner in Compose Multiplatform, not to say in Kotlin. It's such a difficult language...
 2. LocalCompositions are a very powerful feature. I'm still learning how to use them properly, and I take them similarly as Zustand stores in the React world. Anyway, I love how easy the code becomes when you use them.
+3. Hell, Kotlin-JS wrappers are god-sent but also diabolic to use.
 
 ---
 
 ## 📜 License
 ![GPLv3 License logo. Copyright © 2012 Christian Cadena](repo_images/license-logos-by-christian-candena-GNU_GPLv3_License.webp)
 
-[GPLv3 (GNU General Public License v3)](COPYING.txt) – Free to use, modify, and distribute as long as this remains open source, and it is not use for profitable purposes.
+[GPLv3 (GNU General Public License v3)](COPYING.txt) – Free to use, modify, and distribute as long as this remains open source.
 
 GPLv3 Logos:
 

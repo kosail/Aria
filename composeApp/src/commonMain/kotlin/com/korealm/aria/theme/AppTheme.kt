@@ -18,7 +18,7 @@ fun AppTheme(
     val colorScheme = getColorScheme(accentColor, darkTheme)
     val theme = if (darkTheme) getDarkBase(colorScheme) else getLightBase(colorScheme)
 
-    val alegreyaSansFont = FontFamily(
+    val fontFamily = FontFamily(
         Font(Res.font.AlegreyaSans_Black, weight = FontWeight.Black),
         Font(Res.font.AlegreyaSans_Bold, weight = FontWeight.Bold),
         Font(Res.font.AlegreyaSans_ExtraBold, weight = FontWeight.ExtraBold),
@@ -30,21 +30,21 @@ fun AppTheme(
 
     val defaultTypography = Typography().run {
         Typography(
-            displayLarge = displayLarge.copy(fontFamily = alegreyaSansFont),
-            displayMedium = displayMedium.copy(fontFamily = alegreyaSansFont),
-            displaySmall = displaySmall.copy(fontFamily = alegreyaSansFont),
-            headlineLarge = headlineLarge.copy(fontFamily = alegreyaSansFont),
-            headlineMedium = headlineMedium.copy(fontFamily = alegreyaSansFont),
-            headlineSmall = headlineSmall.copy(fontFamily = alegreyaSansFont),
-            titleLarge = titleLarge.copy(fontFamily = alegreyaSansFont),
-            titleMedium = titleMedium.copy(fontFamily = alegreyaSansFont),
-            titleSmall = titleSmall.copy(fontFamily = alegreyaSansFont),
-            bodyLarge = bodyLarge.copy(fontFamily = alegreyaSansFont),
-            bodyMedium = bodyMedium.copy(fontFamily = alegreyaSansFont),
-            bodySmall = bodySmall.copy(fontFamily = alegreyaSansFont),
-            labelLarge = labelLarge.copy(fontFamily = alegreyaSansFont),
-            labelMedium = labelMedium.copy(fontFamily = alegreyaSansFont),
-            labelSmall = labelSmall.copy(fontFamily = alegreyaSansFont),
+            displayLarge = displayLarge.copy(fontFamily = fontFamily),
+            displayMedium = displayMedium.copy(fontFamily = fontFamily),
+            displaySmall = displaySmall.copy(fontFamily = fontFamily),
+            headlineLarge = headlineLarge.copy(fontFamily = fontFamily),
+            headlineMedium = headlineMedium.copy(fontFamily = fontFamily),
+            headlineSmall = headlineSmall.copy(fontFamily = fontFamily),
+            titleLarge = titleLarge.copy(fontFamily = fontFamily),
+            titleMedium = titleMedium.copy(fontFamily = fontFamily),
+            titleSmall = titleSmall.copy(fontFamily = fontFamily),
+            bodyLarge = bodyLarge.copy(fontFamily = fontFamily),
+            bodyMedium = bodyMedium.copy(fontFamily = fontFamily),
+            bodySmall = bodySmall.copy(fontFamily = fontFamily),
+            labelLarge = labelLarge.copy(fontFamily = fontFamily),
+            labelMedium = labelMedium.copy(fontFamily = fontFamily),
+            labelSmall = labelSmall.copy(fontFamily = fontFamily),
         )
     }
 
