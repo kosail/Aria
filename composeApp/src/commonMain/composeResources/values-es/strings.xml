@@ -63,7 +63,7 @@
     <string name="report_issue_url">https://github.com/kosail/Aria/issues</string>
 
     <string name="web_version_invite">Visita la versión web de Aria!</string>
-    <string name="github_project">Pasate por la página oficial del proyecto en GitHub</string>
+    <string name="github_project">Página oficial del proyecto en GitHub</string>
     <string name="codeberg_project">Revisa el código fuente en Codeberg</string>
 
 
@@ -82,10 +82,10 @@
     <string name="credits_sounds_by">Sonidos gracias a</string>
     <string name="credits_sounds_edited_by">Sonidos editados por</string>
 
-    <string name="credits_kosail">kosail [琥偲霖]</string>
+    <string name="credits_kosail">kosail</string>
     <string name="credits_design_by_one">Jakub Steiner: Iconos</string>
     <string name="credits_design_by_two">Rafael Mardojai: Creador de Blanket</string>
-    <string name="credits_design_by_three">kosail [琥偲霖]: Icono de Aria</string>
+    <string name="credits_design_by_three">kosail: Icono de Aria</string>
 
     <string name="credits_sounds_by_one">alex36917: Lluvia</string>
     <string name="credits_sounds_by_two">Digifish music: Relámpagos</string>
@@ -110,7 +110,7 @@
     <string name="theme_accent_color">Color principal del tema</string>
     <string name="theme_dark_mode">Modo oscuro</string>
 
-    <string name="delete_all_personal_sounds">Eliminar todos los sonidos añadidos por el usuario</string>
+    <string name="delete_all_personal_sounds">Eliminar sonidos añadidos por el ti</string>
     <string name="delete_all_personal_sounds_confirm">¿Segura/o que deseas eliminar todos los sonidos que has añadido a Aria?</string>
     <string name="confirm_yes">Sí, eliminar todo</string>
     <string name="confirm_no">No, volver</string>
