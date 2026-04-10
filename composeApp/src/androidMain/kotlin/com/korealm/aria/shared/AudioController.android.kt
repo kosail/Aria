@@ -30,18 +30,18 @@ class AndroidAudioController(
         }
     }
 
-    override fun load(audio: AudioResource) {
+    override suspend fun load(audio: AudioResource) {
         getOrCreatePlayer(audio)
     }
 
-    override fun play(audio: AudioResource) {
+    override suspend fun play(audio: AudioResource) {
         val player = getOrCreatePlayer(audio)
         if (!player.isPlaying) {
             player.start()
         }
     }
 
-    override fun stop(audio: AudioResource) {
+    override suspend fun stop(audio: AudioResource) {
         players[audio]?.let { player ->
             if (player.isPlaying) {
                 player.pause()
@@ -50,7 +50,7 @@ class AndroidAudioController(
         }
     }
 
-    override fun setVolume(audio: AudioResource, volume: Float) {
+    override suspend fun setVolume(audio: AudioResource, volume: Float) {
         perSoundVolume[audio] = volume
         players[audio]?.let { player ->
             val effectiveVolume = volume * globalVolume
@@ -58,7 +58,7 @@ class AndroidAudioController(
         }
     }
 
-    override fun setGlobalVolume(volume: Float) {
+    override suspend fun setGlobalVolume(volume: Float) {
         globalVolume = volume
         players.forEach { (res, player) ->
             val base = perSoundVolume[res] ?: 1f

@@ -1,9 +1,10 @@
 package com.korealm.aria.shared
 
 import com.korealm.aria.model.AudioResource
-import com.korealm.aria.shared.AudioController
 import java.io.File
-import javax.sound.sampled.*
+import javax.sound.sampled.AudioSystem
+import javax.sound.sampled.Clip
+import javax.sound.sampled.FloatControl
 import kotlin.math.log10
 
 class JvmAudioController : AudioController {
@@ -28,16 +29,16 @@ class JvmAudioController : AudioController {
         }
     }
 
-    override fun load(audio: AudioResource) {
+    override suspend fun load(audio: AudioResource) {
         getOrCreateClip(audio) // loads and caches
     }
 
-    override fun play(audio: AudioResource) {
+    override suspend fun play(audio: AudioResource) {
         val clip = getOrCreateClip(audio)
         if (!clip.isRunning) clip.start()
     }
 
-    override fun stop(audio: AudioResource) {
+    override suspend fun stop(audio: AudioResource) {
         clips[audio]?.let { clip ->
             clip.stop()
             clip.framePosition = 0
@@ -54,7 +55,7 @@ class JvmAudioController : AudioController {
         }
     }
 
-    override fun setVolume(audio: AudioResource, volume: Float) {
+    override suspend fun setVolume(audio: AudioResource, volume: Float) {
         perSoundVolume[audio] = volume
         volumeControls[audio]?.let { control ->
             val effective = (volume * globalVolume).coerceIn(0f, 1f)
@@ -62,7 +63,7 @@ class JvmAudioController : AudioController {
         }
     }
 
-    override fun setGlobalVolume(volume: Float) {
+    override suspend fun setGlobalVolume(volume: Float) {
         globalVolume = volume
         // Recompute effective volume for all loaded sounds
         volumeControls.forEach { (res, control) ->

@@ -6,28 +6,36 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import com.korealm.aria.model.Sound
 import com.korealm.aria.shared.AudioController
 import com.korealm.aria.state.PlayerState
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 // This class is the one that binds the state holder PlayerState with the low implementations in AudioController
 class PlayerFacade(
     private val state: PlayerState,
-    private val controller: AudioController
+    private val controller: AudioController,
+    private val scope: CoroutineScope
 ) {
-
     fun play(sound: Sound) {
         updateSound(sound) { it.copy(isPlaying = true) }
-        controller.play(sound.resource)
-        state.isPlayerActive = true
+        scope.launch {
+            controller.play(sound.resource)
+            state.isPlayerActive = true
+        }
     }
 
     fun stop(sound: Sound) {
         updateSound(sound) { it.copy(isPlaying = false) }
-        controller.stop(sound.resource)
-        state.isPlayerActive = state.playlist.any { it.isPlaying }
+        scope.launch {
+            controller.stop(sound.resource)
+            state.isPlayerActive = state.playlist.any { it.isPlaying }
+        }
     }
 
     fun setVolume(sound: Sound, volume: Float) {
         updateSound(sound) { it.copy(volume = volume) }
-        controller.setVolume(sound.resource, volume)
+        scope.launch {
+            controller.setVolume(sound.resource, volume)
+        }
     }
 
     fun stopAll() {
@@ -51,7 +59,9 @@ class PlayerFacade(
 
     fun setGlobalVolume(volume: Float) {
         state.playerVolume = volume
-        controller.setGlobalVolume(volume)
+        scope.launch {
+            controller.setGlobalVolume(volume)
+        }
     }
 
     private fun updateSound(sound: Sound, update: (Sound) -> Sound) {
@@ -66,5 +76,6 @@ val LocalPlayerFacadeState = staticCompositionLocalOf<PlayerFacade> { error("No 
 @Composable
 fun rememberPlayerFacade(
     state: PlayerState,
-    controller: AudioController
-): PlayerFacade = remember { PlayerFacade(state, controller) }
+    controller: AudioController,
+    coroutineScope: CoroutineScope
+): PlayerFacade = remember { PlayerFacade(state, controller, coroutineScope) }

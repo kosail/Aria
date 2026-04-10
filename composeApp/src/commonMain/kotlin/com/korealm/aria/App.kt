@@ -44,7 +44,8 @@ fun App(
     timerState: TimerController = rememberTimerController()
 ) {
     val themeState = rememberAppThemeState()
-    val playerFacadeState = rememberPlayerFacade(playerState, audioController)
+    val coroutineScope = rememberCoroutineScope() // Needed to perform audio IO from the player facade
+    val playerFacadeState = rememberPlayerFacade(playerState, audioController, coroutineScope)
 
     AppProvider(playerState, playerFacadeState, timerState, themeState) {
         val deviceSizeState = LocalDeviceSizeCategory.current

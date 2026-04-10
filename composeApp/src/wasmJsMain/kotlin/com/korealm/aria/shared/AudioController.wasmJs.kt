@@ -1,54 +1,87 @@
 package com.korealm.aria.shared
 
 import com.korealm.aria.model.AudioResource
-import kotlinx.browser.document
-import org.w3c.dom.HTMLAudioElement
+import js.buffer.ArrayBuffer
+import kotlinx.browser.window
+import kotlinx.coroutines.await
+import kotlinx.coroutines.coroutineScope
+import web.audio.*
+import web.http.Response
+import web.http.arrayBuffer
 
 @OptIn(ExperimentalWasmJsInterop::class)
 class WebAudioController : AudioController {
-    private val audios = mutableMapOf<AudioResource, HTMLAudioElement>()
+    private val audioContext = AudioContext()
+
+    private val buffers = mutableMapOf<AudioResource, AudioBuffer>()
+    private val sources = mutableMapOf<AudioResource, AudioBufferSourceNode>()
+    private val gains = mutableMapOf<AudioResource, GainNode>()
+
     private val perSoundVolume = mutableMapOf<AudioResource, Float>()
-    private var globalVolume: Float = 1f
+    private var globalVolume: Float = 0.8f
 
-    private fun getOrCreateAudio(audio: AudioResource): HTMLAudioElement {
-        return audios.getOrPut(audio) {
-            val element = document.createElement("audio") as HTMLAudioElement
-            element.src = audio.audioRes
-            element.loop = true
-            val base = perSoundVolume[audio] ?: 0.8f
-            element.volume = (base * globalVolume).toDouble()
-            element
+    private suspend fun loadBuffer(audio: AudioResource): AudioBuffer {
+        buffers[audio]?.let { return it }
+
+        val response: Response = window.fetch(audio.audioRes).await()
+        val arrayBuffer: ArrayBuffer = response.arrayBuffer()
+        val decoded: AudioBuffer = audioContext.decodeAudioData(arrayBuffer)
+
+        buffers[audio] = decoded
+        return decoded
+    }
+
+    override suspend fun load(audio: AudioResource) {
+        coroutineScope {
+            loadBuffer(audio)
         }
     }
 
-    override fun load(audio: AudioResource) {
-        getOrCreateAudio(audio).load()
+    override suspend fun play(audio: AudioResource) {
+        val buffer = loadBuffer(audio)
+        sources[audio]?.let {
+            it.stop()
+            it.disconnect()
+        }
+
+        val source = audioContext.createBufferSource()
+        source.buffer = buffer
+        source.loop = true
+
+        val gainNode = gains.getOrPut(audio) {
+            audioContext.createGain().also {
+                it.connect(audioContext.destination)
+            }
+        }
+
+        val base = perSoundVolume[audio] ?: 0.8f
+        gainNode.gain.value = base * globalVolume
+
+        source.connect(gainNode)
+
+        source.start()
+
+        sources[audio] = source
     }
 
-    override fun play(audio: AudioResource) {
-        val element = getOrCreateAudio(audio)
-            element.play()
-    }
-
-    override fun stop(audio: AudioResource) {
-        audios[audio]?.let { element ->
-            element.pause()
-            element.currentTime = 0.0
+    override suspend fun stop(audio: AudioResource) {
+        sources[audio]?.let { source ->
+            source.stop()
+            source.disconnect()
+            sources.remove(audio)
         }
     }
 
-    override fun setVolume(audio: AudioResource, volume: Float) {
+    override suspend fun setVolume(audio: AudioResource, volume: Float) {
         perSoundVolume[audio] = volume
-        audios[audio]?.let { element ->
-            element.volume = (volume * globalVolume).toDouble()
-        }
+        gains[audio]?.gain?.value = volume * globalVolume
     }
 
-    override fun setGlobalVolume(volume: Float) {
+    override suspend fun setGlobalVolume(volume: Float) {
         globalVolume = volume
-        audios.forEach { (res, element) ->
-            val base = perSoundVolume[res] ?: 1f
-            element.volume = (base * globalVolume).toDouble()
+        gains.forEach { (res, gain) ->
+            val base = perSoundVolume[res] ?: 0.8f
+            gain.gain.value = base * globalVolume
         }
     }
 }

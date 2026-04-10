@@ -5,9 +5,9 @@ import com.korealm.aria.model.AudioResource
 // Sounds don't need to be paused. They are either playing or stopped.
 
 interface AudioController {
-    fun load(audio: AudioResource)
-    fun play(audio: AudioResource)
-    fun stop(audio: AudioResource)
-    fun setVolume(audio: AudioResource, volume: Float)
-    fun setGlobalVolume(volume: Float)
+    suspend fun load(audio: AudioResource)
+    suspend fun play(audio: AudioResource)
+    suspend fun stop(audio: AudioResource)
+    suspend fun setVolume(audio: AudioResource, volume: Float)
+    suspend fun setGlobalVolume(volume: Float)
 }
