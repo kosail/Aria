@@ -1,30 +1,35 @@
 package com.korealm.aria.shared
 
+import aria.composeapp.generated.resources.Res
 import com.korealm.aria.model.AudioResource
-import java.io.File
+import java.util.concurrent.ConcurrentHashMap
 import javax.sound.sampled.AudioSystem
 import javax.sound.sampled.Clip
 import javax.sound.sampled.FloatControl
 import kotlin.math.log10
 
 class JvmAudioController : AudioController {
-    private val clips = mutableMapOf<AudioResource, Clip>()
+    private val BASE_AUDIO_VOLUME = 0.8f
+
+    private val clips = ConcurrentHashMap<AudioResource, Clip>()
     private val volumeControls = mutableMapOf<AudioResource, FloatControl>()
     private val perSoundVolume = mutableMapOf<AudioResource, Float>()
-    private var globalVolume: Float = 1f
+    private var globalVolume: Float = BASE_AUDIO_VOLUME
 
-    private fun getOrCreateClip(audio: AudioResource): Clip {
+    private suspend fun getOrCreateClip(audio: AudioResource): Clip {
         return clips.getOrPut(audio) {
-            val audioFile = File(javaClass.classLoader.getResource(audio.audioRes)!!.toURI())
-            val inputStream = AudioSystem.getAudioInputStream(audioFile)
-            val clip = AudioSystem.getClip()
-            clip.open(inputStream)
-            clip.loop(Clip.LOOP_CONTINUOUSLY)
+            val byteStream = Res.readBytes(audio.audioRes).inputStream()
+            val audioStream = AudioSystem.getAudioInputStream(byteStream)
 
-            val base = perSoundVolume[audio] ?: 0.8f
+            val clip = AudioSystem.getClip()
+            clip.open(audioStream)
+
+            val base = perSoundVolume[audio] ?: BASE_AUDIO_VOLUME
             val control = clip.getControl(FloatControl.Type.MASTER_GAIN) as FloatControl
             volumeControls[audio] = control
             internalSetVolume(control, base * globalVolume)
+
+            clip.loop(Clip.LOOP_CONTINUOUSLY)
             clip
         }
     }
@@ -67,7 +72,7 @@ class JvmAudioController : AudioController {
         globalVolume = volume
         // Recompute effective volume for all loaded sounds
         volumeControls.forEach { (res, control) ->
-            val base = perSoundVolume[res] ?: 1f
+            val base = perSoundVolume[res] ?: BASE_AUDIO_VOLUME
             val effective = (base * globalVolume).coerceIn(0f, 1f)
             internalSetVolume(control, effective)
         }

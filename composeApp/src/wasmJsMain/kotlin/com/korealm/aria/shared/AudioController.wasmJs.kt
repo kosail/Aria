@@ -11,6 +11,7 @@ import web.http.arrayBuffer
 
 @OptIn(ExperimentalWasmJsInterop::class)
 class WebAudioController : AudioController {
+    private val BASE_AUDIO_VOLUME = 0.8f
     private val audioContext = AudioContext()
 
     private val buffers = mutableMapOf<AudioResource, AudioBuffer>()
@@ -18,7 +19,7 @@ class WebAudioController : AudioController {
     private val gains = mutableMapOf<AudioResource, GainNode>()
 
     private val perSoundVolume = mutableMapOf<AudioResource, Float>()
-    private var globalVolume: Float = 0.8f
+    private var globalVolume: Float = BASE_AUDIO_VOLUME
 
     private suspend fun loadBuffer(audio: AudioResource): AudioBuffer {
         buffers[audio]?.let { return it }
@@ -54,7 +55,7 @@ class WebAudioController : AudioController {
             }
         }
 
-        val base = perSoundVolume[audio] ?: 0.8f
+        val base = perSoundVolume[audio] ?: BASE_AUDIO_VOLUME
         gainNode.gain.value = base * globalVolume
 
         source.connect(gainNode)
@@ -80,7 +81,7 @@ class WebAudioController : AudioController {
     override suspend fun setGlobalVolume(volume: Float) {
         globalVolume = volume
         gains.forEach { (res, gain) ->
-            val base = perSoundVolume[res] ?: 0.8f
+            val base = perSoundVolume[res] ?: BASE_AUDIO_VOLUME
             gain.gain.value = base * globalVolume
         }
     }
