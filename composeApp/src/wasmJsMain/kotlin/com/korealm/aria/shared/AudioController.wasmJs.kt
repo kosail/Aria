@@ -32,12 +32,6 @@ class WebAudioController : AudioController {
         return decoded
     }
 
-    override suspend fun load(audio: AudioResource) {
-        coroutineScope {
-            loadBuffer(audio)
-        }
-    }
-
     override suspend fun play(audio: AudioResource) {
         val buffer = loadBuffer(audio)
         sources[audio]?.let {

@@ -32,10 +32,6 @@ class AndroidAudioController(
         }
     }
 
-    override suspend fun load(audio: AudioResource) {
-        getOrCreatePlayer(audio)
-    }
-
     override suspend fun play(audio: AudioResource) {
         val player = getOrCreatePlayer(audio)
         if (!player.isPlaying) {

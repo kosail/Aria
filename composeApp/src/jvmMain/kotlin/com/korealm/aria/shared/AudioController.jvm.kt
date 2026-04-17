@@ -2,6 +2,10 @@ package com.korealm.aria.shared
 
 import aria.composeapp.generated.resources.Res
 import com.korealm.aria.model.AudioResource
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
+import java.io.BufferedInputStream
+import java.io.ByteArrayInputStream
 import java.util.concurrent.ConcurrentHashMap
 import javax.sound.sampled.AudioSystem
 import javax.sound.sampled.Clip
@@ -11,42 +15,54 @@ import kotlin.math.log10
 class JvmAudioController : AudioController {
     private val BASE_AUDIO_VOLUME = 0.8f
 
+    private val mutex = Mutex()
     private val clips = ConcurrentHashMap<AudioResource, Clip>()
-    private val volumeControls = mutableMapOf<AudioResource, FloatControl>()
-    private val perSoundVolume = mutableMapOf<AudioResource, Float>()
+    private val volumeControls = ConcurrentHashMap<AudioResource, FloatControl>()
+    private val perSoundVolume = ConcurrentHashMap<AudioResource, Float>()
+
     private var globalVolume: Float = BASE_AUDIO_VOLUME
 
     private suspend fun getOrCreateClip(audio: AudioResource): Clip {
-        return clips.getOrPut(audio) {
-            val byteStream = Res.readBytes(audio.audioRes).inputStream()
-            val audioStream = AudioSystem.getAudioInputStream(byteStream)
+        mutex.withLock {
+            return clips.getOrPut(audio) {
+                val bytes = Res.readBytes(audio.audioRes)
 
-            val clip = AudioSystem.getClip()
-            clip.open(audioStream)
+                val bais = ByteArrayInputStream(bytes)
+                val buffered = BufferedInputStream(bais)
 
-            val base = perSoundVolume[audio] ?: BASE_AUDIO_VOLUME
-            val control = clip.getControl(FloatControl.Type.MASTER_GAIN) as FloatControl
-            volumeControls[audio] = control
-            internalSetVolume(control, base * globalVolume)
+                val audioStream = AudioSystem.getAudioInputStream(buffered)
+                val clip = AudioSystem.getClip()
 
-            clip.loop(Clip.LOOP_CONTINUOUSLY)
-            clip
+                clip.open(audioStream)
+                audioStream.close()
+
+                val control = clip.getControl(FloatControl.Type.MASTER_GAIN) as FloatControl
+                volumeControls[audio] = control
+
+                val base = perSoundVolume[audio] ?: BASE_AUDIO_VOLUME
+                internalSetVolume(control, base * globalVolume)
+
+                return clip
+            }
         }
-    }
-
-    override suspend fun load(audio: AudioResource) {
-        getOrCreateClip(audio) // loads and caches
     }
 
     override suspend fun play(audio: AudioResource) {
         val clip = getOrCreateClip(audio)
-        if (!clip.isRunning) clip.start()
+        if (!clip.isRunning) {
+            with(clip) {
+                clip.framePosition = 0
+                loop(Clip.LOOP_CONTINUOUSLY)
+            }
+        }
     }
 
     override suspend fun stop(audio: AudioResource) {
         clips[audio]?.let { clip ->
-            clip.stop()
-            clip.framePosition = 0
+            if (clip.isRunning) {
+                clip.stop()
+            }
+            clip.flush()
         }
     }
 
