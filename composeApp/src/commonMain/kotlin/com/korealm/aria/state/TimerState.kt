@@ -4,6 +4,7 @@ import androidx.compose.runtime.*
 import com.korealm.aria.shared.TimerController
 import com.korealm.aria.utils.DefaultTimerController
 import kotlinx.coroutines.*
+import kotlin.time.Duration.Companion.milliseconds
 
 class Timer {
 
@@ -22,7 +23,7 @@ class Timer {
 
         job = scope.launch {
             while (remainingSeconds > 0 && isActive) {
-                delay(1000)
+                delay(1000.milliseconds)
                 remainingSeconds--
             }
             isRunning = false

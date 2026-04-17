@@ -29,7 +29,7 @@ fun SoundCard(
     cardSize: Dp,
     modifier: Modifier = Modifier,
     themeState: AppThemeState,
-    onVolumeChange: (Float) -> Unit,
+    onVolumeChange: (Double) -> Unit,
     onClick: () -> Unit
 ) {
     var isHover by remember { mutableStateOf(false) }

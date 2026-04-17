@@ -23,9 +23,9 @@ fun VolumeMenu(
     expanded: Boolean,
     onDismissRequest: () -> Unit,
     onResetButton: () -> Unit,
-    volume: Float,
+    volume: Double,
     offset: DpOffset,
-    onVolumeChange: (Float) -> Unit,
+    onVolumeChange: (Double) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val themeState = LocalThemeState.current

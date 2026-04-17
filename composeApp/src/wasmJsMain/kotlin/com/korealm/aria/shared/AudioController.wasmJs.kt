@@ -4,22 +4,21 @@ import com.korealm.aria.model.AudioResource
 import js.buffer.ArrayBuffer
 import kotlinx.browser.window
 import kotlinx.coroutines.await
-import kotlinx.coroutines.coroutineScope
 import web.audio.*
 import web.http.Response
 import web.http.arrayBuffer
 
 @OptIn(ExperimentalWasmJsInterop::class)
 class WebAudioController : AudioController {
-    private val BASE_AUDIO_VOLUME = 0.8f
+    private val BASE_AUDIO_VOLUME = 0.8
     private val audioContext = AudioContext()
 
     private val buffers = mutableMapOf<AudioResource, AudioBuffer>()
     private val sources = mutableMapOf<AudioResource, AudioBufferSourceNode>()
     private val gains = mutableMapOf<AudioResource, GainNode>()
 
-    private val perSoundVolume = mutableMapOf<AudioResource, Float>()
-    private var globalVolume: Float = BASE_AUDIO_VOLUME
+    private val perSoundVolume = mutableMapOf<AudioResource, Double>()
+    private var globalVolume = BASE_AUDIO_VOLUME
 
     private suspend fun loadBuffer(audio: AudioResource): AudioBuffer {
         buffers[audio]?.let { return it }
@@ -50,7 +49,7 @@ class WebAudioController : AudioController {
         }
 
         val base = perSoundVolume[audio] ?: BASE_AUDIO_VOLUME
-        gainNode.gain.value = base * globalVolume
+        gainNode.gain.value = (base * globalVolume).toFloat()
 
         source.connect(gainNode)
 
@@ -67,16 +66,16 @@ class WebAudioController : AudioController {
         }
     }
 
-    override suspend fun setVolume(audio: AudioResource, volume: Float) {
+    override suspend fun setVolume(audio: AudioResource, volume: Double) {
         perSoundVolume[audio] = volume
-        gains[audio]?.gain?.value = volume * globalVolume
+        gains[audio]?.gain?.value = (volume * globalVolume).toFloat()
     }
 
-    override suspend fun setGlobalVolume(volume: Float) {
+    override suspend fun setGlobalVolume(volume: Double) {
         globalVolume = volume
         gains.forEach { (res, gain) ->
             val base = perSoundVolume[res] ?: BASE_AUDIO_VOLUME
-            gain.gain.value = base * globalVolume
+            gain.gain.value = (base * globalVolume).toFloat()
         }
     }
 }

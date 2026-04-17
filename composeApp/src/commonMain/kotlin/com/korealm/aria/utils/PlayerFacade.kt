@@ -31,7 +31,7 @@ class PlayerFacade(
         }
     }
 
-    fun setVolume(sound: Sound, volume: Float) {
+    fun setVolume(sound: Sound, volume: Double) {
         updateSound(sound) { it.copy(volume = volume) }
         scope.launch {
             controller.setVolume(sound.resource, volume)
@@ -57,7 +57,7 @@ class PlayerFacade(
         state.playlist.filter { it.isSelected }.forEach(action)
     }
 
-    fun setGlobalVolume(volume: Float) {
+    fun setGlobalVolume(volume: Double) {
         state.playerVolume = volume
         scope.launch {
             controller.setGlobalVolume(volume)

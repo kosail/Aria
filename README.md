@@ -1,4 +1,4 @@
-![Aria logo](repo_images/banner.webp)
+![Aria logo](repo_assets/banner.webp)
 
 Nature’s silent symphony.
 ---
@@ -25,12 +25,12 @@ So this is my handcrafted tribute to it, to all the wonderful people who made po
 
 ### Current state
 - [x] **Web version (WASM/JS)**: Completed!
-- [] **Desktop version (JVM)**: Currently broken due to lack of OGG audio support. I need to find a way to make it work.
-- [] **Android version (WIP)**: Works, but it's not the best due MediaPlayer limitations. I will migrate to ExoPlayer soon.
+- [ ] **Desktop version (JVM)**: Works, but user-added audio files are yet to be supported.
+- [ ] **Android version (WIP)**: Works, but it's not the best due MediaPlayer limitations. I will migrate to ExoPlayer soon.
 
 ### Screenshots of the nightly version.
 Web version
-![Nightly screenshot, dark mode](repo_images/screenshot_web.webp)
+![Nightly screenshot, dark mode](repo_assets/screenshot_web.webp)
 
 
 <details>
@@ -39,7 +39,7 @@ Web version
 
 Desktop & Android version
 
-![Nightly screenshot, dark mode](repo_images/screenshot_jvm_android.webp)
+![Nightly screenshot, dark mode](repo_assets/screenshot_jvm_android.webp)
 
 <br/>
 
@@ -65,17 +65,23 @@ cd aria
 
 ---
 ## Current issues
-#### 1. The Desktop version does not support an OGG audio format, and thus it is currently broken.
-I did try my best, but I couldn't find an audio library that supported OGG format AND be fast as hell (or well, fast enough to not freeze the UI. I'm still a total beginner in coroutines and async programming, so it is very hard for me to find a solution).
+#### 1. The Desktop version is memory-heavy
+Finding audio libraries for Java or Kotlin that were modern, performant, and compatible with many formats was just... ugh. It was a nightmare. At the end, I couldn't make javax.sample work at all, and I gave up. I end up giving another try to [KorGe](https://github.com/korlibs/korge), even though I knew that it used javax.sample as its backend on JVM. Surprisingly, it worked. Thus, I assumed this whole issue was a skill issue, not a tooling one.
+Still, there were two big issues using KorGe:
+- OGG audio files are not supported. Due to limitations inherited from javax.sample, only WAV and MP3 are supported. 
+- The audio files took literally 1–2 seconds to load in the first play per session. This may not sound like a real issue... but I like blazing fast apps. I couldn't help but notice it.
+
+I solved the first issue by just using WAV files instead of OGG. Though, this made the app around 100MB larger in disk space.
+The second one, however, was a bit more tricky. I found that using `the streaming = true` flag helped a bit, but just a bit. I tried preloading the files at startup into memory, but loading them into resourcesVfs (KorGe's global memory) was not enough, yet actually started playing them. I noticed that after the first play per session, consecutive ones were much faster. Like, almost instantly. So my workaround was to set all files to streaming, and to start them all for an instant. It had no extra startup penalty to the app, as everything is done in asynchronously, but memory usage... hmm, well... 650MB. I hate RAM-heavy apps, but this time I literally did my best trying to find a better solution, but I just couldn't. Audio libs in Java are a thing. 
 
 
 ---
 
 ## 🔧 Stack & Resources
 ### Stack
-- **Compose Multiplatform (Desktop + WASM/JS)** — UI framework
-- **Audio library** — The audio library for Desktop Target (JVM) is javax.sample, while on web target uses the browser API. On Android, it currently uses MediaPlayer (but I'm planning to move to ExoPlayer).
-- **GitHub Pages** — For deployment
+- **Compose Multiplatform (Android, Desktop JVM and Web WASM/JS)** — UI framework
+- **Audio library** — The audio library for Desktop Target (JVM) is [KorGe](https://github.com/korlibs/korge), while on web target uses the browser API. On Android, it currently uses MediaPlayer (but I'm planning to move to ExoPlayer).
+- **GitHub Pages** — For deployment of the web target
 
 ### Resources
 
@@ -113,11 +119,12 @@ Sound designers: If you have original nature loops and would love to contribute 
 1. I'm still a beginner in Compose Multiplatform, not to say in Kotlin. It's such a difficult language...
 2. LocalCompositions are a very powerful feature. I'm still learning how to use them properly, and I take them similarly as Zustand stores in the React world. Anyway, I love how easy the code becomes when you use them.
 3. Hell, Kotlin-JS wrappers are god-sent but also diabolic to use.
+4. Kotlin async programming is hellish difficult. Like, I felt JS async was difficulty level = ok. But Kotlin? Kotlin's difficulty level = Ninja Gaiden 3.
 
 ---
 
 ## 📜 License
-![GPLv3 License logo. Copyright © 2012 Christian Cadena](repo_images/license-logos-by-christian-candena-GNU_GPLv3_License.webp)
+![GPLv3 License logo. Copyright © 2012 Christian Cadena](repo_assets/license-logos-by-christian-candena-GNU_GPLv3_License.webp)
 
 [GPLv3 (GNU General Public License v3)](COPYING.txt) – Free to use, modify, and distribute as long as this remains open source.
 
@@ -128,6 +135,6 @@ GPLv3 Logos:
 
 ---
 
-Aria Copyright © 2025, kosail
+Aria Copyright © 2025-2026, kosail
 <br>
 With love, from Honduras.

@@ -24,11 +24,11 @@ import com.korealm.aria.shared.getTargetPlatform
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun VolumeBar(
-    actualVolume: Float,
+    actualVolume: Double,
     isSelected: Boolean,
     themeState: AppThemeState,
     modifier: Modifier = Modifier,
-    onVolumeChange: (Float) -> Unit
+    onVolumeChange: (Double) -> Unit
 ) {
     val barHeight = when(getTargetPlatform()) {
         Target.DESKTOP -> 8.dp
@@ -36,8 +36,8 @@ fun VolumeBar(
     }
 
     Slider(
-        value = actualVolume,
-        onValueChange = onVolumeChange,
+        value = actualVolume.toFloat(),
+        onValueChange = { vol -> onVolumeChange(vol.toDouble()) },
         valueRange = 0f..1f,
         modifier = modifier.height(1.dp),
         thumb = {},

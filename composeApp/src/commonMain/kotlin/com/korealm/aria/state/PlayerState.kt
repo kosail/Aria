@@ -7,10 +7,10 @@ import com.korealm.aria.model.Sound
 // This class is the reactive state holder. Any changes in the playlist List will trigger a change.
 class PlayerState {
     var isPlayerActive by mutableStateOf(false)
-    var playerVolume by mutableStateOf(1f)
+    var playerVolume by mutableStateOf(1.0)
 
     /** The initial list includes all the built-in sounds, but it's mutable, so the user can add more in the future. */
-    var playlist = mutableStateListOf<Sound>(
+    var playlist = mutableStateListOf(
         Sound(AudioResource.RAIN),
         Sound(AudioResource.STORM),
         Sound(AudioResource.WIND),

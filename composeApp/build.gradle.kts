@@ -51,6 +51,8 @@ kotlin {
             implementation(libs.kotlinx.datetime)
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
+
+            implementation(libs.korge.core)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -59,7 +61,6 @@ kotlin {
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
-            implementation(libs.korge.core)
         }
         wasmJsMain.dependencies {
             implementation(libs.kotlin.wrappers.browser)

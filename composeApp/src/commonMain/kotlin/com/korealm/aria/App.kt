@@ -34,7 +34,6 @@ import com.korealm.aria.ui.PlayerBar
 import com.korealm.aria.ui.components.settings.about.AboutDialog
 import com.korealm.aria.ui.components.settings.preferences.PreferencesDialog
 import com.korealm.aria.ui.components.settings.timer.TimerDialog
-import com.korealm.aria.utils.LocalPlayerFacadeState
 import com.korealm.aria.utils.rememberPlayerFacade
 
 @Composable
@@ -117,13 +116,13 @@ fun App(
             val remaining = timerState.remainingSeconds
 
             if (timerState.isRunning && remaining in 0..15) {
-                val volume = remaining / 17f
+                val volume = remaining / 17.0
                 playerFacadeState.setGlobalVolume(volume)
             }
 
             if (remaining == 0L) {
                 playerFacadeState.stopAll()
-                playerFacadeState.setGlobalVolume(1f)
+                playerFacadeState.setGlobalVolume(1.0)
             }
         }
     }

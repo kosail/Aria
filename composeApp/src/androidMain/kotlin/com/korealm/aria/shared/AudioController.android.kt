@@ -7,11 +7,11 @@ import com.korealm.aria.model.AudioResource
 class AndroidAudioController(
     private val context: Context
 ) : AudioController {
-    private val BASE_AUDIO_VOLUME = 0.8f
+    private val BASE_AUDIO_VOLUME = 0.8
 
     private val players = mutableMapOf<AudioResource, MediaPlayer>()
-    private val perSoundVolume = mutableMapOf<AudioResource, Float>()
-    private var globalVolume: Float = 1f
+    private val perSoundVolume = mutableMapOf<AudioResource, Double>()
+    private var globalVolume = BASE_AUDIO_VOLUME
 
     private fun getOrCreatePlayer(audio: AudioResource): MediaPlayer {
         return players.getOrPut(audio) {
@@ -26,7 +26,7 @@ class AndroidAudioController(
                 isLooping = true
                 prepare()
                 val base = perSoundVolume[audio] ?: BASE_AUDIO_VOLUME
-                val volume = base * globalVolume
+                val volume = (base * globalVolume).toFloat()
                 setVolume(volume, volume)
             }
         }
@@ -48,19 +48,19 @@ class AndroidAudioController(
         }
     }
 
-    override suspend fun setVolume(audio: AudioResource, volume: Float) {
+    override suspend fun setVolume(audio: AudioResource, volume: Double) {
         perSoundVolume[audio] = volume
         players[audio]?.let { player ->
-            val effectiveVolume = volume * globalVolume
+            val effectiveVolume = (volume * globalVolume).toFloat()
             player.setVolume(effectiveVolume, effectiveVolume)
         }
     }
 
-    override suspend fun setGlobalVolume(volume: Float) {
+    override suspend fun setGlobalVolume(volume: Double) {
         globalVolume = volume
         players.forEach { (res, player) ->
             val base = perSoundVolume[res] ?: BASE_AUDIO_VOLUME
-            val effectiveVolume = base * globalVolume
+            val effectiveVolume = (base * globalVolume).toFloat()
             player.setVolume(effectiveVolume, effectiveVolume)
         }
     }

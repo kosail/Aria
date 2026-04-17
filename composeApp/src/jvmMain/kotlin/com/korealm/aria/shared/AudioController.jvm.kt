@@ -1,96 +1,93 @@
 package com.korealm.aria.shared
 
-import aria.composeapp.generated.resources.Res
 import com.korealm.aria.model.AudioResource
+import korlibs.audio.sound.*
+import korlibs.io.file.std.resourcesVfs
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
-import java.io.BufferedInputStream
-import java.io.ByteArrayInputStream
+import kotlinx.coroutines.withContext
 import java.util.concurrent.ConcurrentHashMap
-import javax.sound.sampled.AudioSystem
-import javax.sound.sampled.Clip
-import javax.sound.sampled.FloatControl
-import kotlin.math.log10
+import kotlin.time.Duration.Companion.milliseconds
 
 class JvmAudioController : AudioController {
-    private val BASE_AUDIO_VOLUME = 0.8f
-
     private val mutex = Mutex()
-    private val clips = ConcurrentHashMap<AudioResource, Clip>()
-    private val volumeControls = ConcurrentHashMap<AudioResource, FloatControl>()
-    private val perSoundVolume = ConcurrentHashMap<AudioResource, Float>()
 
-    private var globalVolume: Float = BASE_AUDIO_VOLUME
+    private val sounds = ConcurrentHashMap<AudioResource, Sound>()
 
-    private suspend fun getOrCreateClip(audio: AudioResource): Clip {
+    // Active playback instances (one per sound)
+    private val channels = ConcurrentHashMap<AudioResource, SoundChannel>()
+    private val perSoundVolume = ConcurrentHashMap<AudioResource, Double>()
+    private var globalVolume = 0.8
+
+    private suspend fun getOrLoadSound(audio: AudioResource): Sound = withContext(Dispatchers.IO) {
         mutex.withLock {
-            return clips.getOrPut(audio) {
-                val bytes = Res.readBytes(audio.audioRes)
-
-                val bais = ByteArrayInputStream(bytes)
-                val buffered = BufferedInputStream(bais)
-
-                val audioStream = AudioSystem.getAudioInputStream(buffered)
-                val clip = AudioSystem.getClip()
-
-                clip.open(audioStream)
-                audioStream.close()
-
-                val control = clip.getControl(FloatControl.Type.MASTER_GAIN) as FloatControl
-                volumeControls[audio] = control
-
-                val base = perSoundVolume[audio] ?: BASE_AUDIO_VOLUME
-                internalSetVolume(control, base * globalVolume)
-
-                return clip
+            sounds.getOrPut(audio) {
+                resourcesVfs[audio.audioRes].readSound(streaming = true)
             }
         }
     }
 
     override suspend fun play(audio: AudioResource) {
-        val clip = getOrCreateClip(audio)
-        if (!clip.isRunning) {
-            with(clip) {
-                clip.framePosition = 0
-                loop(Clip.LOOP_CONTINUOUSLY)
-            }
-        }
+        val sound = getOrLoadSound(audio)
+        channels[audio]?.stop()
+
+        val volume = (perSoundVolume[audio] ?: 0.8) * globalVolume
+
+        val channel = sound.play(PlaybackParameters(
+            times = PlaybackTimes.INFINITE,
+            volume = volume
+        ))
+
+        channels[audio] = channel
     }
 
     override suspend fun stop(audio: AudioResource) {
-        clips[audio]?.let { clip ->
-            if (clip.isRunning) {
-                clip.stop()
-            }
-            clip.flush()
-        }
+        channels[audio]?.stop()
+        channels.remove(audio)
     }
 
-    private fun internalSetVolume(control: FloatControl, volume: Float) {
-        // Avoid -Infinity for zero volume; map zero/near-zero to control.minimum directly
-        val target = if (volume <= 0f) control.minimum else (20f * log10(volume.toDouble())).toFloat()
-        val clamped = target.coerceIn(control.minimum, control.maximum)
-        // Only write when value actually changes to reduce latency on some mixers
-        if (control.value != clamped) {
-            control.value = clamped
-        }
-    }
-
-    override suspend fun setVolume(audio: AudioResource, volume: Float) {
+    override suspend fun setVolume(audio: AudioResource, volume: Double) {
         perSoundVolume[audio] = volume
-        volumeControls[audio]?.let { control ->
-            val effective = (volume * globalVolume).coerceIn(0f, 1f)
-            internalSetVolume(control, effective)
+
+        val effective = volume * globalVolume
+
+        channels[audio]?.volume = effective
+    }
+
+    override suspend fun setGlobalVolume(volume: Double) {
+        globalVolume = volume
+
+        channels.forEach { (audio, channel) ->
+            val base = perSoundVolume[audio] ?: 0.8
+            channel.volume = base * globalVolume
         }
     }
 
-    override suspend fun setGlobalVolume(volume: Float) {
-        globalVolume = volume
-        // Recompute effective volume for all loaded sounds
-        volumeControls.forEach { (res, control) ->
-            val base = perSoundVolume[res] ?: BASE_AUDIO_VOLUME
-            val effective = (base * globalVolume).coerceIn(0f, 1f)
-            internalSetVolume(control, effective)
-        }
+    /**
+    * Load all sounds to warm up the KorGe backend.
+     *
+     * Without warming up the backend, first time audio playing takes around 1-2 seconds, even with the play(streaming = true) parameter.
+     * However, after starting an audio for the first time, the second time works flawlessly.
+     *
+     * I believe that this flaw is inherited from javax.sample and not a KorGe issue.
+     *
+     * @return Unit
+    */
+    suspend fun warmup(audio: AudioResource) {
+        val sound = getOrLoadSound(audio)
+
+        val channel = sound.play(
+            PlaybackParameters(
+                times = PlaybackTimes.ONE,
+                volume = 0.0
+            )
+        )
+
+        // let korge backend initialize.
+        // For some reason, loading them into resourcesVfs is not enough, yet actually start playing them.
+        delay(50.milliseconds)
+        channel.stop()
     }
 }

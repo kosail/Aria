@@ -4,5 +4,5 @@ data class Sound(
     val resource: AudioResource,
     val isPlaying: Boolean = false,
     val isSelected: Boolean = false,
-    val volume: Float = 0.8f
+    val volume: Double = 0.8
 )
