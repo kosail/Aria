@@ -24,9 +24,9 @@ So this is my handcrafted tribute to it, to all the wonderful people who made po
 - Runs on Desktop (Linux, Windows, macOS, all via JVM), Android and Web (WASM/JS)
 
 ### Current state
-- [x] **Web version (WASM/JS)**: Completed!
-- [ ] **Desktop version (JVM)**: Works, but user-added audio files are yet to be supported.
-- [ ] **Android version (WIP)**: Works, but it's not the best due MediaPlayer limitations. I will migrate to ExoPlayer soon.
+- [x] **Web version (WASM/JS)**: Completed! Tho, needs accent color persistence.
+- [ ] **Desktop version (JVM)**: Works, but user-added audio files are yet to be supported. I'm thinking about dropping JVM target due severe limitations I encountered with JVM audio libs. javax.sample is just not good enough, KorGe and TinySound use javax.sample too, so it's the same thing.
+- [ ] **Android version (WIP)**: Works, so far so good. User-added audio files are yet to be supported.
 
 ### Screenshots of the nightly version.
 Web version
@@ -80,8 +80,9 @@ The second one, however, was a bit more tricky. I found that using `the streamin
 ## 🔧 Stack & Resources
 ### Stack
 - **Compose Multiplatform (Android, Desktop JVM and Web WASM/JS)** — UI framework
-- **Audio library** — The audio library for Desktop Target (JVM) is [KorGe](https://github.com/korlibs/korge), while on web target uses the browser API. On Android, it currently uses MediaPlayer (but I'm planning to move to ExoPlayer).
+- **Audio library** — The audio library for Desktop Target (JVM) is [KorGe](https://github.com/korlibs/korge), while on web target uses the browser API via kotlinx-browser. On Android, it currently uses Exoplayer.
 - **GitHub Pages** — For deployment of the web target
+- **Play Store** - Expected to be released soon.
 
 ### Resources
 
