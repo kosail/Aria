@@ -1,17 +1,5 @@
 package com.korealm.aria
 
-/* ! IMPORTANT:
- * I have to get the screen size and pixel density to create this app mobile first from the very beginning!
- * Create a ScreenDimensions State or something like that
-
- TODO: Features that I want to add in the future:
- * Implement settings capabilities: (I'll have to add kotlinx-serialization-json)
-     * Desktop: store in a json the app preferences.
-     * Web: store in a cookie a json with the app preferences.
- *
-
-*/
-
 import androidx.compose.animation.*
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background

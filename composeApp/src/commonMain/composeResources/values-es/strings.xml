@@ -34,12 +34,20 @@
 
     <string name="about_this_app">Acerca de esta app</string>
 
-    <string name="tribute_zero">Aria es un tributo que hice todo mi cariño a Blanket, una app de sonidos ambientales para Linux. Blanket fue creada originalmente por Rafael Mardojai, quien parte del GNOME Desktop Circle.</string>
+    <string name="tribute_zero">Aria es un tributo que hice todo mi cariño a Blanket, una aplicación de sonidos ambientales para Linux. Blanket fue creada originalmente por Rafael Mardojai, quien parte del GNOME Desktop Circle.</string>
 
     <string name="tribute_one">Aunque me parece una app perfecta y estéticamente preciosa, solo estaba disponible para Linux. La reconstruí desde cero para muchos otros dispositivos porque quería que mi mamá pudiera dormir mejor, sin tener que gastar tantos datos móviles en videos de lluvia de YouTube.</string>
 
     <string name="tribute_two">
-        Al igual que la original, Aria no tiene cuentas, ni anuncios, ni distracciones. Solo sonidos de la naturaleza. Mézclalos, ajústalos y deja que se desvanezcan mientras descansas o trabajas.
+        Este proyecto es una reescritura completa pensada para funcionar en varias plataformas, como Android, Web y computadoras.
+        Igual que la original, esta app no necesita cuentas, ni tiene anuncios, ni cosas innecesarias. Solo sonidos ambientales para concentrarte o descansar.
+    </string>
+    <string name="tribute_three">
+        Aria es software libre y de código abierto. Su código está disponible públicamente, y cualquiera puede compilarlo y distribuirlo bajo los términos de la licencia GPLv3.
+    </string>
+    <string name="tribute_four">
+        La versión de Android en la Google Play Store es de pago, y al comprarla apoyas el desarrollo de nuevas funciones, el mantenimiento y nuevas aplicaciones.
+        Aun así, siempre tienes la libertad de obtener, modificar y compartir la app por tu cuenta bajo la misma licencia.
     </string>
 
     <string name="donations_text">
@@ -66,13 +74,15 @@
     <string name="github_project">Página oficial del proyecto en GitHub</string>
     <string name="codeberg_project">Revisa el código fuente en Codeberg</string>
 
-
-
     <string name="license_legal">Licencia e información legal</string>
     <string name="license_legal_message">
-        Esta app es totalmente gratuita y está publicada bajo la Licencia GNU GPLv3, lo que significa que puedes usarla, compartirla y modificarla libremente.
+        Esta aplicación se distribuye bajo la Licencia Pública General de GNU v3.0 (GPLv3).
 
-        Si distribuyes versiones modificadas, debes compartir tus cambios bajo la misma licencia. No puedes imponer restricciones adicionales a los derechos de otras personas.
+        Eres libre de usar, estudiar, modificar y redistribuir esta app y su código fuente.
+        Si distribuyes versiones modificadas, también deben publicarse bajo GPLv3 y con su código fuente disponible. Ten en mente que no se pueden imponer restricciones adicionales a los derechos que otorga la licencia.
+
+        Esta app utiliza recursos (íconos y audios) tomados de Blanket, y están distribuidos bajo licencia GPL.
+        Cada autor conserva sus respectivos derechos de autor.
     </string>
 
 

@@ -10,13 +10,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import aria.composeapp.generated.resources.Res
 import aria.composeapp.generated.resources.aria
-import com.korealm.aria.shared.Target
+import com.korealm.aria.shared.Target.*
 import com.korealm.aria.shared.getTargetPlatform
 import com.korealm.aria.state.DeviceSizeCategory.*
 import com.korealm.aria.state.LocalDeviceSizeCategory
 import com.korealm.aria.state.LocalPlayerState
 import com.korealm.aria.state.LocalThemeState
-import com.korealm.aria.ui.components.SoundCard
+import com.korealm.aria.ui.components.home.AddSoundCard
+import com.korealm.aria.ui.components.home.SoundCard
 import com.korealm.aria.ui.components.misc.AriaTitleFont
 import com.korealm.aria.utils.LocalPlayerFacadeState
 import org.jetbrains.compose.resources.stringResource
@@ -46,7 +47,7 @@ fun Home(
         ) {
 
             // Only show the title of the app if it is being run as web or mobile app.
-            if (getTargetPlatform() != Target.DESKTOP) {
+            if (getTargetPlatform() != DESKTOP) {
                 Box(
                     contentAlignment = if (deviceSizeState == Mobile) Alignment.Center else Alignment.CenterStart,
                     modifier = Modifier.fillMaxWidth()
@@ -68,7 +69,7 @@ fun Home(
 
             val soundCardWidth = when (deviceSizeState) {
                 Mobile -> 124.dp
-                else -> if(getTargetPlatform() == Target.WEB) 216.dp else 170.dp
+                else -> if(getTargetPlatform() == WEB) 216.dp else 170.dp
             }
 
             LazyVerticalGrid (
@@ -95,6 +96,17 @@ fun Home(
                             if (index != -1) playerState.playlist[index] = updated
 
                             if (updated.isSelected) playerFacade.play(updated) else playerFacade.stop(updated)
+                        }
+                    }
+
+                }
+                if (getTargetPlatform() == ANDROID) {
+                    item {
+                        AddSoundCard(
+                            themeState = themeState,
+                            cardSize = soundCardWidth
+                        ) {
+
                         }
                     }
                 }
