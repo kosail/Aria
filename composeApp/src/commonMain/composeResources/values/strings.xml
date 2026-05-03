@@ -36,13 +36,23 @@
     <string name="kosail">Made by kosail</string>
 
     <string name="about_this_app">Details about this app</string>
-
-    <string name="tribute_zero">Aria is a handcrafted tribute to Blanket, a wonderful Linux ambient sounds app, originally created by Rafael Mardojai, part of the GNOME Desktop Circle.</string>
-
-    <string name="tribute_one">Though beautiful, it was only for Linux. I rebuilt it from scratch for many other devices, because I wanted that my mom had better sleep without spending too much mobile data on YouTube videos.</string>
+    <string name="tribute_zero">
+        Aria is a handcrafted tribute to Blanket, a Linux ambient sounds app originally created by Rafael Mardojai as part of the GNOME Circle.
+    </string>
+    <string name="tribute_one">
+        Though beautiful, it was only for Linux. I rebuilt it from scratch for many other devices because I wanted that my mom had better sleep without spending too much mobile data on YouTube videos.
+    </string>
 
     <string name="tribute_two">
-        Like the original, Aria has no accounts, no ads, no clutter. Just nature’s sounds. Mix them, adjust them, let them fade away as you rest or work.
+        This project is a complete rewrite designed to run across multiple platforms, including Android, Desktop, and Linux environments.
+        Like the original, Aria has no accounts, no ads, and no unnecessary complexity. Just ambient soundscapes to help you focus or rest.
+    </string>
+    <string name="tribute_three">
+        Aria is free and open-source software. Its source code is publicly available, and anyone can build and distribute it under the terms of the GPLv3 license.
+    </string>
+    <string name="tribute_four">
+        The Android version on the Play Store is a paid distribution. Purchasing it supports ongoing development, maintenance, and future improvements.
+        You are always free to obtain, modify, and share the app independently under the same license.
     </string>
 
     <string name="donations_text">
@@ -78,9 +88,15 @@
 
     <string name="license_legal">License and legal info</string>
     <string name="license_legal_message">
-        This app is totally free, and it is released under the GNU GPLv3 License, which means you are free to use, share, and modify this app.
+        This application is released under the GNU General Public License v3.0 (GPLv3).
 
-        If you distribute modified versions, you must share your changes under the same license. You may not impose additional restrictions on others’ rights.
+        You are free to use, study, modify, and redistribute this app and its source code.
+        If you distribute modified versions, you must also license them under GPLv3 and make the corresponding source code available.
+
+        This app includes assets and inspiration from existing GPL-licensed projects.
+        All original authors retain their respective copyrights.
+
+        No additional restrictions may be applied to the rights granted by this license.
     </string>
 
 

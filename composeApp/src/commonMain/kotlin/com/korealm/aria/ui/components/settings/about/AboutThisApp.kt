@@ -50,27 +50,22 @@ fun AboutThisApp(
             Column(
                 modifier = Modifier.padding(horizontal = 24.dp)
             ) {
-                Text(
-                    text = stringResource(Res.string.tribute_zero),
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Light,
-                )
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                Text(
-                    text = stringResource(Res.string.tribute_one),
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Light,
-                )
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                Text(
-                    text = stringResource(Res.string.tribute_two).trimIndent(),
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Light,
-                )
+                arrayOf(
+                    Res.string.tribute_zero,
+                    Res.string.tribute_one,
+                    Res.string.tribute_two,
+                    Res.string.tribute_three,
+                    Res.string.tribute_four,
+                ).forEach { stringRes ->
+                    Text(
+                        text = stringResource(stringRes).trimIndent(),
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Light,
+                    )
+                    if (stringRes != Res.string.tribute_four) {
+                        Spacer(modifier = Modifier.height(16.dp))
+                    }
+                }
             }
 
             HorizontalDivider(

@@ -16,6 +16,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import aria.composeapp.generated.resources.*
+import com.korealm.aria.shared.Target
+import com.korealm.aria.shared.getTargetPlatform
 import com.korealm.aria.shared.openUrl
 import com.korealm.aria.ui.components.misc.Copyright
 import com.korealm.aria.ui.components.misc.GtkButton
@@ -102,20 +104,23 @@ fun AboutHome(
                 )
             }
 
-            GtkButton(
-                onClick = { onTabChange(AboutPages.DONATE) },
-                buttonShape = GtkButtonShape.TOP,
-                modifier = Modifier
-            ) {
-                LabelWithIcon(
-                    stringRes = Res.string.donate,
-                    iconRes = Res.drawable.chevron_right
-                )
+            if (getTargetPlatform() != Target.ANDROID) {
+                GtkButton(
+                    onClick = { onTabChange(AboutPages.DONATE) },
+                    buttonShape = GtkButtonShape.TOP,
+                    modifier = Modifier
+                ) {
+                    LabelWithIcon(
+                        stringRes = Res.string.donate,
+                        iconRes = Res.drawable.chevron_right
+                    )
+                }
             }
 
+            val creditBtnShape = if (getTargetPlatform() == Target.ANDROID) GtkButtonShape.TOP else GtkButtonShape.MIDDLE
             GtkButton(
                 onClick = { onTabChange(AboutPages.CREDITS) },
-                buttonShape = GtkButtonShape.MIDDLE,
+                buttonShape = creditBtnShape,
                 modifier = Modifier
             ) {
                 LabelWithIcon(
