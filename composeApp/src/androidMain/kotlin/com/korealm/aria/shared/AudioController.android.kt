@@ -1,7 +1,11 @@
 package com.korealm.aria.shared
 
 import android.content.Context
-import android.media.MediaPlayer
+import androidx.annotation.OptIn
+import androidx.media3.common.MediaItem
+import androidx.media3.common.Player
+import androidx.media3.common.util.UnstableApi
+import androidx.media3.exoplayer.ExoPlayer
 import com.korealm.aria.model.AudioResource
 
 class AndroidAudioController(
@@ -9,25 +13,20 @@ class AndroidAudioController(
 ) : AudioController {
     private val BASE_AUDIO_VOLUME = 0.8
 
-    private val players = mutableMapOf<AudioResource, MediaPlayer>()
+    private val players = mutableMapOf<AudioResource, ExoPlayer>()
     private val perSoundVolume = mutableMapOf<AudioResource, Double>()
     private var globalVolume = BASE_AUDIO_VOLUME
 
-    private fun getOrCreatePlayer(audio: AudioResource): MediaPlayer {
+    @OptIn(UnstableApi::class)
+    private fun getOrCreatePlayer(audio: AudioResource): ExoPlayer {
         return players.getOrPut(audio) {
-            MediaPlayer().apply {
-                val assetFileDescriptor = context.assets.openFd(audio.audioRes)
-                setDataSource(
-                    assetFileDescriptor.fileDescriptor,
-                    assetFileDescriptor.startOffset,
-                    assetFileDescriptor.length
-                )
-                assetFileDescriptor.close()
-                isLooping = true
+            ExoPlayer.Builder(context).build().apply {
+                val mediaItem = MediaItem.fromUri("asset:///${audio.audioRes}")
+                setMediaItem(mediaItem)
+                repeatMode = Player.REPEAT_MODE_ALL
                 prepare()
                 val base = perSoundVolume[audio] ?: BASE_AUDIO_VOLUME
-                val volume = (base * globalVolume).toFloat()
-                setVolume(volume, volume)
+                volume = (base * globalVolume).toFloat()
             }
         }
     }
@@ -35,7 +34,7 @@ class AndroidAudioController(
     override suspend fun play(audio: AudioResource) {
         val player = getOrCreatePlayer(audio)
         if (!player.isPlaying) {
-            player.start()
+            player.play()
         }
     }
 
@@ -52,7 +51,7 @@ class AndroidAudioController(
         perSoundVolume[audio] = volume
         players[audio]?.let { player ->
             val effectiveVolume = (volume * globalVolume).toFloat()
-            player.setVolume(effectiveVolume, effectiveVolume)
+            player.volume = effectiveVolume
         }
     }
 
@@ -61,7 +60,7 @@ class AndroidAudioController(
         players.forEach { (res, player) ->
             val base = perSoundVolume[res] ?: BASE_AUDIO_VOLUME
             val effectiveVolume = (base * globalVolume).toFloat()
-            player.setVolume(effectiveVolume, effectiveVolume)
+            player.volume = effectiveVolume
         }
     }
 

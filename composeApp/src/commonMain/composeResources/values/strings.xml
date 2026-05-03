@@ -85,7 +85,7 @@
 
 
     <string name="credits">Credits</string>
-    <string name="credits_code_by">Code by</string>
+    <string name="credits_code_by">Code and created by</string>
     <string name="credits_design_by">Design by</string>
     <string name="credits_sounds_by">Sounds by</string>
     <string name="credits_sounds_edited_by">Sounds edited by</string>
@@ -93,7 +93,7 @@
     <string name="credits_kosail">kosail</string>
     <string name="credits_design_by_one">Jakub Steiner: Sounds icons</string>
     <string name="credits_design_by_two">Rafael Mardojai: Creator of Blanket app</string>
-    <string name="credits_design_by_three">kosail: App icon</string>
+    <string name="credits_design_by_three">kosail: Aria app icon</string>
 
     <string name="credits_sounds_by_one">alex36917: Rain</string>
     <string name="credits_sounds_by_two">Digifish music: Storm</string>
