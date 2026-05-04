@@ -1,12 +1,8 @@
 package com.korealm.aria.ui.components.home
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.TooltipAnchorPosition
-import androidx.compose.material3.TooltipBox
+import androidx.compose.material3.*
 import androidx.compose.material3.TooltipDefaults.rememberTooltipPositionProvider
-import androidx.compose.material3.rememberTooltipState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,7 +16,6 @@ import com.korealm.aria.state.AppThemeState
 import com.korealm.aria.ui.components.misc.BigIcon
 import com.korealm.aria.ui.components.misc.StyledTooltip
 import com.korealm.aria.ui.components.volume.VolumeBar
-import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -46,11 +41,10 @@ fun SoundCard(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.fillMaxSize()
             ) {
-                val iconRes = sound.resource.icon
-                val titleRes = sound.resource.title
+                val title = sound.resource.title
 
                 TooltipBox(
-                    tooltip = { StyledTooltip(stringResource(sound.resource.title)) },
+                    tooltip = { StyledTooltip(title) },
                     state = rememberTooltipState(),
                     positionProvider = rememberTooltipPositionProvider(
                         positioning = TooltipAnchorPosition.Below,
@@ -58,8 +52,8 @@ fun SoundCard(
                     )
                 ) {
                     BigIcon(
-                        iconRes = iconRes,
-                        contentDescription = stringResource(titleRes),
+                        iconRes = sound.resource.icon,
+                        contentDescription = title,
                         isActive = sound.isSelected,
                         iconColor = if (sound.isSelected) {
                             MaterialTheme.colorScheme.onSurface

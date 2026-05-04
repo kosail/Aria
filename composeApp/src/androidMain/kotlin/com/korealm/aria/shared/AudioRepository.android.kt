@@ -9,6 +9,7 @@ import com.korealm.aria.model.AudioRepository
 import com.korealm.aria.model.AudioResource
 import com.korealm.aria.utils.UserAudioStorage
 import com.korealm.aria.utils.copyToInternalStorage
+import org.jetbrains.compose.resources.getString
 
 /**
  * A repository for managing audio resources in an Android application. This class combines
@@ -39,7 +40,7 @@ class AndroidAudioRepository(
             AudioResource(
                 id = 10_000 + index,
                 icon = Res.drawable.heart_symbolic,
-                title = Res.string.audio_user_added, // TODO: Make audio names customizable in the future
+                title = getString(Res.string.audio_user_added),
                 audioPath = path
             )
         }
