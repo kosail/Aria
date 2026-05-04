@@ -90,8 +90,8 @@ The second one, however, was a bit more tricky. I found that using `the streamin
 <summary>Show/Hide</summary>
 
 #### -> Icons
-- [Original icons from Blanket, on GitHub](https://github.com/rafaelmardojai/blanket)
-- [volume icon from Lucide](https://lucide.dev)
+- [Original sounds icons from Blanket, on GitHub](https://github.com/rafaelmardojai/blanket)
+- [All the rest of the icons are from Lucide.dev](https://lucide.dev)
 
 
 #### -> Fonts
