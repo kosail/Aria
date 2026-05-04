@@ -24,7 +24,7 @@ fun CustomSoundEditDialog(
     var page by remember { mutableStateOf(CustomSoundPages.HOME) }
 
     val height = when (page) {
-        CustomSoundPages.HOME -> 300.dp
+        CustomSoundPages.HOME -> 310.dp
         CustomSoundPages.EDIT_NAME -> 250.dp
         CustomSoundPages.EDIT_ICON -> 600.dp
         CustomSoundPages.DELETE -> 300.dp

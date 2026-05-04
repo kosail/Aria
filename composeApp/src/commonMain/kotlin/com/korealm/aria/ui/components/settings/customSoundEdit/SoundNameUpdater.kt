@@ -31,7 +31,7 @@ fun SoundNameUpdater(
 
     LaunchedEffect(newName) {
         delay(50.milliseconds)
-        newName = newName.take(20)
+        newName = newName.take(22)
     }
 
     Column(
@@ -51,10 +51,10 @@ fun SoundNameUpdater(
                 .height(56.dp)
         )
 
-        Box(
+        Column(
             modifier = Modifier
                 .padding(bottom = 24.dp)
-                .weight(1f)
+                .padding(horizontal = 8.dp)
         ) {
             TextField(
                 placeholder = {
@@ -76,16 +76,16 @@ fun SoundNameUpdater(
                 ),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 16.dp, horizontal = 8.dp)
             )
 
             Text(
-                text = stringResource(Res.string.audio_edit_new_name_limit) + "${newName.length}/20",
+                text = stringResource(Res.string.audio_edit_new_name_limit) + "${newName.length}/22",
                 style = MaterialTheme.typography.labelLarge,
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
+                textAlign = TextAlign.End,
                 modifier = Modifier
-                    .align(Alignment.BottomEnd)
-                    .padding(end = 8.dp)
+                    .fillMaxWidth()
+                    .padding(top = 4.dp)
             )
         }
 

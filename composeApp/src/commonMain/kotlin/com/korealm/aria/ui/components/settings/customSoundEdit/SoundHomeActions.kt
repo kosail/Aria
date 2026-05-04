@@ -26,20 +26,17 @@ fun SoundHomeActions(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxSize()
-            .verticalScroll(rememberScrollState()) // TODO: Fix this issue on long texts
+            .verticalScroll(rememberScrollState())
     ) {
         Column(
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.Start,
-            modifier = Modifier
-                .weight(1f)
-                .padding(24.dp)
+            modifier = Modifier.padding(24.dp)
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Start,
-                modifier = Modifier
-                    .fillMaxWidth()
+                modifier = Modifier.fillMaxWidth()
             ) {
 
                 Text(
@@ -60,7 +57,7 @@ fun SoundHomeActions(
                 verticalArrangement = Arrangement.Center,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 16.dp, horizontal = 12.dp)
+                    .padding(horizontal = 12.dp)
             ) {
                 val pages = arrayOf(
                     CustomSoundPages.EDIT_NAME to Res.string.audio_edit_name,
