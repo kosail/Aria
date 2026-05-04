@@ -41,27 +41,16 @@ fun SoundCard(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.fillMaxSize()
             ) {
-                val title = sound.resource.title
-
-                TooltipBox(
-                    tooltip = { StyledTooltip(title) },
-                    state = rememberTooltipState(),
-                    positionProvider = rememberTooltipPositionProvider(
-                        positioning = TooltipAnchorPosition.Below,
-                        spacingBetweenTooltipAndAnchor = 4.dp
-                    )
-                ) {
-                    BigIcon(
-                        iconRes = sound.resource.icon,
-                        contentDescription = title,
-                        isActive = sound.isSelected,
-                        iconColor = if (sound.isSelected) {
-                            MaterialTheme.colorScheme.onSurface
-                        } else {
-                            Color.Gray
-                        },
-                    )
-                }
+                BigIcon(
+                    iconRes = sound.resource.icon,
+                    contentDescription = sound.resource.title,
+                    isActive = sound.isSelected,
+                    iconColor = if (sound.isSelected) {
+                        MaterialTheme.colorScheme.onSurface
+                    } else {
+                        Color.Gray
+                    },
+                )
 
                 Spacer(Modifier.height(36.dp))
             }

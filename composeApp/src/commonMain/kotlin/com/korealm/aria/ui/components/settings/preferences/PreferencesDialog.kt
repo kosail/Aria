@@ -25,6 +25,7 @@ import com.korealm.aria.shared.getTargetPlatform
 import com.korealm.aria.state.LocalThemeState
 import com.korealm.aria.theme.AccentColor
 import com.korealm.aria.ui.components.misc.CustomDialog
+import com.korealm.aria.ui.components.misc.GtkButton
 import com.korealm.aria.ui.components.misc.InvisibleButton
 import com.korealm.aria.utils.getColorScheme
 import org.jetbrains.compose.resources.stringResource
@@ -146,12 +147,18 @@ fun PreferencesDialog(
                 }
 
                 if (getTargetPlatform() != WEB) {
-                    InvisibleButton(
-                        title = Res.string.delete_all_personal_sounds,
+                    GtkButton(
                         onClick = { },
                         modifier = Modifier.clip(RoundedCornerShape(16.dp)),
-                        titleModifier = Modifier.padding(vertical = 12.dp, horizontal = 8.dp)
-                    )
+                    ) {
+                        Text(
+                            text = stringResource(Res.string.delete_all_personal_sounds),
+                            style = MaterialTheme.typography.bodyMedium,
+                            fontWeight = FontWeight.Light,
+                            textAlign = TextAlign.Start,
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                    }
                 }
             }
 

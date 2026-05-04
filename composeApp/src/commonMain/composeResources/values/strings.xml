@@ -19,6 +19,9 @@
     <string name="audio_user_added">Added sound</string>
     <string name="audio_add">Add...</string>
 
+    <string name="audio_edit_icon">Change icon</string>
+    <string name="audio_delete">Delete sound</string>
+
     <string name="play">Play</string>
     <string name="pause">Pause</string>
 

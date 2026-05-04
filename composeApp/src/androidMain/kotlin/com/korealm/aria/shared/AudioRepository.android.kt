@@ -12,6 +12,7 @@ import com.korealm.aria.utils.UserAudioDataStore
 import com.korealm.aria.utils.copyToInternalStorage
 import com.korealm.aria.utils.iconFromName
 import org.jetbrains.compose.resources.getString
+import java.io.File
 
 /**
  * A repository for managing audio resources in an Android application. This class combines
@@ -86,13 +87,23 @@ class AndroidAudioRepository(
         return (list.maxOfOrNull { it.id } ?: 10_000) + 1
     }
 
+    override suspend fun updateTitle(id: Int, newTitle: String) {
+        val current = storage.load().toMutableList()
+
+        val index = current.indexOfFirst { it.id == id }
+        if (index == -1) return
+
+        current[index] = current[index].copy(title = newTitle)
+        storage.save(current)
+    }
+
     /**
      * Updates the icon of a specific user-defined audio resource.
      *
      * @param id The unique identifier of the audio resource to update.
      * @param icon The new icon to set for the audio resource, represented as a value from the CustomSoundIcons enum.
      */
-    suspend fun updateIcon(id: Int, icon: CustomSoundIcons) {
+    override suspend fun updateIcon(id: Int, icon: CustomSoundIcons) {
         val current = storage.load().toMutableList()
 
         val index = current.indexOfFirst { it.id == id }
@@ -103,5 +114,33 @@ class AndroidAudioRepository(
         )
 
         storage.save(current)
+    }
+
+    override suspend fun deleteUserSound(id: Int) {
+        val current = storage.load().toMutableList()
+
+        val index = current.indexOfFirst { it.id == id }
+        if (index == -1) return
+
+        val item = current[index]
+
+        // Remove file from internal storage
+        val filePath = item.path.removePrefix("file://")
+        runCatching { File(filePath).delete() }
+
+        current.removeAt(index)
+        storage.save(current)
+    }
+
+    override suspend fun deleteAllUserSounds() {
+        val current = storage.load()
+
+        // Delete all files
+        current.forEach {
+            val filePath = it.path.removePrefix("file://")
+            runCatching { File(filePath).delete() }
+        }
+
+        storage.save(emptyList())
     }
 }

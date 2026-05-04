@@ -19,6 +19,7 @@ import com.korealm.aria.state.DeviceSizeCategory.Mobile
 import com.korealm.aria.theme.AppTheme
 import com.korealm.aria.ui.Home
 import com.korealm.aria.ui.PlayerBar
+import com.korealm.aria.ui.components.settings.iconPicker.IconPickerDialog
 import com.korealm.aria.ui.components.settings.about.AboutDialog
 import com.korealm.aria.ui.components.settings.preferences.PreferencesDialog
 import com.korealm.aria.ui.components.settings.timer.TimerDialog
@@ -49,6 +50,7 @@ fun App(
         var isTimerDialog by remember { mutableStateOf(false) }
         var isPreferencesDialog by remember { mutableStateOf(false) }
         var isAboutDialog by remember { mutableStateOf(false) }
+        var isIconPickerDialog by remember { mutableStateOf(false) } // TODO: set to true just for development
 
         AppTheme(
             darkTheme = themeState.isDarkTheme,
@@ -82,7 +84,7 @@ fun App(
                 )
             }
 
-            // Settings and about dialogs
+            // Dialogs
             AnimatedVisibility(
                 visible = isPreferencesDialog,
                 enter = fadeIn(animationSpec = tween(durationMillis = 150)) + expandIn(animationSpec = tween(durationMillis = 150)),
@@ -105,6 +107,14 @@ fun App(
                 exit = fadeOut(animationSpec = tween(durationMillis = 150)) + shrinkOut(animationSpec = tween(durationMillis = 150))
             ) {
                 TimerDialog { isTimerDialog = false }
+            }
+
+            AnimatedVisibility(
+                visible = isIconPickerDialog,
+                enter = fadeIn(animationSpec = tween(durationMillis = 150)) + expandIn(animationSpec = tween(durationMillis = 150)),
+                exit = fadeOut(animationSpec = tween(durationMillis = 150)) + shrinkOut(animationSpec = tween(durationMillis = 150))
+            ) {
+                IconPickerDialog { isIconPickerDialog = false }
             }
 
         }

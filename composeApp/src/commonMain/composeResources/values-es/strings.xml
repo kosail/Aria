@@ -15,6 +15,9 @@
     <string name="audio_white_noise">Ruido blanco</string>
     <string name="audio_add">Añadir...</string>
 
+    <string name="audio_edit_icon">Cambiar ícono</string>
+    <string name="audio_delete">Eliminar sonido</string>
+
     <string name="play">Reproducir</string>
     <string name="pause">Pausar</string>
 

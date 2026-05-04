@@ -101,13 +101,28 @@ class BuiltInAudioRepository : AudioRepository {
         return emptyList() // Android target will override.
     }
 
-    override suspend fun updateIcon(id: Int, icon: CustomSoundIcons) {
+
+    // Android only functions forbidden in Desktop and Web targets:
+    // -----------------------------------------------------------
+    override suspend fun updateTitle(id: Int, name: String) {
         /*
          * Android provides its own AudioRepository instance class, so it does not uses this implementation.
          * As for web and desktop targets, which don't support custom sounds, well, they do execute this code.
          *
          */
 
-        throw UnsupportedOperationException("Custom icons not supported on Web Target! :(")
+        throw UnsupportedOperationException("Custom sounds not supported on Desktop nor Web Target! :(")
+    }
+
+    override suspend fun updateIcon(id: Int, icon: CustomSoundIcons) {
+        throw UnsupportedOperationException("Custom sounds not supported on Desktop nor Web Target! :(")
+    }
+
+    override suspend fun deleteUserSound(id: Int) {
+        throw UnsupportedOperationException("Custom sounds not supported on Desktop nor Web Target! :(")
+    }
+
+    override suspend fun deleteAllUserSounds() {
+        throw UnsupportedOperationException("Custom sounds not supported on Desktop nor Web Target! :(")
     }
 }
