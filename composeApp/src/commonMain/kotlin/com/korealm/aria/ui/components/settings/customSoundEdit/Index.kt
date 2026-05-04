@@ -3,14 +3,13 @@ package com.korealm.aria.ui.components.settings.customSoundEdit
 import androidx.compose.animation.*
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.korealm.aria.model.AudioResource
 import com.korealm.aria.state.LocalPlayerState
 import com.korealm.aria.ui.components.misc.CustomDialog
+import com.korealm.aria.utils.LocalPlayerFacadeState
 import kotlinx.coroutines.launch
 
 @Composable
@@ -20,7 +19,10 @@ fun CustomSoundEditDialog(
     onDismissRequest: () -> Unit
 ) {
     val playerState = LocalPlayerState.current
+    val playerFacade = LocalPlayerFacadeState.current
+
     val scope = rememberCoroutineScope()
+
     var page by remember { mutableStateOf(CustomSoundPages.HOME) }
 
     val height = when (page) {
@@ -65,9 +67,11 @@ fun CustomSoundEditDialog(
                     }
                 }
                 CustomSoundPages.DELETE -> {
-                    val currentAudio = playerState.playlist.find { it.resource.id == audio.id }?.resource ?: audio
-                    SoundDelete(title = currentAudio.title) {
+                    val currentSound = playerState.playlist.find { it.resource.id == audio.id }
+                    val title = currentSound?.resource?.title ?: audio.title
+                    SoundDelete(title = title) {
                         scope.launch {
+                            if (currentSound?.isPlaying == true) playerFacade.stop(currentSound)
                             playerState.deleteUserSound(audio.id)
                             onDismissRequest()
                         }

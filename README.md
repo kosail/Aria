@@ -25,8 +25,8 @@ So this is my handcrafted tribute to it, to all the wonderful people who made po
 
 ### Current state
 - [x] **Web version (WASM/JS)**: Completed! Tho, needs accent color persistence.
-- [ ] **Desktop version (JVM)**: Works, but user-added audio files are yet to be supported. I'm thinking about dropping JVM target due severe limitations I encountered with JVM audio libs. javax.sample is just not good enough, KorGe and TinySound use javax.sample too, so it's the same thing.
-- [ ] **Android version (WIP)**: Works, so far so good. User-added audio files are yet to be supported.
+- [ ] **Desktop version (JVM)**: Works, but user-added audio files are yet to be supported. I'm thinking about dropping the JVM target due to severe limitations I encountered with JVM audio libs. javax.sample is just not good enough, KorGe and TinySound use javax.sample too, so it's the same thing.
+- [ ] **Android version (WIP)**: Works. Only theme persistence is missing.
 
 ### Screenshots of the nightly version.
 Web version

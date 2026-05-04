@@ -22,7 +22,8 @@ suspend fun copyToInternalStorage(
 ): String = withContext(Dispatchers.IO) {
     val resolver = context.contentResolver
 
-    val name = queryFileName(resolver, uri) ?: "audio_${System.currentTimeMillis()}"
+    val uniqueId = System.currentTimeMillis()
+    val name = queryFileName(resolver, uri) + uniqueId
 
     val dir = File(context.filesDir, "audio").apply { mkdirs() }
     val file = File(dir, name)
@@ -41,15 +42,15 @@ suspend fun copyToInternalStorage(
  *
  * @param resolver The content resolver used to query the URI.
  * @param uri The content URI of the file to query.
- * @return The display name of the file, or null if it could not be determined.
+ * @return The display name of the file, or an empty string if it could not be determined.
  */
 private fun queryFileName(
     resolver: ContentResolver,
     uri: Uri
 ): String? {
-    val cursor = resolver.query(uri, null, null, null, null) ?: return null
+    val cursor = resolver.query(uri, null, null, null, null) ?: return ""
     return cursor.use {
         val index = it.getColumnIndex(OpenableColumns.DISPLAY_NAME)
-        if (it.moveToFirst() && index >= 0) it.getString(index) else null
+        if (it.moveToFirst() && index >= 0) it.getString(index) else ""
     }
 }
