@@ -19,9 +19,17 @@ import com.korealm.aria.ui.components.player.PlayerSecondaryIcon
 import com.korealm.aria.ui.components.settings.SettingsMenu
 import com.korealm.aria.ui.components.volume.VolumeMenu
 import com.korealm.aria.utils.LocalPlayerFacadeState
-import com.korealm.aria.utils.SimpleTooltipBox
+import com.korealm.aria.ui.components.misc.SimpleTooltipBox
 
 
+/**
+ * A composable function for displaying a player bar with volume and settings menus, as well as the main player action.
+ *
+ * @param onOpenTimer Callback triggered when the timer option is selected from the settings menu.
+ * @param onOpenPreferences Callback triggered when the preferences option is selected from the settings menu.
+ * @param onOpenAbout Callback triggered when the about option is selected from the settings menu.
+ * @param modifier Modifier to be applied to the player bar.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PlayerBar(

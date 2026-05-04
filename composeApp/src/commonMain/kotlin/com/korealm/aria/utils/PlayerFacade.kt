@@ -9,7 +9,13 @@ import com.korealm.aria.state.PlayerState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-// This class is the one that binds the state holder PlayerState with the low implementations in AudioController
+/**
+ * A facade class that provides a unified interface for controlling audio playback and player state.
+ *
+ * @property state The reactive state holder for the audio player.
+ * @property controller The controller interface responsible for manipulating audio resources.
+ * @property scope Coroutine scope used to execute asynchronous tasks.
+ */
 class PlayerFacade(
     private val state: PlayerState,
     private val controller: AudioController,

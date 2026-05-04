@@ -16,6 +16,7 @@
     <string name="audio_fireplace">Fireplace</string>
     <string name="audio_pink_noise">Pink Noise</string>
     <string name="audio_white_noise">White Noise</string>
+    <string name="audio_user_added">Added sound</string>
     <string name="audio_add">Add...</string>
 
     <string name="play">Play</string>

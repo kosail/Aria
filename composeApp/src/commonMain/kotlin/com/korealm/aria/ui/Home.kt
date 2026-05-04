@@ -22,8 +22,17 @@ import com.korealm.aria.ui.components.misc.AriaTitleFont
 import com.korealm.aria.utils.LocalPlayerFacadeState
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * Composable function that represents the Home screen of the application.
+ * Displays a grid of sound cards, allowing users to play, stop, and adjust the volume of sounds.
+ * Additionally, provides an option to add new sounds on Android platforms.
+ *
+ * @param onAddSound Optional callback invoked when the "Add Sound" button is pressed on Android.
+ * @param modifier Modifier to be applied to the Home composable.
+ */
 @Composable
 fun Home(
+    onAddSound: (() -> Unit)? = null,
     modifier: Modifier = Modifier
 ) {
     val themeState = LocalThemeState.current
@@ -106,7 +115,7 @@ fun Home(
                             themeState = themeState,
                             cardSize = soundCardWidth
                         ) {
-
+                            onAddSound?.invoke()
                         }
                     }
                 }

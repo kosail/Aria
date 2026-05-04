@@ -21,7 +21,10 @@ class AndroidAudioController(
     private fun getOrCreatePlayer(audio: AudioResource): ExoPlayer {
         return players.getOrPut(audio) {
             ExoPlayer.Builder(context).build().apply {
-                val mediaItem = MediaItem.fromUri("asset:///${audio.audioPath}")
+                val mediaItem = MediaItem.fromUri(
+                    // user-added sounds starts on id 10_000. All other sounds are built-in.
+                    if (audio.id >= 10_000) "file://${audio.audioPath}" else "asset:///${audio.audioPath}"
+                )
                 setMediaItem(mediaItem)
                 repeatMode = Player.REPEAT_MODE_ALL
                 prepare()

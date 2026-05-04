@@ -9,6 +9,17 @@ import aria.composeapp.generated.resources.*
 import com.korealm.aria.utils.getColorScheme
 import org.jetbrains.compose.resources.Font
 
+/**
+ * Applies a consistent visual theme to the application using Material 3 design principles.
+ *
+ * This method allows for dynamic theming based on the selected accent color and theme mode
+ * (light or dark). It also customizes typography using a predefined font family.
+ * The content provided to this composable will inherit the defined theme.
+ *
+ * @param accentColor The main color used to style the application. Must be one of the predefined values in the AccentColor enum.
+ * @param darkTheme A boolean indicating whether the dark theme should be applied. If true, a dark color scheme is used, otherwise a light color scheme is applied.
+ * @param content A composable lambda function that represents the UI content to render within the theme.
+ */
 @Composable
 fun AppTheme(
     accentColor: AccentColor,

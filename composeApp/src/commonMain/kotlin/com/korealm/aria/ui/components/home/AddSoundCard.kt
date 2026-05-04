@@ -6,15 +6,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import aria.composeapp.generated.resources.Res
 import aria.composeapp.generated.resources.add_symbolic
 import aria.composeapp.generated.resources.audio_add
-import com.korealm.aria.shared.Target
-import com.korealm.aria.shared.getTargetPlatform
 import com.korealm.aria.state.AppThemeState
 import com.korealm.aria.ui.components.misc.BigIcon
 import org.jetbrains.compose.resources.stringResource
@@ -26,11 +23,6 @@ fun AddSoundCard(
     modifier: Modifier = Modifier,
     onClick: () -> Unit
 ) {
-    val bottomBarPadding = when(getTargetPlatform()) {
-        Target.DESKTOP -> 22.dp
-        else -> 24.dp
-    }
-
     Box(
         modifier = modifier.size(cardSize)
     ) {
@@ -45,7 +37,7 @@ fun AddSoundCard(
                     iconRes = Res.drawable.add_symbolic,
                     contentDescription = null,
                     isActive = false,
-                    iconColor = Color.Gray
+                    iconColor = MaterialTheme.colorScheme.onSurface,
                 )
 
                 Spacer(Modifier.height(36.dp))
@@ -55,7 +47,7 @@ fun AddSoundCard(
                 contentAlignment = Alignment.Center,
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
-                    .padding(bottom = bottomBarPadding)
+                    .padding(bottom = 24.dp)
             ) {
                 Text(
                     text = stringResource(Res.string.audio_add),

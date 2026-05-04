@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.korealm.aria.state.rememberAudioImporter
 import com.korealm.aria.view.AudioControllerViewModel
 import com.korealm.aria.view.PlayerViewModel
 import com.korealm.aria.view.TimerViewModel
@@ -19,10 +20,16 @@ class MainActivity : ComponentActivity() {
             val audioControllerView: AudioControllerViewModel = viewModel()
             val timerState: TimerViewModel = viewModel()
 
+            val importSound = rememberAudioImporter { uri ->
+                playerView.repository.import(uri)
+                playerView.state.load()
+            }
+
             App(
                 audioController = audioControllerView.state,
                 playerState = playerView.state,
-                timerState = timerState
+                timerState = timerState,
+                onAddSound = importSound
             )
         }
     }

@@ -24,11 +24,20 @@ import com.korealm.aria.ui.components.settings.preferences.PreferencesDialog
 import com.korealm.aria.ui.components.settings.timer.TimerDialog
 import com.korealm.aria.utils.rememberPlayerFacade
 
+/**
+ * The main application entry point providing the structure and theme of the app.
+ *
+ * @param audioController The controller responsible for handling audio playback operations.
+ * @param playerState The current state of the audio player. Defaults to a remembered player state.
+ * @param timerState The controller managing the timer's state. Defaults to a remembered timer controller.
+ * @param onAddSound An optional function to invoke when adding a new sound. Defaults to null, currently injected only by the Android target.
+ */
 @Composable
 fun App(
     audioController: AudioController,
     playerState: PlayerState = rememberPlayerState(),
-    timerState: TimerController = rememberTimerController()
+    timerState: TimerController = rememberTimerController(),
+    onAddSound: (() -> Unit)? = null // No need of an interface because is one single function
 ) {
     val themeState = rememberAppThemeState()
     val coroutineScope = rememberCoroutineScope() // Needed to perform audio IO from the player facade
@@ -57,6 +66,7 @@ fun App(
                     .systemBarsPadding()
             ) {
                 Home(
+                    onAddSound = onAddSound,
                     modifier = Modifier
                         .fillMaxSize()
                         .weight(homeWeight),
