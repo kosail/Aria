@@ -3,6 +3,7 @@ package com.korealm.aria.utils
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
+import com.korealm.aria.data.CUSTOM_SOUND_START_INDEX
 import com.korealm.aria.model.Sound
 import com.korealm.aria.shared.AudioController
 import com.korealm.aria.state.PlayerState
@@ -49,6 +50,15 @@ class PlayerFacade(
             updateSound(sound) { it.copy(isSelected = false) }
             stop(sound)
         }
+    }
+
+    fun stopAllCustomSounds() {
+        state.playlist
+            .filter { it.resource.id >= CUSTOM_SOUND_START_INDEX }
+            .forEach { sound ->
+                updateSound(sound) { it.copy(isSelected = false) }
+                stop(sound)
+            }
     }
 
     /**

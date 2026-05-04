@@ -36,7 +36,8 @@ fun CustomSoundEditDialog(
     CustomDialog(
         onDismissRequest = onDismissRequest,
         showNavbar = true,
-        height = animatedHeight
+        height = animatedHeight,
+        modifier = modifier
     ) {
         AnimatedContent(
             targetState = page,

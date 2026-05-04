@@ -11,8 +11,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import aria.composeapp.generated.resources.*
+import com.korealm.aria.ui.components.misc.CustomDialog
 import com.korealm.aria.ui.components.misc.GtkButton
-import com.korealm.aria.ui.components.misc.SimpleNavbar
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -21,24 +21,29 @@ fun DeleteAllDialog(
     onDeleteAll: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Column(
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier.fillMaxSize()
+    CustomDialog(
+        onDismissRequest = onDismissRequest,
+        showNavbar = true,
+        height = 300.dp,
+        modifier = modifier
     ) {
-        SimpleNavbar(
-            title = stringResource(Res.string.delete_all_personal_sounds),
-            onBack = onDismissRequest,
-        )
-
         Column(
             verticalArrangement = Arrangement.Top,
-            horizontalAlignment = Alignment.Start,
-            modifier = Modifier
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = modifier
                 .fillMaxSize()
                 .padding(top = 16.dp)
         ) {
+            Text(
+                text = stringResource(Res.string.delete_all_personal_sounds),
+                style = MaterialTheme.typography.titleLarge,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth().height(56.dp)
+            )
+
             Column(
+                verticalArrangement = Arrangement.Top,
+                horizontalAlignment = Alignment.Start,
                 modifier = Modifier.padding(horizontal = 24.dp)
             ) {
                 Text(

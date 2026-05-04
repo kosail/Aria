@@ -1,5 +1,6 @@
 package com.korealm.aria.ui.components.settings.preferences
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -22,11 +23,13 @@ import aria.composeapp.generated.resources.*
 import com.korealm.aria.shared.Target.ANDROID
 import com.korealm.aria.shared.Target.WEB
 import com.korealm.aria.shared.getTargetPlatform
+import com.korealm.aria.state.LocalPlayerState
 import com.korealm.aria.state.LocalThemeState
 import com.korealm.aria.theme.AccentColor
 import com.korealm.aria.ui.components.misc.CustomDialog
 import com.korealm.aria.ui.components.misc.GtkButton
 import com.korealm.aria.ui.components.misc.InvisibleButton
+import com.korealm.aria.utils.LocalPlayerFacadeState
 import com.korealm.aria.utils.getColorScheme
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
@@ -148,7 +151,7 @@ fun PreferencesDialog(
                     }
                 }
 
-                if (getTargetPlatform() != WEB) {
+                if (getTargetPlatform() == ANDROID) {
                     GtkButton(
                         onClick = { isDeleteAllDialog = true },
                         modifier = Modifier.clip(RoundedCornerShape(16.dp)),
@@ -177,5 +180,23 @@ fun PreferencesDialog(
                     .padding(horizontal = 8.dp)
             )
         }
+    }
+
+    val playerState = LocalPlayerState.current
+    val playerFacade = LocalPlayerFacadeState.current
+    val scope = rememberCoroutineScope()
+
+    AnimatedVisibility(isDeleteAllDialog) {
+        DeleteAllDialog(
+            onDismissRequest = { isDeleteAllDialog = false },
+            onDeleteAll = {
+                scope.launch {
+                    playerFacade.stopAllCustomSounds()
+                    playerState.deleteAllUserSounds()
+                    isDeleteAllDialog = false
+                    onDismissRequest()
+                }
+            }
+        )
     }
 }
