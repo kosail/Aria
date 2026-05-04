@@ -24,7 +24,7 @@ class JvmAudioController : AudioController {
     private suspend fun getOrLoadSound(audio: AudioResource): Sound = withContext(Dispatchers.IO) {
         mutex.withLock {
             sounds.getOrPut(audio) {
-                resourcesVfs[audio.audioRes].readSound(streaming = true)
+                resourcesVfs[audio.audioPath].readSound(streaming = true)
             }
         }
     }

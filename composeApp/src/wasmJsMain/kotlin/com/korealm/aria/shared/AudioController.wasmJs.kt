@@ -23,7 +23,7 @@ class WebAudioController : AudioController {
     private suspend fun loadBuffer(audio: AudioResource): AudioBuffer {
         buffers[audio]?.let { return it }
 
-        val response: Response = window.fetch(audio.audioRes).await()
+        val response: Response = window.fetch(audio.audioPath).await()
         val arrayBuffer: ArrayBuffer = response.arrayBuffer()
         val decoded: AudioBuffer = audioContext.decodeAudioData(arrayBuffer)
 

@@ -21,7 +21,7 @@ class AndroidAudioController(
     private fun getOrCreatePlayer(audio: AudioResource): ExoPlayer {
         return players.getOrPut(audio) {
             ExoPlayer.Builder(context).build().apply {
-                val mediaItem = MediaItem.fromUri("asset:///${audio.audioRes}")
+                val mediaItem = MediaItem.fromUri("asset:///${audio.audioPath}")
                 setMediaItem(mediaItem)
                 repeatMode = Player.REPEAT_MODE_ALL
                 prepare()

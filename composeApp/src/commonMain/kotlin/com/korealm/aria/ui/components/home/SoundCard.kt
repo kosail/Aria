@@ -39,8 +39,8 @@ fun SoundCard(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.fillMaxSize()
             ) {
-                val iconRes = sound.resource.iconRes
-                val titleRes = sound.resource.titleRes
+                val iconRes = sound.resource.icon
+                val titleRes = sound.resource.title
 
                 BigIcon(
                     iconRes = iconRes,
