@@ -1,10 +1,17 @@
 package com.korealm.aria.view
 
 import androidx.lifecycle.ViewModel
-import com.korealm.aria.shared.BuiltInAudioRepository
+import androidx.lifecycle.viewModelScope
+import com.korealm.aria.shared.AndroidAudioRepository
 import com.korealm.aria.state.PlayerState
+import kotlinx.coroutines.launch
 
-class PlayerViewModel : ViewModel() {
-    // TODO: Implement the real AndroidAudioRepository
-    val state = PlayerState(BuiltInAudioRepository())
+class PlayerViewModel: ViewModel() {
+    val state = PlayerState(AndroidAudioRepository())
+
+    init {
+        viewModelScope.launch {
+            state.load()
+        }
+    }
 }
