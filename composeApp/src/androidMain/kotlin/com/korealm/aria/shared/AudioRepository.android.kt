@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import aria.composeapp.generated.resources.Res
 import aria.composeapp.generated.resources.audio_user_added
+import com.korealm.aria.data.CUSTOM_SOUND_START_INDEX
 import com.korealm.aria.data.CustomSoundIcons
 import com.korealm.aria.model.AudioRepository
 import com.korealm.aria.model.AudioResource
@@ -63,7 +64,7 @@ class AndroidAudioRepository(
         val id = generateId(current)
         val new = UserAudio(
             id = id,
-            title = getString(Res.string.audio_user_added) + " ${id - 10_000 + 1}", // Simple numeration
+            title = getString(Res.string.audio_user_added) + " ${id - CUSTOM_SOUND_START_INDEX}", // Simple numeration
             icon = CustomSoundIcons.HEART.name, // The default icon is the heart one, coz yeah
             path = "file://$path"
         )
@@ -75,16 +76,13 @@ class AndroidAudioRepository(
     /**
      * Generates a unique ID for a new user-defined audio resource.
      * The ID is based on the maximum ID in the list of user-defined audio resources.
-     * If there are no user-defined audio resources, the ID is set to 10_000.
-     *
-     * User audios start from index 10_000, so we have reserved 10_000 positions for built-in sounds.
-     * Index size is not an issue, so I think it's fine to reserve a lot of space before starting with user audios.
+     * If there are no user-defined audio resources, the ID is set to 10_000 (CUSTOM_SOUND_START_INDEX).
      *
      * @param list The list of user-defined audio resources.
      * @return The generated unique ID.
      */
     private fun generateId(list: List<UserAudio>): Int {
-        return (list.maxOfOrNull { it.id } ?: 10_000) + 1
+        return (list.maxOfOrNull { it.id } ?: CUSTOM_SOUND_START_INDEX) + 1
     }
 
     override suspend fun updateTitle(id: Int, newTitle: String) {

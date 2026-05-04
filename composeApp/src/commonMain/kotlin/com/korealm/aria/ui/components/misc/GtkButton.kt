@@ -33,7 +33,9 @@ fun GtkButton(
     Button(
         colors = ButtonDefaults.buttonColors(
             containerColor = color,
-            contentColor = MaterialTheme.colorScheme.onSurface
+            contentColor = MaterialTheme.colorScheme.onSurface,
+            disabledContainerColor = color,
+            disabledContentColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
         ),
         shape = shape,
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.surface),

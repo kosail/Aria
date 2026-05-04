@@ -28,6 +28,7 @@ import com.korealm.aria.ui.components.misc.CustomDialog
 import com.korealm.aria.ui.components.misc.GtkButton
 import com.korealm.aria.ui.components.misc.InvisibleButton
 import com.korealm.aria.utils.getColorScheme
+import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -36,6 +37,8 @@ fun PreferencesDialog(
     onDismissRequest: () -> Unit
 ) {
     val themeState = LocalThemeState.current
+
+    var isDeleteAllDialog by remember { mutableStateOf(false) }
 
     val colorSchemes = AccentColor.entries.associateWith { getColorScheme(it, themeState.isDarkTheme) }
 
@@ -78,7 +81,6 @@ fun PreferencesDialog(
                 modifier = Modifier
                     .fillMaxWidth()
             ) {
-
                 Text(
                     text = stringResource(Res.string.theme_accent_color),
                     style = MaterialTheme.typography.titleMedium,
@@ -148,7 +150,7 @@ fun PreferencesDialog(
 
                 if (getTargetPlatform() != WEB) {
                     GtkButton(
-                        onClick = { },
+                        onClick = { isDeleteAllDialog = true },
                         modifier = Modifier.clip(RoundedCornerShape(16.dp)),
                     ) {
                         Text(

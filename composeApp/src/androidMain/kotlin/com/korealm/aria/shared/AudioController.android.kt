@@ -6,6 +6,7 @@ import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
+import com.korealm.aria.data.CUSTOM_SOUND_START_INDEX
 import com.korealm.aria.model.AudioResource
 
 class AndroidAudioController(
@@ -23,7 +24,7 @@ class AndroidAudioController(
             ExoPlayer.Builder(context).build().apply {
                 val mediaItem = MediaItem.fromUri(
                     // user-added sounds starts on id 10_000. All other sounds are built-in.
-                    if (audio.id >= 10_000) "file://${audio.audioPath}" else "asset:///${audio.audioPath}"
+                    if (audio.id >= CUSTOM_SOUND_START_INDEX) "file://${audio.audioPath}" else "asset:///${audio.audioPath}"
                 )
                 setMediaItem(mediaItem)
                 repeatMode = Player.REPEAT_MODE_ALL

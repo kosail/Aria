@@ -19,7 +19,6 @@ import com.korealm.aria.state.DeviceSizeCategory.Mobile
 import com.korealm.aria.theme.AppTheme
 import com.korealm.aria.ui.Home
 import com.korealm.aria.ui.PlayerBar
-import com.korealm.aria.ui.components.settings.iconPicker.IconPickerDialog
 import com.korealm.aria.ui.components.settings.about.AboutDialog
 import com.korealm.aria.ui.components.settings.preferences.PreferencesDialog
 import com.korealm.aria.ui.components.settings.timer.TimerDialog

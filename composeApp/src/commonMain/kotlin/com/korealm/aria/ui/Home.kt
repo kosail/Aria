@@ -1,25 +1,18 @@
 package com.korealm.aria.ui
 
-import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.*
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.expandIn
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.shrinkOut
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import aria.composeapp.generated.resources.Res
 import aria.composeapp.generated.resources.aria
+import com.korealm.aria.data.CUSTOM_SOUND_START_INDEX
 import com.korealm.aria.model.AudioResource
 import com.korealm.aria.shared.Target.*
 import com.korealm.aria.shared.getTargetPlatform
@@ -30,7 +23,7 @@ import com.korealm.aria.state.LocalThemeState
 import com.korealm.aria.ui.components.home.AddSoundCard
 import com.korealm.aria.ui.components.home.SoundCard
 import com.korealm.aria.ui.components.misc.AriaTitleFont
-import com.korealm.aria.ui.components.settings.iconPicker.IconPickerDialog
+import com.korealm.aria.ui.components.settings.customSoundEdit.CustomSoundEditDialog
 import com.korealm.aria.utils.LocalPlayerFacadeState
 import org.jetbrains.compose.resources.stringResource
 
@@ -112,7 +105,13 @@ fun Home(
                             onVolumeChange = { newVolume ->
                                 playerFacade.setVolume(sound, newVolume)
                             },
-                            onLongClick = { if (getTargetPlatform() == ANDROID) audioEditFile = sound.resource else null}
+                            onLongClick = {
+                                if (getTargetPlatform() == ANDROID && sound.resource.id >= CUSTOM_SOUND_START_INDEX) {
+                                    audioEditFile = sound.resource
+                                } else {
+                                    null
+                                }
+                            }
                         ) {
                             val updated = sound.copy(isSelected = !sound.isSelected)
                             val index = playerState.playlist.indexOf(sound)
@@ -143,6 +142,6 @@ fun Home(
         enter = fadeIn(animationSpec = tween(durationMillis = 150)) + expandIn(animationSpec = tween(durationMillis = 150)),
         exit = fadeOut(animationSpec = tween(durationMillis = 150)) + shrinkOut(animationSpec = tween(durationMillis = 150))
     ) {
-        audioEditFile?.let { IconPickerDialog(it) { audioEditFile = null } }
+        audioEditFile?.let { CustomSoundEditDialog(it) { audioEditFile = null } }
     }
 }

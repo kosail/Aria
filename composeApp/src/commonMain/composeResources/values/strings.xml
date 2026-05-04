@@ -19,9 +19,6 @@
     <string name="audio_user_added">Added sound</string>
     <string name="audio_add">Add...</string>
 
-    <string name="audio_edit_icon">Change icon</string>
-    <string name="audio_delete">Delete sound</string>
-
     <string name="play">Play</string>
     <string name="pause">Pause</string>
 
@@ -34,6 +31,18 @@
     <string name="settings_timer_check_timer">Check timer</string>
     <string name="settings_preferences">Preferences</string>
     <string name="settings_about">About Aria</string>
+
+
+    <string name="audio_edit_name">Change name</string>
+    <string name="audio_edit_icon">Change icon</string>
+    <string name="audio_delete">Delete sound</string>
+    <string name="confirm">Confirm</string>
+    <string name="audio_edit_new_name">New name</string>
+    <string name="audio_delete_specific">Delete %1$d?</string>
+    <string name="audio_delete_confirm">Are you sure you want to remove this sound you have added to Aria?</string>
+    <string name="audio_delete_confirm_caption">This will NOT delete the original file from your device, but just remove it from this app.</string>
+    <string name="audio_delete_confirm_caption_all">This will NOT delete the original files from your device, but just remove them from this app.</string>
+
 
 
     <!--  About section  -->

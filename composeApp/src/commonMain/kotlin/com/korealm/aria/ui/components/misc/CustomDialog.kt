@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
@@ -27,6 +28,7 @@ import org.jetbrains.compose.resources.stringResource
 fun CustomDialog(
     onDismissRequest: () -> Unit,
     showNavbar: Boolean = false,
+    height: Dp = 600.dp,
     modifier: Modifier = Modifier,
     children: @Composable () -> Unit
 ) {
@@ -43,11 +45,10 @@ fun CustomDialog(
         Surface (
             color = MaterialTheme.colorScheme.background,
             shape = RoundedCornerShape(8.dp),
-            modifier = modifier
-                .size(dialogWidth, 600.dp)
+            modifier = modifier.size(dialogWidth, height)
         ) {
-            if (showNavbar) {
-                if (getTargetPlatform() != Target.ANDROID) {
+            Column {
+                if (showNavbar && getTargetPlatform() != Target.ANDROID) {
                     Box(
                         contentAlignment = Alignment.TopEnd,
                         modifier = Modifier
@@ -73,7 +74,12 @@ fun CustomDialog(
                 }
             }
 
-            children()
+            Box(
+                modifier = Modifier
+                    .fillMaxSize(1f)
+            ) {
+                children()
+            }
         }
     }
 }
