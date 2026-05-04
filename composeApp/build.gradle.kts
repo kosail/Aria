@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeHotReload)
+    alias(libs.plugins.kotlinxSerialization)
 }
 
 kotlin {
@@ -38,6 +39,8 @@ kotlin {
             implementation(libs.exoplayer)
             implementation(libs.exoplayer.dash)
             implementation(libs.media3.ui)
+            implementation(libs.androidx.datastore.preferences)
+            implementation(libs.kotlinx.json.serializer)
         }
         commonMain.dependencies {
             implementation(compose.runtime)

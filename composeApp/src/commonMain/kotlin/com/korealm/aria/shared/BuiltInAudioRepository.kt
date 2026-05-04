@@ -1,6 +1,7 @@
 package com.korealm.aria.shared
 
 import aria.composeapp.generated.resources.*
+import com.korealm.aria.data.CustomSoundIcons
 import com.korealm.aria.model.AudioRepository
 import com.korealm.aria.model.AudioResource
 import com.korealm.aria.utils.getAudioRes
@@ -98,5 +99,15 @@ class BuiltInAudioRepository : AudioRepository {
 
     override suspend fun loadUser(): List<AudioResource> {
         return emptyList() // Android target will override.
+    }
+
+    override suspend fun updateIcon(id: Int, icon: CustomSoundIcons) {
+        /*
+         * Android provides its own AudioRepository instance class, so it does not uses this implementation.
+         * As for web and desktop targets, which don't support custom sounds, well, they do execute this code.
+         *
+         */
+
+        throw UnsupportedOperationException("Custom icons not supported on Web Target! :(")
     }
 }
