@@ -13,11 +13,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import aria.composeapp.generated.resources.Res
 import aria.composeapp.generated.resources.settings_preferences
+import com.korealm.aria.model.AudioResource
 import com.korealm.aria.ui.components.misc.CustomDialog
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun IconPickerDialog(
+    audio: AudioResource,
     modifier: Modifier = Modifier,
     onDismissRequest: () -> Unit
 ) {
@@ -42,7 +44,7 @@ fun IconPickerDialog(
             ) {
 
                 Text(
-                    text = stringResource(Res.string.settings_preferences).uppercase(),
+                    text = sanitizeTitle(audio.title).uppercase(),
                     style = MaterialTheme.typography.headlineLarge,
                     letterSpacing = 1.sp,
                 )
@@ -55,4 +57,8 @@ fun IconPickerDialog(
             )
         }
     }
+}
+
+private fun sanitizeTitle(title: String): String {
+    return if (title.length < 25) title else title.substring(0, 25) + "..."
 }

@@ -26,7 +26,10 @@ fun AddSoundCard(
     Box(
         modifier = modifier.size(cardSize)
     ) {
-        HomeScreenCard(themeState, onClick) {
+        HomeScreenCard(
+            themeState = themeState,
+            onLongClick = null,
+            onClick = onClick) {
             Column(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,

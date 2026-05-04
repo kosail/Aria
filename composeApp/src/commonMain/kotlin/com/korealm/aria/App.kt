@@ -50,7 +50,6 @@ fun App(
         var isTimerDialog by remember { mutableStateOf(false) }
         var isPreferencesDialog by remember { mutableStateOf(false) }
         var isAboutDialog by remember { mutableStateOf(false) }
-        var isIconPickerDialog by remember { mutableStateOf(false) } // TODO: set to true just for development
 
         AppTheme(
             darkTheme = themeState.isDarkTheme,
@@ -107,14 +106,6 @@ fun App(
                 exit = fadeOut(animationSpec = tween(durationMillis = 150)) + shrinkOut(animationSpec = tween(durationMillis = 150))
             ) {
                 TimerDialog { isTimerDialog = false }
-            }
-
-            AnimatedVisibility(
-                visible = isIconPickerDialog,
-                enter = fadeIn(animationSpec = tween(durationMillis = 150)) + expandIn(animationSpec = tween(durationMillis = 150)),
-                exit = fadeOut(animationSpec = tween(durationMillis = 150)) + shrinkOut(animationSpec = tween(durationMillis = 150))
-            ) {
-                IconPickerDialog { isIconPickerDialog = false }
             }
 
         }

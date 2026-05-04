@@ -2,7 +2,6 @@ package com.korealm.aria.ui.components.home
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
-import androidx.compose.material3.TooltipDefaults.rememberTooltipPositionProvider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -14,7 +13,6 @@ import com.korealm.aria.shared.Target
 import com.korealm.aria.shared.getTargetPlatform
 import com.korealm.aria.state.AppThemeState
 import com.korealm.aria.ui.components.misc.BigIcon
-import com.korealm.aria.ui.components.misc.StyledTooltip
 import com.korealm.aria.ui.components.volume.VolumeBar
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -25,6 +23,7 @@ fun SoundCard(
     modifier: Modifier = Modifier,
     themeState: AppThemeState,
     onVolumeChange: (Double) -> Unit,
+    onLongClick: (() -> Unit)? = null,
     onClick: () -> Unit
 ) {
     val bottomBarPadding = when(getTargetPlatform()) {
@@ -35,7 +34,11 @@ fun SoundCard(
     Box(
         modifier = modifier.size(cardSize)
     ) {
-        HomeScreenCard(themeState, onClick) {
+        HomeScreenCard(
+            themeState = themeState,
+            onLongClick = onLongClick,
+            onClick = onClick
+        ) {
             Column(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,

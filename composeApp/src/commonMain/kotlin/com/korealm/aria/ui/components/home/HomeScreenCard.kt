@@ -3,6 +3,7 @@ package com.korealm.aria.ui.components.home
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -16,6 +17,7 @@ import com.korealm.aria.state.AppThemeState
 @Composable
 fun HomeScreenCard(
     themeState: AppThemeState,
+    onLongClick: (() -> Unit)? = null,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit = {}
@@ -57,7 +59,10 @@ fun HomeScreenCard(
                     }
                 }
             }
-            .clickable { onClick() }
+            .combinedClickable(
+                onClick = onClick,
+                onLongClick = { onLongClick?.invoke() }
+            )
     ) {
         content()
     }
