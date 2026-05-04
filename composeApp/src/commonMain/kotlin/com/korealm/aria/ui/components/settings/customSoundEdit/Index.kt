@@ -3,6 +3,8 @@ package com.korealm.aria.ui.components.settings.customSoundEdit
 import androidx.compose.animation.*
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -32,8 +34,7 @@ fun CustomSoundEditDialog(
     CustomDialog(
         onDismissRequest = onDismissRequest,
         showNavbar = true,
-        height = animatedHeight,
-        modifier = modifier
+        height = animatedHeight
     ) {
         AnimatedContent(
             targetState = page,
@@ -48,24 +49,29 @@ fun CustomSoundEditDialog(
             }
         ) { navItem ->
             when (navItem) {
-                CustomSoundPages.HOME -> SoundHomeActions(onTabChange = { page = it }, title = audio.title)
+                CustomSoundPages.HOME -> {
+                    SoundHomeActions(onTabChange = { page = it }, title = audio.title)
+                }
                 CustomSoundPages.EDIT_NAME -> SoundNameUpdater { name ->
                     scope.launch {
                         playerState.updateTitle(audio.id, name)
+                        onDismissRequest()
                     }
-                    onDismissRequest()
                 }
                 CustomSoundPages.EDIT_ICON -> SoundIconSelector { icon ->
                     scope.launch {
                         playerState.updateIcon(audio.id, icon)
+                        onDismissRequest()
                     }
-                    onDismissRequest()
                 }
-                CustomSoundPages.DELETE -> SoundDelete(title = audio.title) {
-                    scope.launch {
-                        playerState.deleteUserSound(audio.id)
+                CustomSoundPages.DELETE -> {
+                    val currentAudio = playerState.playlist.find { it.resource.id == audio.id }?.resource ?: audio
+                    SoundDelete(title = currentAudio.title) {
+                        scope.launch {
+                            playerState.deleteUserSound(audio.id)
+                            onDismissRequest()
+                        }
                     }
-                    onDismissRequest()
                 }
             }
         }

@@ -5,6 +5,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -96,35 +97,33 @@ fun Home(
                     .fillMaxSize()
                     .padding(5.dp)
             ) {
-                playerState.playlist.forEach { sound ->
-                    item {
-                        SoundCard(
-                            themeState = themeState,
-                            sound = sound,
-                            cardSize = soundCardWidth,
-                            onVolumeChange = { newVolume ->
-                                playerFacade.setVolume(sound, newVolume)
-                            },
-                            onLongClick = {
-                                if (getTargetPlatform() == ANDROID && sound.resource.id >= CUSTOM_SOUND_START_INDEX) {
-                                    audioEditFile = sound.resource
-                                } else {
-                                    null
-                                }
+                items(
+                    items = playerState.playlist,
+                    key = { it.resource.id }
+                ) { sound ->
+                    SoundCard(
+                        themeState = themeState,
+                        sound = sound,
+                        cardSize = soundCardWidth,
+                        onVolumeChange = { newVolume ->
+                            playerFacade.setVolume(sound, newVolume)
+                        },
+                        onLongClick = {
+                            if (getTargetPlatform() == ANDROID && sound.resource.id >= CUSTOM_SOUND_START_INDEX) {
+                                audioEditFile = sound.resource
                             }
-                        ) {
-                            val updated = sound.copy(isSelected = !sound.isSelected)
-                            val index = playerState.playlist.indexOf(sound)
-
-                            if (index != -1) playerState.playlist[index] = updated
-
-                            if (updated.isSelected) playerFacade.play(updated) else playerFacade.stop(updated)
                         }
-                    }
+                    ) {
+                        val updated = sound.copy(isSelected = !sound.isSelected)
+                        val index = playerState.playlist.indexOf(sound)
 
+                        if (index != -1) playerState.playlist[index] = updated
+
+                        if (updated.isSelected) playerFacade.play(updated) else playerFacade.stop(updated)
+                    }
                 }
                 if (getTargetPlatform() == ANDROID) {
-                    item {
+                    item(key = "add_sound_card") {
                         AddSoundCard(
                             themeState = themeState,
                             cardSize = soundCardWidth

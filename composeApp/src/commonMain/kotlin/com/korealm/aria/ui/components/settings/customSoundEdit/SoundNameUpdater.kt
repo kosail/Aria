@@ -15,9 +15,12 @@ import androidx.compose.ui.unit.dp
 import aria.composeapp.generated.resources.Res
 import aria.composeapp.generated.resources.audio_edit_name
 import aria.composeapp.generated.resources.audio_edit_new_name
+import aria.composeapp.generated.resources.audio_edit_new_name_limit
 import aria.composeapp.generated.resources.confirm
 import com.korealm.aria.ui.components.misc.GtkButton
+import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.stringResource
+import kotlin.time.Duration.Companion.milliseconds
 
 @Composable
 fun SoundNameUpdater(
@@ -25,6 +28,11 @@ fun SoundNameUpdater(
     onClick: (String) -> Unit
 ) {
     var newName by remember { mutableStateOf("") }
+
+    LaunchedEffect(newName) {
+        delay(50.milliseconds)
+        newName = newName.take(20)
+    }
 
     Column(
         verticalArrangement = Arrangement.Top,
@@ -44,7 +52,9 @@ fun SoundNameUpdater(
         )
 
         Box(
-            modifier = Modifier.weight(1f)
+            modifier = Modifier
+                .padding(bottom = 24.dp)
+                .weight(1f)
         ) {
             TextField(
                 placeholder = {
@@ -67,6 +77,15 @@ fun SoundNameUpdater(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 16.dp, horizontal = 8.dp)
+            )
+
+            Text(
+                text = stringResource(Res.string.audio_edit_new_name_limit) + "${newName.length}/20",
+                style = MaterialTheme.typography.labelLarge,
+                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(end = 8.dp)
             )
         }
 

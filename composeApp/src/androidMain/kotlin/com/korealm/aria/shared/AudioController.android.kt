@@ -14,13 +14,13 @@ class AndroidAudioController(
 ) : AudioController {
     private val BASE_AUDIO_VOLUME = 0.8
 
-    private val players = mutableMapOf<AudioResource, ExoPlayer>()
-    private val perSoundVolume = mutableMapOf<AudioResource, Double>()
+    private val players = mutableMapOf<Int, ExoPlayer>()
+    private val perSoundVolume = mutableMapOf<Int, Double>()
     private var globalVolume = BASE_AUDIO_VOLUME
 
     @OptIn(UnstableApi::class)
     private fun getOrCreatePlayer(audio: AudioResource): ExoPlayer {
-        return players.getOrPut(audio) {
+        return players.getOrPut(audio.id) {
             ExoPlayer.Builder(context).build().apply {
                 val mediaItem = MediaItem.fromUri(
                     // user-added sounds starts on id 10_000. All other sounds are built-in.
@@ -29,7 +29,7 @@ class AndroidAudioController(
                 setMediaItem(mediaItem)
                 repeatMode = Player.REPEAT_MODE_ALL
                 prepare()
-                val base = perSoundVolume[audio] ?: BASE_AUDIO_VOLUME
+                val base = perSoundVolume[audio.id] ?: BASE_AUDIO_VOLUME
                 volume = (base * globalVolume).toFloat()
             }
         }
@@ -43,7 +43,7 @@ class AndroidAudioController(
     }
 
     override suspend fun stop(audio: AudioResource) {
-        players[audio]?.let { player ->
+        players[audio.id]?.let { player ->
             if (player.isPlaying) {
                 player.pause()
             }
@@ -52,8 +52,8 @@ class AndroidAudioController(
     }
 
     override suspend fun setVolume(audio: AudioResource, volume: Double) {
-        perSoundVolume[audio] = volume
-        players[audio]?.let { player ->
+        perSoundVolume[audio.id] = volume
+        players[audio.id]?.let { player ->
             val effectiveVolume = (volume * globalVolume).toFloat()
             player.volume = effectiveVolume
         }

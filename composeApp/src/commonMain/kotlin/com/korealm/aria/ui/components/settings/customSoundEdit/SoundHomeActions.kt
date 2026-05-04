@@ -1,6 +1,8 @@
 package com.korealm.aria.ui.components.settings.customSoundEdit
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -22,7 +24,9 @@ fun SoundHomeActions(
     Column(
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState()) // TODO: Fix this issue on long texts
     ) {
         Column(
             verticalArrangement = Arrangement.Top,

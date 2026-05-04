@@ -14,16 +14,16 @@ import kotlin.time.Duration.Companion.milliseconds
 class JvmAudioController : AudioController {
     private val mutex = Mutex()
 
-    private val sounds = ConcurrentHashMap<AudioResource, Sound>()
+    private val sounds = ConcurrentHashMap<Int, Sound>()
 
     // Active playback instances (one per sound)
-    private val channels = ConcurrentHashMap<AudioResource, SoundChannel>()
-    private val perSoundVolume = ConcurrentHashMap<AudioResource, Double>()
+    private val channels = ConcurrentHashMap<Int, SoundChannel>()
+    private val perSoundVolume = ConcurrentHashMap<Int, Double>()
     private var globalVolume = 0.8
 
     private suspend fun getOrLoadSound(audio: AudioResource): Sound = withContext(Dispatchers.IO) {
         mutex.withLock {
-            sounds.getOrPut(audio) {
+            sounds.getOrPut(audio.id) {
                 resourcesVfs[audio.audioPath].readSound(streaming = true)
             }
         }
@@ -31,29 +31,29 @@ class JvmAudioController : AudioController {
 
     override suspend fun play(audio: AudioResource) {
         val sound = getOrLoadSound(audio)
-        channels[audio]?.stop()
+        channels[audio.id]?.stop()
 
-        val volume = (perSoundVolume[audio] ?: 0.8) * globalVolume
+        val volume = (perSoundVolume[audio.id] ?: 0.8) * globalVolume
 
         val channel = sound.play(PlaybackParameters(
             times = PlaybackTimes.INFINITE,
             volume = volume
         ))
 
-        channels[audio] = channel
+        channels[audio.id] = channel
     }
 
     override suspend fun stop(audio: AudioResource) {
-        channels[audio]?.stop()
-        channels.remove(audio)
+        channels[audio.id]?.stop()
+        channels.remove(audio.id)
     }
 
     override suspend fun setVolume(audio: AudioResource, volume: Double) {
-        perSoundVolume[audio] = volume
+        perSoundVolume[audio.id] = volume
 
         val effective = volume * globalVolume
 
-        channels[audio]?.volume = effective
+        channels[audio.id]?.volume = effective
     }
 
     override suspend fun setGlobalVolume(volume: Double) {
