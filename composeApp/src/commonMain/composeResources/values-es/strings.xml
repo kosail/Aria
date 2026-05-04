@@ -56,10 +56,7 @@
         Tu apoyo ayuda a mantener el proyecto libre, gratis, de código abierto y en constante mejora.
     </string>
     <string name="donate">Apoya mi trabajo</string>
-    <string name="donate_on_paypal">Donar con PayPal</string>
-    <string name="no_donations_currently">
-        Por el momento no hay opciones para apoyar económicamente este proyecto. Espero poder trabajar en esto en futuras versiones, pero de verdad agradezco mucho tu interés y tu intención de apoyar. ¡Gracias!
-    </string>
+    <string name="donate_on_kofi">Donar en Ko-fi</string>
 
 
     <string name="from_honduras">Con amor, desde Honduras.</string>

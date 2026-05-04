@@ -61,11 +61,8 @@
         Your support helps keep the project free, open-source, and actively maintained.
     </string>
     <string name="donate">Support my work</string>
-    <string name="donate_on_paypal">Donate on PayPal</string>
-    <string name="paypal_url">https://paypal.com/</string>
-    <string name="no_donations_currently">
-        Currently, there are no options to financially support this project. I hope to work on this in future releases, but I really appreciate you took for time and willing to support. Thank you!
-    </string>
+    <string name="donate_on_kofi">Donate on Ko-fi</string>
+    <string name="kofi_url">https://ko-fi.com/kosail</string>
 
 
     <string name="kosail_in_korealm">kosail in the korealm</string>

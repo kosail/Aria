@@ -12,9 +12,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import aria.composeapp.generated.resources.Res
 import aria.composeapp.generated.resources.donate
+import aria.composeapp.generated.resources.donate_on_kofi
 import aria.composeapp.generated.resources.donations_text
-import aria.composeapp.generated.resources.no_donations_currently
+import aria.composeapp.generated.resources.external_link
+import aria.composeapp.generated.resources.kofi_url
+import com.korealm.aria.shared.openUrl
 import com.korealm.aria.ui.components.misc.Copyright
+import com.korealm.aria.ui.components.misc.GtkButton
+import com.korealm.aria.ui.components.misc.LabelWithIcon
 import com.korealm.aria.ui.components.misc.SimpleNavbar
 import org.jetbrains.compose.resources.stringResource
 
@@ -52,24 +57,16 @@ fun AboutDonate(
                         .padding(bottom = 16.dp)
                 )
 
-//                val paypalUrl = stringResource(Res.string.paypal_url)
-//                GtkButton(
-//                    onClick = { openUrl(paypalUrl) },
-//                    modifier = Modifier
-//                ) {
-//                    LabelWithIcon(
-//                        stringRes = Res.string.donate_on_paypal,
-//                        iconRes = Res.drawable.external_link
-//                    )
-//                }
-
-                Text(
-                    text = stringResource(Res.string.no_donations_currently).trimIndent(),
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Medium,
+                val kofiUrl = stringResource(Res.string.kofi_url)
+                GtkButton(
+                    onClick = { openUrl(kofiUrl) },
                     modifier = Modifier
-                        .padding(top = 8.dp, bottom = 16.dp)
-                )
+                ) {
+                    LabelWithIcon(
+                        stringRes = Res.string.donate_on_kofi,
+                        iconRes = Res.drawable.external_link
+                    )
+                }
             }
 
             Spacer(modifier = Modifier.weight(1f))
