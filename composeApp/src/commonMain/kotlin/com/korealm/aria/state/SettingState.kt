@@ -1,13 +1,7 @@
 package com.korealm.aria.state
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.runtime.*
 import com.korealm.aria.model.AriaSettings
-import com.korealm.aria.theme.AccentColor
 import com.russhwolf.settings.Settings
 
 /**
@@ -17,9 +11,9 @@ import com.russhwolf.settings.Settings
  * serialization natively. The in-memory [currentSettings] is Compose-observable, so any composable reading
  * it will recompose automatically when [update] is called.
  *
- * @param settings The platform [Settings] instance. Defaults to [Settings] from the russhwofl settings no-arg
+ * @param settings The platform [Settings] instance. Defaults to [Settings] from the no-arg
  * module, which resolves to SharedPreferences on Android, java.util.prefs.Preferences on JVM,
- * and localStorage on WasmJS.
+ * and localStorage on WasmJS according to official docs
  */
 class SettingState(private val settings: Settings = Settings()) {
 
@@ -35,13 +29,14 @@ class SettingState(private val settings: Settings = Settings()) {
         val defaults = AriaSettings()
 
         val accentColor = settings.getString(Keys.ACCENT_COLOR, defaults.accentColor.name)
-            .toAccentColorOrDefault(defaults.accentColor)
+            .toEnumOrDefault(defaults.accentColor)
 
-        val isDarkTheme = settings.getBooleanOrNull(Keys.IS_DARK_THEME)
+        val themeMode = settings.getString(Keys.THEME_MODE, defaults.themeMode.name)
+            .toEnumOrDefault(defaults.themeMode)
 
         return AriaSettings(
             accentColor = accentColor,
-            isDarkTheme = isDarkTheme
+            themeMode = themeMode
         )
     }
 
@@ -52,6 +47,7 @@ class SettingState(private val settings: Settings = Settings()) {
      * Usage:
      * ```
      * settingState.update { copy(accentColor = AccentColor.RED) }
+     * settingState.update { copy(themeMode = ThemeMode.DARK) }
      * ```
      */
     fun update(transform: AriaSettings.() -> AriaSettings) {
@@ -62,32 +58,26 @@ class SettingState(private val settings: Settings = Settings()) {
 
     /**
      * Persists every field of the given [AriaSettings] to the [Settings] store.
-     * Called on every [update]
+     * Called on every [update].
      */
     private fun persist(ariaSettings: AriaSettings) {
         settings.putString(Keys.ACCENT_COLOR, ariaSettings.accentColor.name)
-
-        val isDark = ariaSettings.isDarkTheme
-        if (isDark != null) {
-            settings.putBoolean(Keys.IS_DARK_THEME, isDark)
-        } else {
-            settings.remove(Keys.IS_DARK_THEME)
-        }
+        settings.putString(Keys.THEME_MODE, ariaSettings.themeMode.name)
     }
 
     /** Storage keys — private to prevent typo bugs across the codebase. */
     private object Keys {
         const val ACCENT_COLOR = "accent_color"
-        const val IS_DARK_THEME = "is_dark_theme"
+        const val THEME_MODE = "theme_mode"
     }
 }
 
 /**
- * Safely parses an [AccentColor] from its [name], returning [default] if the value
- * doesn't match any enum entry (e.g. after removing a color in a future version).
+ * Safely parses an enum from its [name], returning [default] if the value
+ * doesn't match any entry (e.g. after removing an entry in a future version).
  */
-private fun String.toAccentColorOrDefault(default: AccentColor): AccentColor =
-    AccentColor.entries.firstOrNull { it.name == this } ?: default
+private inline fun <reified T : Enum<T>> String.toEnumOrDefault(default: T): T =
+    enumValues<T>().firstOrNull { it.name == this } ?: default
 
 val LocalSettings = staticCompositionLocalOf<SettingState> {
     error("No SettingState provided — wrap your content with AppProvider")

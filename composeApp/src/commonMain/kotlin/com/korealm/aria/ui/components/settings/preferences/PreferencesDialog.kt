@@ -13,13 +13,14 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import aria.composeapp.generated.resources.*
+import com.korealm.aria.model.ThemeMode
 import com.korealm.aria.shared.Target.ANDROID
 import com.korealm.aria.shared.getTargetPlatform
 import com.korealm.aria.state.LocalPlayerState
@@ -28,7 +29,6 @@ import com.korealm.aria.state.LocalThemeState
 import com.korealm.aria.theme.AccentColor
 import com.korealm.aria.ui.components.misc.CustomDialog
 import com.korealm.aria.ui.components.misc.GtkButton
-import com.korealm.aria.ui.components.misc.InvisibleButton
 import com.korealm.aria.utils.LocalPlayerFacadeState
 import com.korealm.aria.utils.getColorScheme
 import kotlinx.coroutines.launch
@@ -41,6 +41,7 @@ fun PreferencesDialog(
 ) {
     val themeState = LocalThemeState.current
     val settingState = LocalSettings.current
+    val currentMode = settingState.currentSettings.themeMode
 
     var isDeleteAllDialog by remember { mutableStateOf(false) }
 
@@ -75,15 +76,76 @@ fun PreferencesDialog(
             HorizontalDivider(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 8.dp)
+                    .padding(vertical = 16.dp)
             )
 
             Column (
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 horizontalAlignment = Alignment.Start,
-                modifier = Modifier
-                    .fillMaxWidth()
+                modifier = Modifier.fillMaxWidth()
             ) {
+                // Per device target settings section
+                // ---------------------------------
+                Text(
+                    text = stringResource(Res.string.theme_mode),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Light,
+                    textAlign = TextAlign.Start,
+                    modifier = Modifier.padding(horizontal = 8.dp)
+                )
+
+
+                SingleChoiceSegmentedButtonRow(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp)
+                ) {
+                    SegmentedButton(
+                        shape = RoundedCornerShape(topStartPercent = 20, bottomStartPercent = 20),
+                        onClick = { themeState.setThemeMode(ThemeMode.SYSTEM) },
+                        selected = currentMode == ThemeMode.SYSTEM,
+                        colors = SegmentedButtonDefaults.colors(
+                            activeContainerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.4f),
+                        ),
+                        icon = {},
+                        modifier = Modifier.height(48.dp)
+                    ) {
+                        Text(
+                            text = stringResource(Res.string.theme_mode_system).uppercase()
+                        )
+                    }
+
+                    SegmentedButton(
+                        shape = RectangleShape,
+                        onClick = { themeState.setThemeMode(ThemeMode.DARK) },
+                        selected = currentMode == ThemeMode.DARK,
+                        colors = SegmentedButtonDefaults.colors(
+                            activeContainerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.4f),
+                        ),
+                        icon = {},
+                        modifier = Modifier.height(48.dp)
+                    ) {
+                        Text(
+                            text = stringResource(Res.string.theme_mode_dark).uppercase()
+                        )
+                    }
+
+                    SegmentedButton(
+                        shape = RoundedCornerShape(topEndPercent = 20, bottomEndPercent = 20),
+                        onClick = { themeState.setThemeMode(ThemeMode.LIGHT) },
+                        selected = currentMode == ThemeMode.LIGHT,
+                        colors = SegmentedButtonDefaults.colors(
+                            activeContainerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.4f),
+                        ),
+                        icon = {},
+                        modifier = Modifier.height(48.dp)
+                    ) {
+                        Text(
+                            text = stringResource(Res.string.theme_mode_light).uppercase()
+                        )
+                    }
+                }
+
                 Text(
                     text = stringResource(Res.string.theme_accent_color),
                     style = MaterialTheme.typography.titleMedium,
@@ -128,28 +190,6 @@ fun PreferencesDialog(
                             }
                         }
 
-                    }
-                }
-
-
-                // Per device target settings section
-                // ---------------------------------
-                if (getTargetPlatform() != ANDROID) {
-                    // Toggle dark theme. TODO: Change this for a multiple button to switch between system, light and dark mode
-                    InvisibleButton(
-                        title = Res.string.theme_dark_mode,
-                        ripple = false,
-                        onClick = { themeState.toggleTheme() },
-                        modifier = Modifier.padding(horizontal = 8.dp)
-                    ) {
-                        Switch(
-                            checked = themeState.isDarkTheme,
-                            onCheckedChange = { themeState.toggleTheme() },
-                            colors = SwitchDefaults.colors(
-                                uncheckedTrackColor = MaterialTheme.colorScheme.surface,
-                            ),
-                            modifier = modifier.scale(0.9f)
-                        )
                     }
                 }
 

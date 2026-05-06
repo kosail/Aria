@@ -135,7 +135,10 @@
 
     <!--  Preferences section  -->
     <string name="theme_accent_color">Color principal del tema</string>
-    <string name="theme_dark_mode">Modo oscuro</string>
+    <string name="theme_mode">Tema</string>
+    <string name="theme_mode_system">Auto</string>
+    <string name="theme_mode_dark">Oscuro</string>
+    <string name="theme_mode_light">Claro</string>
 
     <string name="delete_all_personal_sounds">Eliminar sonidos añadidos por el ti</string>
     <string name="delete_all_personal_sounds_confirm">¿Segura/o que deseas eliminar todos los sonidos que has añadido a Aria?</string>
