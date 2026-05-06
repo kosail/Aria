@@ -39,11 +39,14 @@ fun App(
     timerState: TimerController = rememberTimerController(),
     onAddSound: (() -> Unit)? = null // No need of an interface because is one single function
 ) {
-    val themeState = rememberAppThemeState()
+    val settingState = rememberSettingState()
+    val themeState = rememberAppThemeState(
+        accentColorScheme = settingState.currentSettings.accentColor
+    )
     val coroutineScope = rememberCoroutineScope() // Needed to perform audio IO from the player facade
     val playerFacadeState = rememberPlayerFacade(playerState, audioController, coroutineScope)
 
-    AppProvider(playerState, playerFacadeState, timerState, themeState) {
+    AppProvider(playerState, playerFacadeState, timerState, themeState, settingState) {
         val deviceSizeState = LocalDeviceSizeCategory.current
 
         var isTimerDialog by remember { mutableStateOf(false) }

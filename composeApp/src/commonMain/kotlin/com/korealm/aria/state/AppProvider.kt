@@ -12,13 +12,15 @@ fun AppProvider(
     playerFacadeState: PlayerFacade,
     timerState: TimerController,
     themeState: AppThemeState,
+    settingState: SettingState,
     content: @Composable () -> Unit
 ) {
     CompositionLocalProvider(
         LocalThemeState provides themeState,
         LocalPlayerState provides playerState,
         LocalPlayerFacadeState provides playerFacadeState,
-        LocalTimerState provides timerState
+        LocalTimerState provides timerState,
+        LocalSettings provides settingState
     ) {
         DeviceSizeProvider {
             content()

@@ -21,9 +21,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import aria.composeapp.generated.resources.*
 import com.korealm.aria.shared.Target.ANDROID
-import com.korealm.aria.shared.Target.WEB
 import com.korealm.aria.shared.getTargetPlatform
 import com.korealm.aria.state.LocalPlayerState
+import com.korealm.aria.state.LocalSettings
 import com.korealm.aria.state.LocalThemeState
 import com.korealm.aria.theme.AccentColor
 import com.korealm.aria.ui.components.misc.CustomDialog
@@ -40,6 +40,7 @@ fun PreferencesDialog(
     onDismissRequest: () -> Unit
 ) {
     val themeState = LocalThemeState.current
+    val settingState = LocalSettings.current
 
     var isDeleteAllDialog by remember { mutableStateOf(false) }
 
@@ -48,8 +49,7 @@ fun PreferencesDialog(
     CustomDialog(
         onDismissRequest = onDismissRequest,
         showNavbar = true,
-        modifier = modifier
-            .verticalScroll(rememberScrollState())
+        modifier = modifier.verticalScroll(rememberScrollState())
     ) {
         Column(
             verticalArrangement = Arrangement.Top,
@@ -112,7 +112,10 @@ fun PreferencesDialog(
                                 modifier = Modifier
                                     .size(44.dp)
                                     .clip(CircleShape)
-                                    .clickable { themeState.setAccent(accentColor) }
+                                    .clickable {
+                                        themeState.setAccent(accentColor)
+                                        settingState.update { copy(accentColor = accentColor) }
+                                    }
                                     .background(
                                         if (isSelected) MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f) else Color.Transparent
                                     )
