@@ -104,7 +104,7 @@ fun PreferencesDialog(
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         colorSchemes.forEach { (accentColor, scheme) ->
-                            val isSelected = themeState.accentColor == accentColor
+                            val isSelected = settingState.currentSettings.accentColor == accentColor
                             val primaryColor = Color(scheme.primary)
 
                             Box(
@@ -113,7 +113,6 @@ fun PreferencesDialog(
                                     .size(44.dp)
                                     .clip(CircleShape)
                                     .clickable {
-                                        themeState.setAccent(accentColor)
                                         settingState.update { copy(accentColor = accentColor) }
                                     }
                                     .background(

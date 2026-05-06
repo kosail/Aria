@@ -40,9 +40,7 @@ fun App(
     onAddSound: (() -> Unit)? = null // No need of an interface because is one single function
 ) {
     val settingState = rememberSettingState()
-    val themeState = rememberAppThemeState(
-        accentColorScheme = settingState.currentSettings.accentColor
-    )
+    val themeState = rememberAppThemeState()
     val coroutineScope = rememberCoroutineScope() // Needed to perform audio IO from the player facade
     val playerFacadeState = rememberPlayerFacade(playerState, audioController, coroutineScope)
 
@@ -55,7 +53,7 @@ fun App(
 
         AppTheme(
             darkTheme = themeState.isDarkTheme,
-            accentColor = themeState.accentColor
+            accentColor = settingState.currentSettings.accentColor
         ) {
             val homeWeight = when (getTargetPlatform()) {
                 WEB -> if (deviceSizeState == Mobile) .90f else 0.92f
