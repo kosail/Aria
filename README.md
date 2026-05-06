@@ -19,7 +19,7 @@ So this is my handcrafted tribute to it, to all the wonderful people who made po
 - A curated library of ambient nature sounds: rain, fire, birds, forest, and more
 - Per-sound volume sliders + master volume control
 
-** But also:**
+**But also:**
 - Built-in timer to gently fade out after a chosen duration (perfect for sleep)
 - Add your own sounds to the library (Android only, due limitation in the browser API for web target)
 - Many languages are supported (English and Spanish are made by me, while Portuguese, Italian, French, German, and Dutch are AI generated) 
