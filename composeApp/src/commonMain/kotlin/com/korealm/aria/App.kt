@@ -4,6 +4,7 @@ import androidx.compose.animation.*
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.displayCutoutPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.systemBarsPadding
@@ -79,7 +80,7 @@ fun App(
                     onOpenAbout = { isAboutDialog = true },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .weight(1 - homeWeight),
+                        .weight(1 - homeWeight)
                 )
             }
 

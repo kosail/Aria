@@ -19,6 +19,8 @@ import aria.composeapp.generated.resources.pause
 import aria.composeapp.generated.resources.play
 import com.korealm.aria.shared.Target.*
 import com.korealm.aria.shared.getTargetPlatform
+import com.korealm.aria.state.DeviceSizeCategory
+import com.korealm.aria.state.LocalDeviceSizeCategory
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -30,10 +32,20 @@ fun PlayerMainIcon(
     modifier: Modifier = Modifier,
     onClick: () -> Unit
 ) {
+    val deviceSizeState = LocalDeviceSizeCategory.current
+
     val iconSize = when (getTargetPlatform()) {
         WEB -> 60.dp
         DESKTOP -> 54.dp
-        ANDROID -> 60.dp
+        ANDROID -> {
+            // I didn't take into account tables when I first created this app... so this is a patch to make the
+            // main icon look a little bigger and better
+            when(deviceSizeState) {
+                DeviceSizeCategory.Mobile -> 60.dp
+                DeviceSizeCategory.CompactDesktop -> 68.dp
+                DeviceSizeCategory.FullDesktop -> 72.dp
+            }
+        }
     }
 
     // Not using an IconButton because I did not like the default behavior on hover,

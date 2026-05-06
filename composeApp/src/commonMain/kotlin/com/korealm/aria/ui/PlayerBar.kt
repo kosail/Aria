@@ -68,7 +68,8 @@ fun PlayerBar(
         else -> 0.7f
     }
 
-    val bgColor = if (themeState.isDarkTheme) MaterialTheme.colorScheme.surfaceVariant else MaterialTheme.colorScheme.primaryContainer
+    val bgColor = if (themeState.isDarkTheme) MaterialTheme.colorScheme.surfaceVariant
+                    else MaterialTheme.colorScheme.primaryContainer
 
     Surface(
         color = bgColor.copy(0.4f),
