@@ -40,6 +40,7 @@ kotlin {
             implementation(libs.exoplayer.dash)
             implementation(libs.media3.ui)
             implementation(libs.androidx.datastore.preferences)
+            implementation(libs.kotlinx.json.serializer)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -54,7 +55,6 @@ kotlin {
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
             implementation(libs.korge.core)
-            implementation(libs.kotlinx.json.serializer)
             implementation(libs.compose.multiplatform.settings.noarg)
         }
         commonTest.dependencies {

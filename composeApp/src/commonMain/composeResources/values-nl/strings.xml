@@ -1,0 +1,170 @@
+<resources>
+    <string name="audio_rain">Regen</string>
+    <string name="audio_storm">Onweer</string>
+    <string name="audio_wind">Wind</string>
+    <string name="audio_waves">Golven</string>
+    <string name="audio_stream">Beekje</string>
+    <string name="audio_birds">Vogels</string>
+    <string name="audio_summer_night">Zomernacht</string>
+    <string name="audio_train">Trein</string>
+    <string name="audio_boat">Boot</string>
+    <string name="audio_city">Stad</string>
+    <string name="audio_coffee">Café</string>
+    <string name="audio_fireplace">Open haard</string>
+    <string name="audio_pink_noise">Roze ruis</string>
+    <string name="audio_white_noise">Witte ruis</string>
+    <string name="audio_user_added">Toegevoegd geluid</string>
+    <string name="audio_add">Toevoegen...</string>
+
+    <string name="play">Afspelen</string>
+    <string name="pause">Pauzeren</string>
+
+    <string name="volume_menu">Volume</string>
+    <string name="general_volume">Hoofdvolume</string>
+    <string name="reset_sounds">Geluiden resetten</string>
+
+    <string name="settings_menu">Instellingen</string>
+    <string name="settings_timer_start">Timer instellen</string>
+    <string name="settings_timer_check_timer">Timer bekijken</string>
+    <string name="settings_preferences">Voorkeuren</string>
+    <string name="settings_about">Over Aria</string>
+
+
+    <string name="audio_edit_name">Naam wijzigen</string>
+    <string name="audio_edit_icon">Icoon wijzigen</string>
+    <string name="audio_delete">Geluid verwijderen</string>
+    <string name="confirm">Bevestigen</string>
+    <string name="audio_edit_new_name">Nieuwe naam</string>
+    <string name="audio_edit_new_name_limit">Max. tekens: </string>
+
+    <string name="audio_delete_specific">%1$d verwijderen?</string>
+    <string name="audio_delete_confirm">Weet je zeker dat je dit zelf toegevoegde geluid uit Aria wilt verwijderen?</string>
+    <string name="audio_delete_confirm_caption">Dit verwijdert het originele bestand NIET van je apparaat, het wordt alleen uit de app gehaald.</string>
+    <string name="audio_delete_confirm_caption_all">Dit verwijdert de originele bestanden NIET van je apparaat, ze worden alleen uit de app gehaald.</string>
+
+
+
+    <!--  About section  -->
+    <string name="kosail">Gemaakt door kosail</string>
+
+    <string name="about_this_app">Details over deze app</string>
+    <string name="tribute_zero">
+        Aria is een liefdevol eerbetoon aan Blanket, een geweldige app voor achtergrondgeluiden voor Linux, oorspronkelijk gemaakt door Rafael Mardojai (GNOME Circle).
+    </string>
+    <string name="tribute_one">
+        Hoewel Blanket fantastisch is, was het alleen beschikbaar voor Linux. Ik heb de app vanaf de grond af opnieuw opgebouwd voor veel andere apparaten, zodat mijn moeder beter kon slapen zonder te veel mobiele data aan YouTube te verspillen.
+    </string>
+
+    <string name="tribute_two">
+        Dit project is volledig herschreven om op meerdere platforms te werken: Android, PC, Linux...
+        Net als het origineel heeft Aria geen accounts, geen advertenties en geen onnodige poespas. Gewoon rustgevende achtergrondgeluiden om je te helpen focussen of ontspannen.
+    </string>
+    <string name="tribute_three">
+        Aria is gratis en open-source software. De broncode is openbaar, en iedereen kan het aanpassen en verspreiden onder de voorwaarden van de GPLv3-licentie.
+    </string>
+    <string name="tribute_four">
+        De Android-versie in de Play Store is betaald. Door deze te kopen steun je verdere ontwikkeling, onderhoud en toekomstige updates.
+        Je bent natuurlijk altijd vrij om de app zelf gratis te downloaden, aan te passen en te delen, onder dezelfde licentie.
+    </string>
+
+    <string name="donations_text">
+        Als je van Aria geniet en het nuttig vindt, kun je de ontwikkeling steunen met een kleine donatie.
+
+        Jouw steun helpt het project gratis, open-source en up-to-date te houden.
+    </string>
+    <string name="donate">Steun mijn werk</string>
+    <string name="donate_on_kofi">Doneren via Ko-fi</string>
+
+
+    <string name="kosail_in_korealm">kosail in the korealm</string>
+    <string name="from_honduras">Met liefde, uit Honduras.</string>
+    <string name="copyright">GPLv3 gelicentieerd</string>
+    <string name="go_back">Terug</string>
+    <string name="close_menu">Menu sluiten</string>
+
+    <string name="report_an_issue">Een probleem melden</string>
+
+    <string name="web_version_invite">Neem eens een kijkje bij de webversie van Aria!</string>
+    <string name="github_project">Bekijk het project op GitHub</string>
+    <string name="codeberg_project">Bekijk de broncode op Codeberg</string>
+
+
+    <string name="license_legal">Licentie en juridische info</string>
+    <string name="license_legal_message">
+        Deze applicatie is uitgebracht onder de GNU General Public License v3.0 (GPLv3).
+
+        Je bent vrij om deze app en de broncode te gebruiken, bestuderen, aan te passen en te verspreiden.
+        Als je aangepaste versies verspreidt, moet je deze ook onder de GPLv3 licentiëren en de bijbehorende broncode beschikbaar stellen.
+
+        Deze app is geïnspireerd op en gebruikt bronnen van bestaande GPL-gelicentieerde projecten.
+        Alle oorspronkelijke auteurs behouden hun respectievelijke auteursrechten.
+
+        Er mogen geen aanvullende beperkingen worden opgelegd aan de rechten die door deze licentie worden verleend.
+    </string>
+
+
+    <string name="credits">Credits</string>
+    <string name="credits_code_by">Code en creatie door</string>
+    <string name="credits_design_by">Design door</string>
+    <string name="credits_sounds_by">Geluiden door</string>
+    <string name="credits_sounds_edited_by">Geluiden bewerkt door</string>
+
+    <string name="credits_kosail">kosail</string>
+    <string name="credits_design_by_one">Jakub Steiner: Geluidsiconen</string>
+    <string name="credits_design_by_two">Rafael Mardojai: Maker van de Blanket app</string>
+    <string name="credits_design_by_three">kosail: Aria app icoon</string>
+
+    <string name="credits_sounds_by_one">alex36917: Regen</string>
+    <string name="credits_sounds_by_two">Digifish music: Onweer</string>
+    <string name="credits_sounds_by_three">ezwa: Open haard</string>
+    <string name="credits_sounds_by_four">Falcet: Boot</string>
+    <string name="credits_sounds_by_five">gezortenplotz: Stad</string>
+    <string name="credits_sounds_by_six">gluckose: Beekje</string>
+    <string name="credits_sounds_by_seven">Jorge Stolfi: Witte ruis</string>
+    <string name="credits_sounds_by_eight">kvgarlic: Vogels</string>
+    <string name="credits_sounds_by_nine">Lisa Redfern: Zomernacht</string>
+    <string name="credits_sounds_by_ten">Luftrum: Golven</string>
+    <string name="credits_sounds_by_eleven">stephan: Café</string>
+    <string name="credits_sounds_by_twelve">Omegatron: Roze ruis</string>
+    <string name="credits_sounds_by_thirteen">felix.blume: Wind</string>
+    <string name="credits_sounds_by_fourteen">SDLx: Trein</string>
+
+    <string name="credits_sounds_edited_by_one">Porrumentzio: Vogels, Regen, Onweer, Golven, Boot, Stad, Wind</string>
+
+    <!-- ********************* -->
+
+    <!--  Preferences section  -->
+    <string name="theme_accent_color">Accentkleur</string>
+    <string name="theme_mode">Thema</string>
+    <string name="theme_mode_system">Auto</string>
+    <string name="theme_mode_dark">Donker</string>
+    <string name="theme_mode_light">Licht</string>
+
+    <string name="delete_all_personal_sounds">Alle zelf toegevoegde geluiden verwijderen</string>
+    <string name="delete_all_personal_sounds_confirm">Weet je zeker dat je alle geluiden die je aan Aria hebt toegevoegd wilt verwijderen?</string>
+    <string name="confirm_yes">Ja, alles verwijderen</string>
+    <string name="confirm_no">Nee, annuleren</string>
+
+    <string name="suggestions">
+        Heb je een idee of een handige feature in gedachten?
+        Kijk bij het onderdeel \'Over Aria\' om contact met me op te nemen.
+    </string>
+    <!-- ********************* -->
+
+
+    <!-- Timer section -->
+    <string name="timer_quick_presets">Snelle instellingen</string>
+    <string name="timer_custom_duration">Aangepaste duur</string>
+    <string name="timer_start">Timer starten</string>
+    <string name="timer_remaining_time">Resterende tijd</string>
+    <string name="timer_running_caption">
+        De timer loopt! Je kunt dit scherm sluiten, iets anders gaan doen of lekker in slaap vallen.
+        Ik regel de rest voor de resterende tijd.
+    </string>
+    <string name="timer_stop">Timer stoppen</string>
+    <string name="timer_minutes_short">min</string>
+    <string name="timer_hours">uur</string>
+
+    <!-- ********************* -->
+
+</resources>

@@ -3,7 +3,7 @@
 Nature’s silent symphony.
 ---
 
-**Aria** is an ambient sound app.
+**Aria** is an ambient sound app. A minimalist one.
 
 Built from scratch using [Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform), **Aria** is designed to flow across platforms. From Linux to Windows, from web to Android, while honoring the quiet beauty of the original [Blanket app](https://github.com/rafaelmardojai/blanket), built by Rafael Mardojai for the GNOME desktop.
 
@@ -19,14 +19,16 @@ So this is my handcrafted tribute to it, to all the wonderful people who made po
 - A curated library of ambient nature sounds: rain, fire, birds, forest, and more
 - Per-sound volume sliders + master volume control
 
-**But Aria brings this too:**
+** But also:**
 - Built-in timer to gently fade out after a chosen duration (perfect for sleep)
-- Runs on Desktop (Linux, Windows, macOS, all via JVM), Android and Web (WASM/JS)
+- Add your own sounds to the library (Android only, due limitation in the browser API for web target)
+- Many languages are supported (English and Spanish are made by me, while Portuguese, Italian, French, German, and Dutch are AI generated) 
 
 ### Current state
-- [x] **Web version (WASM/JS)**: Completed! Tho, needs accent color persistence.
-- [ ] **Desktop version (JVM)**: Works, but user-added audio files are yet to be supported. I'm thinking about dropping the JVM target due to severe limitations I encountered with JVM audio libs. javax.sample is just not good enough, KorGe and TinySound use javax.sample too, so it's the same thing.
-- [ ] **Android version (WIP)**: Works. Only theme persistence is missing.
+- [x] **Web version (WASM/JS)**: Completed! Already [released on GitHub Pages](https://aria.korealm.tech).
+- [x] **Android version**: Completed! Ready for release on Play Store as soon as I get my account approved.
+- [x] **Desktop version (Tauri + WASM/JS)**: Completed! Yet to be uploaded to the next release.
+- ❌ **Desktop version (JVM)**: DEPRECATED. See the deprecation note below.
 
 ### Screenshots of the nightly version.
 Web version
@@ -55,34 +57,46 @@ Desktop & Android version
 ```bash
 git clone https://github.com/kosail/aria.git
 cd aria
+```
+For WEB builds you can do:
+```bash
+# Local development
+./gradlew wasmJsBrowserDevelopmentRun
 
-# For WEB builds
+# Distribution
 ./gradlew wasmJsBrowserDistribution
-
-# For Desktop builds
-./gradlew packageReleaseUberJarForCurrentOs
 ```
 
+For Android, open the project in Android Studio and built it like any other APK. I can't provide much details on this because I use IntelliJ IDEA, which already detects the Android project and just adds the play button to the run configurations.
+
+For Desktop, the JVM target is deprecated and will not work if you compile it from this code. Instead of deploying the JVM target, I used Tauri to build a "native" app (it's native but uses webview). I will be releasing the code to build it soon.
+
+
 ---
-## Current issues
-#### 1. The Desktop version is memory-heavy
-Finding audio libraries for Java or Kotlin that were modern, performant, and compatible with many formats was just... ugh. It was a nightmare. At the end, I couldn't make javax.sample work at all, and I gave up. I end up giving another try to [KorGe](https://github.com/korlibs/korge), even though I knew that it used javax.sample as its backend on JVM. Surprisingly, it worked. Thus, I assumed this whole issue was a skill issue, not a tooling one.
+## Deprecation note of JVM Version
+#### 1. I love the JVM ecosystem, but sadly, it is not enough the correct tool for the job this time.
+Finding audio libraries for the JVM that were modern, performant, and compatible with many formats was just... ugh. It was a nightmare. Sure, there might be some out there (and if you know about one please let me know! I will be glad to not let die the Desktop JVM target).
+
+So, in the end I couldn't make javax.sample (the built-in solution for audio) work at all, and I gave up. I end up giving another try to [KorGe](https://github.com/korlibs/korge), even though I knew that it used javax.sample as its backend on JVM. Surprisingly, it worked. Thus, I assumed this whole issue was a skill issue, not a tooling one.
 Still, there were two big issues using KorGe:
-- OGG audio files are not supported. Due to limitations inherited from javax.sample, only WAV and MP3 are supported. 
-- The audio files took literally 1–2 seconds to load in the first play per session. This may not sound like a real issue... but I like blazing fast apps. I couldn't help but notice it.
+1. OGG audio files are not supported. Due to limitations inherited from javax.sample, only WAV and another bunch of weird old formats are supported. This could be solved with a decoding lib like `libvorbis` for OGG and the same for MP3, though it would require a lot of work and introduce many issues due external deps.
+2. The audio files took literally 1–2 seconds to load in the first play per session. This may not sound like a real issue... but I like blazing fast apps. I couldn't help but notice it.
 
 I solved the first issue by just using WAV files instead of OGG. Though, this made the app around 100MB larger in disk space.
-The second one, however, was a bit more tricky. I found that using `the streaming = true` flag helped a bit, but just a bit. I tried preloading the files at startup into memory, but loading them into resourcesVfs (KorGe's global memory) was not enough, yet actually started playing them. I noticed that after the first play per session, consecutive ones were much faster. Like, almost instantly. So my workaround was to set all files to streaming, and to start them all for an instant. It had no extra startup penalty to the app, as everything is done in asynchronously, but memory usage... hmm, well... 650MB. I hate RAM-heavy apps, but this time I literally did my best trying to find a better solution, but I just couldn't. Audio libs in Java are a thing. 
+The second one, however, was a bit more tricky. I found that using `the streaming = true` flag helped a bit, but just a bit. I tried preloading the files at startup into memory, but loading them into resourcesVfs (KorGe's global memory) was not enough, yet actually started playing them. I noticed that after the first play per session, consecutive ones were much faster. Like, almost instantly. So my workaround was to set all files to streaming and to start them all for an instant. It had no extra startup penalty to the app, as everything is done in asynchronously, but memory usage... hmm, well... 750MB. I hate RAM-heavy apps, but this time I literally did my best trying to find a better solution, but I just couldn't. Audio libs in Java are a thing.
+
+I'm disappointed with myself that I had to give up on the JVM target. However, then I visited [Blanket page on GitHub](https://github.com/rafaelmardojai/blanket) and I saw that someone already did a Windows version of the app, called [Blanket+](https://apps.microsoft.com/detail/9P4VKD1WQQ9G?hl=neutral&gl=TR&ocid=pdpshare) and there is also a macOS native one, called (Blankie)[https://github.com/codybrom/blankie]. So, I entrust them to keep alive the project in Desktop natively, and I decided to package the Web target I created into Tauri, as a simple solution.
 
 
 ---
 
 ## 🔧 Stack & Resources
 ### Stack
-- **Compose Multiplatform (Android, Desktop JVM and Web WASM/JS)** — UI framework
-- **Audio library** — The audio library for Desktop Target (JVM) is [KorGe](https://github.com/korlibs/korge), while on web target uses the browser API via kotlinx-browser. On Android, it currently uses Exoplayer.
+- **Compose Multiplatform (Android and Web WASM/JS)** — UI framework
+- **Tauri v2 (Desktop version via WASM/JS)** - Backend to run the web app in a native app. 
+- **Audio library** — The web target uses the browser API via kotlinx-browser. On Android, it uses Exoplayer.
 - **GitHub Pages** — For deployment of the web target
-- **Play Store** - Expected to be released soon.
+- **Play Store** – For deployment of the android target, expected to be released soon.
 
 ### Resources
 
@@ -120,7 +134,7 @@ Sound designers: If you have original nature loops and would love to contribute 
 1. I'm still a beginner in Compose Multiplatform, not to say in Kotlin. It's such a difficult language...
 2. LocalCompositions are a very powerful feature. I'm still learning how to use them properly, and I take them similarly as Zustand stores in the React world. Anyway, I love how easy the code becomes when you use them.
 3. Hell, Kotlin-JS wrappers are god-sent but also diabolic to use.
-4. Kotlin async programming is hellish difficult. Like, I felt JS async was difficulty level = ok. But Kotlin? Kotlin's difficulty level = Ninja Gaiden 3.
+4. Kotlin async programming is hellish difficult. Like, I felt JS async was difficulty level = ok. But Kotlin? Kotlin's difficulty level = Ninja Gaiden 3. I saw many YouTube videos explaining how to do async in Kotlin since, but I'm still not sure how to do it properly. It made me realize the problem is not Kotlin, it's me. So that is my next bus stop: properly learn async programming.
 
 ---
 

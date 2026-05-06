@@ -1,0 +1,170 @@
+<resources>
+    <string name="audio_rain">Pluie</string>
+    <string name="audio_storm">Orage</string>
+    <string name="audio_wind">Vent</string>
+    <string name="audio_waves">Vagues</string>
+    <string name="audio_stream">Ruisseau</string>
+    <string name="audio_birds">Oiseaux</string>
+    <string name="audio_summer_night">Nuit d\'été</string>
+    <string name="audio_train">Train</string>
+    <string name="audio_boat">Bateau</string>
+    <string name="audio_city">Ville</string>
+    <string name="audio_coffee">Café</string>
+    <string name="audio_fireplace">Cheminée</string>
+    <string name="audio_pink_noise">Bruit rose</string>
+    <string name="audio_white_noise">Bruit blanc</string>
+    <string name="audio_user_added">Son ajouté</string>
+    <string name="audio_add">Ajouter...</string>
+
+    <string name="play">Lecture</string>
+    <string name="pause">Pause</string>
+
+    <string name="volume_menu">Menu du volume</string>
+    <string name="general_volume">Volume principal</string>
+    <string name="reset_sounds">Réinitialiser les sons</string>
+
+    <string name="settings_menu">Menu des paramètres</string>
+    <string name="settings_timer_start">Mettre un minuteur</string>
+    <string name="settings_timer_check_timer">Voir le minuteur</string>
+    <string name="settings_preferences">Préférences</string>
+    <string name="settings_about">À propos d\'Aria</string>
+
+
+    <string name="audio_edit_name">Renommer</string>
+    <string name="audio_edit_icon">Changer l\'icône</string>
+    <string name="audio_delete">Supprimer le son</string>
+    <string name="confirm">Confirmer</string>
+    <string name="audio_edit_new_name">Nouveau nom</string>
+    <string name="audio_edit_new_name_limit">Caractères max : </string>
+
+    <string name="audio_delete_specific">Supprimer %1$d ?</string>
+    <string name="audio_delete_confirm">Tu es sûr de vouloir retirer ce son que tu as ajouté à Aria ?</string>
+    <string name="audio_delete_confirm_caption">Ça ne supprimera PAS le fichier d\'origine de ton appareil, ça le retirera juste de l\'application.</string>
+    <string name="audio_delete_confirm_caption_all">Ça ne supprimera PAS les fichiers d\'origine de ton appareil, ça les retirera juste de l\'application.</string>
+
+
+
+    <!--  About section  -->
+    <string name="kosail">Fait par kosail</string>
+
+    <string name="about_this_app">Détails sur l\'application</string>
+    <string name="tribute_zero">
+        Aria est un hommage à Blanket, une super application de bruits de fond pour Linux créée par Rafael Mardojai (GNOME Circle).
+    </string>
+    <string name="tribute_one">
+        Bien qu\'elle soit géniale, elle n\'était dispo que sur Linux. Je l\'ai recréée de zéro pour plein d\'autres appareils parce que je voulais que ma mère puisse mieux dormir sans exploser son forfait internet sur YouTube.
+    </string>
+
+    <string name="tribute_two">
+        Ce projet est une réécriture complète conçue pour tourner partout : Android, ordinateur, Linux...
+        Comme l\'originale, Aria n\'a pas besoin de compte, n\'a pas de pubs et va droit au but. Juste des ambiances sonores pour t\'aider à te concentrer ou te reposer.
+    </string>
+    <string name="tribute_three">
+        Aria est un logiciel libre et open-source. Son code est public, et n\'importe qui peut le modifier ou le distribuer sous la licence GPLv3.
+    </string>
+    <string name="tribute_four">
+        La version Android sur le Play Store est payante. L\'acheter permet de soutenir le développement, l\'entretien et les futures mises à jour.
+        Mais tu es tout à fait libre de télécharger, modifier et partager l\'application par toi-même, toujours sous la même licence.
+    </string>
+
+    <string name="donations_text">
+        Si tu aimes Aria et que ça t\'est utile, tu peux soutenir son développement avec un petit don.
+
+        Ça m\'aide à garder le projet gratuit, open-source et à jour.
+    </string>
+    <string name="donate">Soutenir mon travail</string>
+    <string name="donate_on_kofi">Faire un don sur Ko-fi</string>
+
+
+    <string name="kosail_in_korealm">kosail dans le korealm</string>
+    <string name="from_honduras">Avec amour, depuis le Honduras.</string>
+    <string name="copyright">Sous licence GPLv3</string>
+    <string name="go_back">Retour au menu précédent</string>
+    <string name="close_menu">Fermer le menu</string>
+
+    <string name="report_an_issue">Signaler un problème</string>
+
+    <string name="web_version_invite">Jette un œil à la version web d\'Aria !</string>
+    <string name="github_project">Voir le projet sur GitHub</string>
+    <string name="codeberg_project">Voir le code source sur Codeberg</string>
+
+
+    <string name="license_legal">Licence et infos légales</string>
+    <string name="license_legal_message">
+        Cette application est publiée sous la licence GNU General Public License v3.0 (GPLv3).
+
+        Tu es libre de l\'utiliser, de l\'étudier, de la modifier et de la partager, tout comme son code source.
+        Si tu partages une version modifiée, tu dois aussi le faire sous licence GPLv3 et rendre ton code source accessible.
+
+        Cette application s\'inspire et utilise des éléments d\'autres projets sous licence GPL.
+        Les auteurs originaux conservent leurs droits d\'auteur.
+
+        Aucune restriction supplémentaire ne peut être appliquée aux droits accordés par cette licence.
+    </string>
+
+
+    <string name="credits">Crédits</string>
+    <string name="credits_code_by">Code et création par</string>
+    <string name="credits_design_by">Design par</string>
+    <string name="credits_sounds_by">Sons par</string>
+    <string name="credits_sounds_edited_by">Sons édités par</string>
+
+    <string name="credits_kosail">kosail</string>
+    <string name="credits_design_by_one">Jakub Steiner : Icônes des sons</string>
+    <string name="credits_design_by_two">Rafael Mardojai : Créateur de l\'application Blanket</string>
+    <string name="credits_design_by_three">kosail : Icône de l\'application Aria</string>
+
+    <string name="credits_sounds_by_one">alex36917 : Pluie</string>
+    <string name="credits_sounds_by_two">Digifish music : Orage</string>
+    <string name="credits_sounds_by_three">ezwa : Cheminée</string>
+    <string name="credits_sounds_by_four">Falcet : Bateau</string>
+    <string name="credits_sounds_by_five">gezortenplotz : Ville</string>
+    <string name="credits_sounds_by_six">gluckose : Ruisseau</string>
+    <string name="credits_sounds_by_seven">Jorge Stolfi : Bruit blanc</string>
+    <string name="credits_sounds_by_eight">kvgarlic : Oiseaux</string>
+    <string name="credits_sounds_by_nine">Lisa Redfern : Nuit d\'été</string>
+    <string name="credits_sounds_by_ten">Luftrum : Vagues</string>
+    <string name="credits_sounds_by_eleven">stephan : Café</string>
+    <string name="credits_sounds_by_twelve">Omegatron : Bruit rose</string>
+    <string name="credits_sounds_by_thirteen">felix.blume : Vent</string>
+    <string name="credits_sounds_by_fourteen">SDLx : Train</string>
+
+    <string name="credits_sounds_edited_by_one">Porrumentzio : Oiseaux, Pluie, Orage, Vagues, Bateau, Ville, Vent</string>
+
+    <!-- ********************* -->
+
+    <!--  Preferences section  -->
+    <string name="theme_accent_color">Couleur d\'accentuation</string>
+    <string name="theme_mode">Thème</string>
+    <string name="theme_mode_system">Auto</string>
+    <string name="theme_mode_dark">Sombre</string>
+    <string name="theme_mode_light">Clair</string>
+
+    <string name="delete_all_personal_sounds">Effacer tous les sons ajoutés</string>
+    <string name="delete_all_personal_sounds_confirm">Tu es sûr de vouloir effacer tous les sons que tu as ajoutés à Aria ?</string>
+    <string name="confirm_yes">Oui, tout effacer</string>
+    <string name="confirm_no">Non, annuler</string>
+
+    <string name="suggestions">
+        Tu as une idée ou une fonctionnalité en tête ?
+        Fais un tour dans la section \'À propos d\'Aria\' pour m\'en parler.
+    </string>
+    <!-- ********************* -->
+
+
+    <!-- Timer section -->
+    <string name="timer_quick_presets">Raccourcis rapides</string>
+    <string name="timer_custom_duration">Durée sur mesure</string>
+    <string name="timer_start">Lancer le minuteur</string>
+    <string name="timer_remaining_time">Temps restant</string>
+    <string name="timer_running_caption">
+        Le minuteur est lancé ! Tu peux fermer cette fenêtre, faire autre chose ou t\'endormir.
+        Je m\'occupe de tout pour le temps qu\'il reste.
+    </string>
+    <string name="timer_stop">Arrêter le minuteur</string>
+    <string name="timer_minutes_short">min</string>
+    <string name="timer_hours">heures</string>
+
+    <!-- ********************* -->
+
+</resources>
