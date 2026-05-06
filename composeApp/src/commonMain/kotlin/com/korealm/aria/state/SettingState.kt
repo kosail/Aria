@@ -37,7 +37,12 @@ class SettingState(private val settings: Settings = Settings()) {
         val accentColor = settings.getString(Keys.ACCENT_COLOR, defaults.accentColor.name)
             .toAccentColorOrDefault(defaults.accentColor)
 
-        return AriaSettings(accentColor = accentColor)
+        val isDarkTheme = settings.getBooleanOrNull(Keys.IS_DARK_THEME)
+
+        return AriaSettings(
+            accentColor = accentColor,
+            isDarkTheme = isDarkTheme
+        )
     }
 
     /**
@@ -61,11 +66,19 @@ class SettingState(private val settings: Settings = Settings()) {
      */
     private fun persist(ariaSettings: AriaSettings) {
         settings.putString(Keys.ACCENT_COLOR, ariaSettings.accentColor.name)
+
+        val isDark = ariaSettings.isDarkTheme
+        if (isDark != null) {
+            settings.putBoolean(Keys.IS_DARK_THEME, isDark)
+        } else {
+            settings.remove(Keys.IS_DARK_THEME)
+        }
     }
 
     /** Storage keys — private to prevent typo bugs across the codebase. */
     private object Keys {
         const val ACCENT_COLOR = "accent_color"
+        const val IS_DARK_THEME = "is_dark_theme"
     }
 }
 

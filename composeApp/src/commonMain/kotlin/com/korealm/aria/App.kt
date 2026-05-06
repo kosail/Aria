@@ -40,7 +40,7 @@ fun App(
     onAddSound: (() -> Unit)? = null // No need of an interface because is one single function
 ) {
     val settingState = rememberSettingState()
-    val themeState = rememberAppThemeState()
+    val themeState = rememberAppThemeState(settingState)
     val coroutineScope = rememberCoroutineScope() // Needed to perform audio IO from the player facade
     val playerFacadeState = rememberPlayerFacade(playerState, audioController, coroutineScope)
 
