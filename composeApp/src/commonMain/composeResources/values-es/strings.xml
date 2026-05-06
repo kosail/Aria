@@ -13,11 +13,20 @@
     <string name="audio_fireplace">Fogata</string>
     <string name="audio_pink_noise">Ruido rosa</string>
     <string name="audio_white_noise">Ruido blanco</string>
+    <string name="audio_user_added">Sonido añadido</string>
     <string name="audio_add">Añadir...</string>
 
     <string name="audio_edit_name">Cambiar el nombre</string>
     <string name="audio_edit_icon">Cambiar ícono</string>
     <string name="audio_delete">Eliminar sonido</string>
+    <string name="confirm">Confirmar</string>
+    <string name="audio_edit_new_name">Nuevo nombre</string>
+    <string name="audio_edit_new_name_limit">Caracteres máximos: </string>
+
+    <string name="audio_delete_specific">¿Eliminar %1$d?</string>
+    <string name="audio_delete_confirm">¿Segura/o que quieres eliminar este sonido que has añadido a Aria?</string>
+    <string name="audio_delete_confirm_caption">Esto NO eliminará el archivo original de tu dispositivo, solo lo quitará de la aplicación.</string>
+    <string name="audio_delete_confirm_caption_all">Esto NO eliminará los archivos originales de tu dispositivo, solo los quitará de la aplicación.</string>
 
     <string name="play">Reproducir</string>
     <string name="pause">Pausar</string>
@@ -61,6 +70,9 @@
     </string>
     <string name="donate">Apoya mi trabajo</string>
     <string name="donate_on_kofi">Donar en Ko-fi</string>
+    <string name="kofi_url">https://ko-fi.com/kosail</string>
+
+    <string name="kosail_in_korealm">kosail en el korealm</string>
 
 
     <string name="from_honduras">Con amor, desde Honduras.</string>
@@ -74,6 +86,10 @@
     <string name="web_version_invite">Visita la versión web de Aria!</string>
     <string name="github_project">Página oficial del proyecto en GitHub</string>
     <string name="codeberg_project">Revisa el código fuente en Codeberg</string>
+
+    <string name="web_version_url">https://aria.korealm.tech</string>
+    <string name="github_url">https://github.com/kosail/Aria</string>
+    <string name="codeberg_url">https://codeberg.org/kosail/aria</string>
 
     <string name="license_legal">Licencia e información legal</string>
     <string name="license_legal_message">
