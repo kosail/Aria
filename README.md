@@ -27,7 +27,7 @@ So this is my handcrafted tribute to it, to all the wonderful people who made po
 ### Current state
 - [x] **Web version (WASM/JS)**: Completed! Already [released on GitHub Pages](https://aria.korealm.tech).
 - [x] **Android version**: Completed! Ready for release on Play Store as soon as I get my account approved.
-- [x] **Desktop version (Tauri + WASM/JS)**: Completed! Yet to be uploaded to the next release.
+- [x] **Desktop version (Tauri + WASM/JS)**: Completed! Yet I think some changes could make it look better, that would be good for a future release.
 - ❌ **Desktop version (JVM)**: DEPRECATED. See the deprecation note below.
 
 ### Screenshots of the nightly version.
