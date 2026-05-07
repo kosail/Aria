@@ -17,6 +17,9 @@ captures
 !*.xcworkspace/contents.xcworkspacedata
 **/xcshareddata/WorkspaceSettings.xcsettings
 
+# Android Specific
+play_store
+
 # Tauri Desktop
 */logs
 */*.log

@@ -26,7 +26,6 @@ class PlayerFacade(
         updateSound(sound) { it.copy(isPlaying = true) }
         scope.launch {
             controller.play(sound.resource)
-            state.isPlayerActive = true
         }
     }
 
@@ -34,7 +33,6 @@ class PlayerFacade(
         updateSound(sound) { it.copy(isPlaying = false) }
         scope.launch {
             controller.stop(sound.resource)
-            state.isPlayerActive = state.playlist.any { it.isPlaying }
         }
     }
 
@@ -81,7 +79,7 @@ class PlayerFacade(
     }
 
     private fun updateSound(sound: Sound, update: (Sound) -> Sound) {
-        val index = state.playlist.indexOf(sound)
+        val index = state.playlist.indexOfFirst { it.resource.id == sound.resource.id }
 
         if (index != -1) state.playlist[index] = update(state.playlist[index])
     }

@@ -10,12 +10,17 @@ import com.korealm.aria.shared.BuiltInAudioRepository
 class PlayerState(
     private val repository: AudioRepository
 ) {
-    var isPlayerActive by mutableStateOf(false)
-    var playerVolume by mutableStateOf(1.0) // General volume
-
     /** The initial list includes all the built-in sounds, but it's mutable, so the user can add more in the future. */
     var playlist = mutableStateListOf<Sound>()
         private set
+
+    private val isPlaying = derivedStateOf { playlist.any { it.isPlaying } }
+
+    val isPlayerActive: Boolean
+        get() = isPlaying.value
+
+    var playerVolume by mutableStateOf(1.0) // General volume
+
 
     suspend fun load() {
         val builtin = repository.loadBuiltIn()

@@ -90,6 +90,7 @@ android {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
+            isShrinkResources = false
         }
     }
     compileOptions {
