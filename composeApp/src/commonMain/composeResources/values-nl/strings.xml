@@ -62,10 +62,6 @@
     <string name="tribute_three">
         Aria is gratis en open-source software. De broncode is openbaar, en iedereen kan het aanpassen en verspreiden onder de voorwaarden van de GPLv3-licentie.
     </string>
-    <string name="tribute_four">
-        De Android-versie in de Play Store is betaald. Door deze te kopen steun je verdere ontwikkeling, onderhoud en toekomstige updates.
-        Je bent natuurlijk altijd vrij om de app zelf gratis te downloaden, aan te passen en te delen, onder dezelfde licentie.
-    </string>
 
     <string name="donations_text">
         Als je van Aria geniet en het nuttig vindt, kun je de ontwikkeling steunen met een kleine donatie.

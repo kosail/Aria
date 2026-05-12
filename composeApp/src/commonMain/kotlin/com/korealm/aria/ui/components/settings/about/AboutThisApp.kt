@@ -54,15 +54,14 @@ fun AboutThisApp(
                     Res.string.tribute_zero,
                     Res.string.tribute_one,
                     Res.string.tribute_two,
-                    Res.string.tribute_three,
-                    Res.string.tribute_four,
+                    Res.string.tribute_three
                 ).forEach { stringRes ->
                     Text(
                         text = stringResource(stringRes).trimIndent(),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Light,
                     )
-                    if (stringRes != Res.string.tribute_four) {
+                    if (stringRes != Res.string.tribute_three) {
                         Spacer(modifier = Modifier.height(16.dp))
                     }
                 }

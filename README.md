@@ -26,26 +26,16 @@ So this is my handcrafted tribute to it, to all the wonderful people who made po
 
 ### Current state
 - [x] **Web version (WASM/JS)**: Completed! Already [released on GitHub Pages](https://aria.korealm.tech).
-- [x] **Android version**: Completed! Ready for release on Play Store as soon as I get my account approved.
-- [x] **Desktop version (Tauri + WASM/JS)**: Completed! Yet I think some changes could make it look better, that would be good for a future release.
-- ❌ **Desktop version (JVM)**: DEPRECATED. See the deprecation note below.
+- [x] **Android version**: Completed! You can download the APK from the [releases page](https://github.com/kosail/aria/releases).
+- [x] **Desktop version (Tauri + WASM/JS)**: Completed! Yet I think some changes could make it look better; that would be good for a future release.
+- ❌ **Desktop version (JVM)**: DEPRECATED. See the deprecation note below. I may give it another try in the future tho...
 
 ### Screenshots of the nightly version.
 Web version
 ![Nightly screenshot, dark mode](repo_assets/screenshot_web.webp)
 
-
-<details>
-<summary>Desktop and Android previews here:</summary>
-<br/>
-
 Desktop & Android version
-
 ![Nightly screenshot, dark mode](repo_assets/screenshot_jvm_android.webp)
-
-<br/>
-
-</details>
 
 
 ---
@@ -96,7 +86,6 @@ I'm disappointed with myself that I had to give up on the JVM target. However, t
 - **Tauri v2 (Desktop version via WASM/JS)** - Backend to run the web app in a native app. 
 - **Audio library** — The web target uses the browser API via kotlinx-browser. On Android, it uses Exoplayer.
 - **GitHub Pages** — For deployment of the web target
-- **Play Store** – For deployment of the android target, expected to be released soon.
 
 ### Resources
 

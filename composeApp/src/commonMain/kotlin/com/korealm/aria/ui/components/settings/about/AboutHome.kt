@@ -104,23 +104,20 @@ fun AboutHome(
                 )
             }
 
-            if (getTargetPlatform() != Target.ANDROID) {
-                GtkButton(
-                    onClick = { onTabChange(AboutPages.DONATE) },
-                    buttonShape = GtkButtonShape.TOP,
-                    modifier = Modifier
-                ) {
-                    LabelWithIcon(
-                        stringRes = Res.string.donate,
-                        iconRes = Res.drawable.chevron_right
-                    )
-                }
+            GtkButton(
+                onClick = { onTabChange(AboutPages.DONATE) },
+                buttonShape = GtkButtonShape.TOP,
+                modifier = Modifier
+            ) {
+                LabelWithIcon(
+                    stringRes = Res.string.donate,
+                    iconRes = Res.drawable.chevron_right
+                )
             }
 
-            val creditBtnShape = if (getTargetPlatform() == Target.ANDROID) GtkButtonShape.TOP else GtkButtonShape.MIDDLE
             GtkButton(
                 onClick = { onTabChange(AboutPages.CREDITS) },
-                buttonShape = creditBtnShape,
+                buttonShape = GtkButtonShape.MIDDLE,
                 modifier = Modifier
             ) {
                 LabelWithIcon(

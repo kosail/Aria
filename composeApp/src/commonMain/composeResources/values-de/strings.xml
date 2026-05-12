@@ -62,10 +62,6 @@
     <string name="tribute_three">
         Aria ist kostenlose und quelloffene Software (Open Source). Der Code ist öffentlich zugänglich, und jeder kann die App unter den Bedingungen der GPLv3-Lizenz anpassen oder weitergeben.
     </string>
-    <string name="tribute_four">
-        Die Android-Version im Play Store kostet etwas. Wenn du sie kaufst, unterstützt du damit die Weiterentwicklung, Wartung und zukünftige Updates.
-        Du kannst die App aber auch jederzeit selbst kostenlos herunterladen, verändern und weitergeben (unter derselben Lizenz).
-    </string>
 
     <string name="donations_text">
         Wenn dir Aria gefällt und sie dir hilft, kannst du die Weiterentwicklung mit einer kleinen, freiwilligen Spende unterstützen.

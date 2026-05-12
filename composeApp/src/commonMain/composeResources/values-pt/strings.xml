@@ -62,10 +62,6 @@
     <string name="tribute_three">
         O Aria é um software livre e de código aberto. Seu código é público, e qualquer pessoa pode modificá-lo ou distribuí-lo sob a licença GPLv3.
     </string>
-    <string name="tribute_four">
-        A versão Android na Play Store é paga. Comprá-la ajuda a apoiar o desenvolvimento, a manutenção e futuras melhorias.
-        Mas você é livre para baixar, modificar e compartilhar o aplicativo por conta própria, sempre sob a mesma licença.
-    </string>
 
     <string name="donations_text">
         Se você gosta do Aria e acha ele útil, pode apoiar o desenvolvimento com uma doação voluntária.

@@ -65,10 +65,6 @@
     <string name="tribute_three">
         Aria is free and open-source software. Its source code is publicly available, and anyone can build and distribute it under the terms of the GPLv3 license.
     </string>
-    <string name="tribute_four">
-        The Android version on the Play Store is a paid distribution. Purchasing it supports ongoing development, maintenance, and future improvements.
-        You are always free to obtain, modify, and share the app independently under the same license.
-    </string>
 
     <string name="donations_text">
         If you enjoy Aria and find it useful, you can support its development with a voluntary donation.
