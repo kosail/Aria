@@ -5,7 +5,7 @@ Nature’s silent symphony.
 
 **Aria** is an ambient sound app. A minimalist one.
 
-Built from scratch using [Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform), **Aria** is designed to flow across platforms. From Linux to Windows, from web to Android, while honoring the quiet beauty of the original [Blanket app](https://github.com/rafaelmardojai/blanket), built by Rafael Mardojai for the GNOME desktop.
+Built from scratch using [Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform), **Aria** is designed to flow across platforms (Web and Android), while honoring the quiet beauty of the original [Blanket app](https://github.com/rafaelmardojai/blanket), built by Rafael Mardojai for the GNOME desktop.
 
 I wanted to bring peace, calm, and ambient beauty to more people, on more platforms. Blanket is currently only available for Linux, and I wanted to bring it to the rest of the world.
 
@@ -15,19 +15,18 @@ So this is my handcrafted tribute to it, to all the wonderful people who made po
 
 ## 🌼 Features
 
-**Everything that Blanket already bring to us:** 
+**Everything that Blanket already bring to us:**
 - A curated library of ambient nature sounds: rain, fire, birds, forest, and more
 - Per-sound volume sliders + master volume control
 
 **But also:**
 - Built-in timer to gently fade out after a chosen duration (perfect for sleep)
 - Add your own sounds to the library (Android only, due limitation in the browser API for web target)
-- Many languages are supported (English and Spanish are made by me, while Portuguese, Italian, French, German, and Dutch are AI generated) 
+- Many languages are supported (English and Spanish are made by me, while Portuguese, Italian, French, German, and Dutch are AI generated)
 
 ### Current state
-- [x] **Web version (WASM/JS)**: Completed! Already [released on GitHub Pages](https://aria.korealm.tech).
+- [x] **Web version (WASM/JS)**: Completed! Already [released on GitHub Pages](https://aria.korealm.dev).
 - [x] **Android version**: Completed! You can download the APK from the [releases page](https://github.com/kosail/aria/releases).
-- [x] **Desktop version (Tauri + WASM/JS)**: Completed! Yet I think some changes could make it look better; that would be good for a future release.
 - ❌ **Desktop version (JVM)**: DEPRECATED. See the deprecation note below. I may give it another try in the future tho...
 
 ### Screenshots of the nightly version.
@@ -40,26 +39,78 @@ Desktop & Android version
 
 ---
 
-## 🌻 Setup
+## 🌻 Setup & Running
 
-- Clone and build the project locally.
+- Clone the repository:
 
 ```bash
 git clone https://github.com/kosail/aria.git
 cd aria
 ```
-For WEB builds you can do:
-```bash
-# Local development
-./gradlew wasmJsBrowserDevelopmentRun
 
-# Distribution
-./gradlew wasmJsBrowserDistribution
-```
+### 🌐 Web (WASM/JS)
 
-For Android, open the project in Android Studio and built it like any other APK. I can't provide much details on this because I use IntelliJ IDEA, which already detects the Android project and just adds the play button to the run configurations.
+- **Run locally (Development server with hot reload):**
+  ```bash
+  ./gradlew :webApp:wasmJsBrowserDevelopmentRun
+  ```
+  *(Alternative production run: `./gradlew :webApp:wasmJsBrowserRun`)*
 
-For Desktop, the JVM target is deprecated and will not work if you compile it from this code. Instead of deploying the JVM target, I used Tauri to build a "native" app (it's native but uses webview). I will be releasing the code to build it soon.
+- **Compile distributable (Production build):**
+  ```bash
+  ./gradlew :webApp:wasmJsBrowserDistribution
+  ```
+  *Output files will be generated in `webApp/build/dist/wasmJs/productionExecutable/`.*
+
+### 🤖 Android
+
+- **Run / Install locally (Connected device or active emulator):**
+  ```bash
+  ./gradlew :androidApp:installDebug
+  ```
+  *(Or open the project in Android Studio / IntelliJ IDEA and select the `androidApp` run configuration).*
+
+- **Compile distributables:**
+  - **Debug APK:**
+    ```bash
+    ./gradlew :androidApp:assembleDebug
+    ```
+    *Output: `androidApp/build/outputs/apk/debug/`*
+  - **Release APK:**
+    ```bash
+    ./gradlew :androidApp:assembleRelease
+    ```
+    *Output: `androidApp/build/outputs/apk/release/`*
+  - **Google Play App Bundle (AAB):**
+    ```bash
+    ./gradlew :androidApp:bundleRelease
+    ```
+    *Output: `androidApp/build/outputs/bundle/release/`*
+
+### 💻 Desktop (JVM)
+
+*(Note: See the deprecation note below regarding JVM audio status).*
+
+- **Run locally:**
+  ```bash
+  ./gradlew :desktopApp:run
+  ```
+
+- **Compile distributables:**
+  - **Native installer / package for the current OS (`.deb`, `.dmg`, `.msi`):**
+    ```bash
+    ./gradlew :desktopApp:packageDistributionForCurrentOS
+    ```
+    *(Or release package: `./gradlew :desktopApp:packageReleaseDistributionForCurrentOS`)*
+  - **Standalone unpacked application directory:**
+    ```bash
+    ./gradlew :desktopApp:createDistributable
+    ```
+  - **Distributable Uber JAR:**
+    ```bash
+    ./gradlew :desktopApp:packageUberJarForCurrentOS
+    ```
+  *Output files will be located in `desktopApp/build/compose/binaries/main/`.*
 
 
 ---
@@ -75,7 +126,7 @@ Still, there were two big issues using KorGe:
 I solved the first issue by just using WAV files instead of OGG. Though, this made the app around 100MB larger in disk space.
 The second one, however, was a bit more tricky. I found that using `the streaming = true` flag helped a bit, but just a bit. I tried preloading the files at startup into memory, but loading them into resourcesVfs (KorGe's global memory) was not enough, yet actually started playing them. I noticed that after the first play per session, consecutive ones were much faster. Like, almost instantly. So my workaround was to set all files to streaming and to start them all for an instant. It had no extra startup penalty to the app, as everything is done in asynchronously, but memory usage... hmm, well... 750MB. I hate RAM-heavy apps, but this time I literally did my best trying to find a better solution, but I just couldn't. Audio libs in Java are a thing.
 
-I'm disappointed with myself that I had to give up on the JVM target. However, then I visited [Blanket page on GitHub](https://github.com/rafaelmardojai/blanket) and I saw that someone already did a Windows version of the app, called [Blanket+](https://apps.microsoft.com/detail/9P4VKD1WQQ9G?hl=neutral&gl=TR&ocid=pdpshare) and there is also a macOS native one, called (Blankie)[https://github.com/codybrom/blankie]. So, I entrust them to keep alive the project in Desktop natively, and I decided to package the Web target I created into Tauri, as a simple solution.
+I'm disappointed with myself that I had to give up on the JVM target. However, then I visited [Blanket page on GitHub](https://github.com/rafaelmardojai/blanket) and I saw that someone already did a Windows version of the app, called [Blanket+](https://apps.microsoft.com/detail/9P4VKD1WQQ9G?hl=neutral&gl=TR&ocid=pdpshare) and there is also a macOS native one, called [Blankie](https://github.com/codybrom/blankie). So, I entrust them to keep alive the project in Desktop natively, and I decided to package the Web target I created into Tauri, as a simple solution.
 
 
 ---
@@ -83,7 +134,6 @@ I'm disappointed with myself that I had to give up on the JVM target. However, t
 ## 🔧 Stack & Resources
 ### Stack
 - **Compose Multiplatform (Android and Web WASM/JS)** — UI framework
-- **Tauri v2 (Desktop version via WASM/JS)** - Backend to run the web app in a native app. 
 - **Audio library** — The web target uses the browser API via kotlinx-browser. On Android, it uses Exoplayer.
 - **GitHub Pages** — For deployment of the web target
 
